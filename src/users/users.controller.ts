@@ -9,7 +9,7 @@ import { UserRole } from './enum/role.enum';
 export class UsersController {
     constructor(private service: UsersService) {}
     
-    @Post('create')
+    @Post('create-user')
     create(@Body() data: CreateUserDto): Promise<User> {
         delete data.password_confirmation;
         return this.service.create(data, UserRole.USER);

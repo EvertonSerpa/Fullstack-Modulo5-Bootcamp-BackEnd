@@ -1,5 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -24,4 +22,12 @@ model User {
   qualification     String
   updateAt          DateTime @updatedAt
   createAt          DateTime @default(now())
+}
+
+model Telephone {
+  telephone_id Int      @id @default(autoincrement())
+  number      Int
+  dd_code     Int
+  updateAt     DateTime @updatedAt
+  createAt     DateTime @default(now())
 }
