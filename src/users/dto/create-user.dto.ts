@@ -1,6 +1,13 @@
 export class CreateUserDto {
     name: string;
-    email: string;
+    surname: string;
+    image: string;
+    nike_name: string;
     password: string;
-    passwordConfirmation: string;
+    password_confirmation: string;
+    wishlist_products: string;
+    wishlist_shops: string;
+    email: string;
+    status: string;
+    qualification: string;
 }

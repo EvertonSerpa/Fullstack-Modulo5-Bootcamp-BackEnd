@@ -11,12 +11,17 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(uuid())
-  name     String
-  email    String   @unique
-  role     String   @default("USER")
-  status   Boolean  @default(true)
-  password String
-  updateAt DateTime @updatedAt
-  createAt DateTime @default(now())
+  user_id           Int      @id @default(autoincrement())
+  name              String
+  surname           String
+  image             String
+  nike_name         String   @unique
+  password          String
+  wishlist_products String
+  wishlist_shops    String
+  email             String   @unique
+  status            String
+  qualification     String
+  updateAt          DateTime @updatedAt
+  createAt          DateTime @default(now())
 }
