@@ -7,10 +7,14 @@ import { SubcategoriesModule } from './subcategories/subcategories.module';
 import { ProductsModule } from './products/products.module';
 import { ProductsNoSpecService } from './products--no-spec/products--no-spec.service';
 import { SellersModule } from './sellers/sellers.module';
+import { PurchasesModule } from './purchases/purchases.module';
+import { OrdersModule } from './orders/orders.module';
+import { ClaimsModule } from './claims/claims.module';
+import { PostsModule } from './posts/posts.module';
 
 
 @Module({
-  imports: [UsersModule, TelephonesModule, AdressesModule, CategoriesModule, SubcategoriesModule, ProductsModule, SellersModule],
+  imports: [UsersModule, TelephonesModule, AdressesModule, CategoriesModule, SubcategoriesModule, ProductsModule, SellersModule, PurchasesModule, OrdersModule, ClaimsModule, PostsModule],
   controllers: [],
   providers: [ProductsNoSpecService],
 })
