@@ -86,6 +86,21 @@ CREATE TABLE "Subcategories" (
     CONSTRAINT "Subcategories_pkey" PRIMARY KEY ("Subcategories_id")
 );
 
+-- CreateTable
+CREATE TABLE "Posts" (
+    "posts_id" TEXT NOT NULL,
+    "product_id" INTEGER NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "seller_id" INTEGER NOT NULL,
+    "subject_message" TEXT NOT NULL,
+    "body_message" TEXT NOT NULL,
+    "seller_response" TEXT NOT NULL,
+    "updateAt" TIMESTAMP(3) NOT NULL,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Posts_pkey" PRIMARY KEY ("posts_id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_nike_name_key" ON "User"("nike_name");
 

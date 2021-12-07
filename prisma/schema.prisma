@@ -79,3 +79,15 @@ model Subcategories {
   updateAt                  DateTime @updatedAt
   createAt                  DateTime @default(now())
 }
+
+model Posts {
+  posts_id        String   @id @default(uuid())
+  product_id      Int
+  user_id         Int
+  seller_id       Int
+  subject_message String
+  body_message    String
+  seller_response String
+  updateAt        DateTime @updatedAt
+  createAt        DateTime @default(now())
+}
