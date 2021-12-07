@@ -1,8 +1,7 @@
 import { Injectable, ConflictException } from '@nestjs/common';
-import { Prisma, User } from '@prisma/client'
+import { Prisma, User } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
-import { UserRole } from './enum/role.enum'
-
+import { UserRole } from './enum/role.enum';
 
 @Injectable()
 export class UsersService {
@@ -10,13 +9,11 @@ export class UsersService {
 
   async create(data: Prisma.UserCreateInput, role: UserRole): Promise<User> {
     const userExists = await this.db.user.findUnique({
-     
       where: { email: data.email },
     });
 
-      if (userExists) {
-        
-      throw new ConflictException('Email já está cadastrado');
+    if (userExists) {
+      throw new ConflictException('Email já está cadastrado!');
     }
 
     const user = await this.db.user.create({
@@ -24,5 +21,20 @@ export class UsersService {
     });
 
     return user;
+  }
+
+  async findMany() {
+    const user = await this.db.user.findMany();
+    return user;
+  }
+
+  async deleteOne(id: string): Promise<{ message: string }> {
+    await this.db.user.delete({
+      where: { id },
+    });
+
+    return {
+      message: 'Usuário deletado com sucesso!',
+    };
   }
 }

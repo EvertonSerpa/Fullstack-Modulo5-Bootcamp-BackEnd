@@ -102,6 +102,9 @@ CREATE TABLE "Posts" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "User_user_id_key" ON "User"("user_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "User_nike_name_key" ON "User"("nike_name");
 
 -- CreateIndex
