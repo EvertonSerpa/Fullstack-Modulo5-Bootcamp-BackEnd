@@ -1,5 +1,5 @@
 import { Controller, Body, Post } from '@nestjs/common';
-import {Telephone } from '.prisma/client';
+import { Telephone } from '.prisma/client';
 import { CreateTelephoneDto } from './dto/create-thelephones.dto';
 import { TelephonesService } from './telephones.service';
 import { TelephoneRole } from './enum/role.enum';

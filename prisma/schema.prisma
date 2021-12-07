@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,7 +8,7 @@ datasource db {
 }
 
 model User {
-  user_id           Int      @id @default(autoincrement())
+  user_id           String   @id @default(uuid()) // Gera o id automaticamente pelo prisma
   name              String
   surname           String
   image             String
@@ -25,9 +24,18 @@ model User {
 }
 
 model Telephone {
-  telephone_id Int      @id @default(autoincrement())
-  number      Int
-  dd_code     Int
+  telephone_id String   @id @default(uuid()) // Gera o id automaticamente pelo prisma
+  number       Int
+  dd_code      Int
   updateAt     DateTime @updatedAt
   createAt     DateTime @default(now())
+}
+
+model Orders {
+  orders_id      String   @id @default(uuid()) // Gera o id automaticamente pelo prisma
+  status_order   String
+  payment_method String
+  status         String
+  updateAt       DateTime @updatedAt
+  createAt       DateTime @default(now())
 }
