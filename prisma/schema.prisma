@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  user_id           String   @id @default(uuid()) // Gera o id automaticamente pelo prisma
+  user_id           String   @id @default(uuid())
   name              String
   surname           String
   image             String
@@ -24,7 +24,7 @@ model User {
 }
 
 model Telephone {
-  telephone_id String   @id @default(uuid()) // Gera o id automaticamente pelo prisma
+  telephone_id String   @id @default(uuid())
   number       Int
   dd_code      Int
   updateAt     DateTime @updatedAt
@@ -32,10 +32,35 @@ model Telephone {
 }
 
 model Orders {
-  orders_id      String   @id @default(uuid()) // Gera o id automaticamente pelo prisma
+  orders_id      String   @id @default(uuid())
   status_order   String
   payment_method String
   status         String
   updateAt       DateTime @updatedAt
   createAt       DateTime @default(now())
+}
+
+model Products {
+  products_id           String   @id @default(uuid())
+  product_name          String
+  price                 Int
+  description           String
+  specifications        String
+  details               String
+  product_route         String
+  product_tags          String
+  video                 String
+  main_image            String
+  gallery               String
+  image_3d              String
+  status                String
+  qualification         String
+  counter_views_product String
+  platform              String
+  collection            String
+  the_amount            Int
+  discount              Int
+  turbo_level           Int
+  updateAt              DateTime @updatedAt
+  createAt              DateTime @default(now())
 }
