@@ -24,15 +24,15 @@ model User {
 }
 
 model Telephone {
-  telephone_id String   @id @default(uuid())
-  number       Int
-  dd_code      Int
-  updateAt     DateTime @updatedAt
-  createAt     DateTime @default(now())
+  id       String   @id @default(uuid())
+  number   Int
+  dd_code  Int
+  updateAt DateTime @updatedAt
+  createAt DateTime @default(now())
 }
 
 model Orders {
-  orders_id      String   @id @default(uuid())
+  id             String   @id @default(uuid())
   status_order   String
   payment_method String
   status         String
@@ -41,7 +41,7 @@ model Orders {
 }
 
 model Products {
-  products_id           String   @id @default(uuid())
+  id                    String   @id @default(uuid())
   product_name          String
   price                 Int
   description           String
@@ -66,7 +66,7 @@ model Products {
 }
 
 model Subcategories {
-  Subcategories_id          String   @id @default(uuid())
+  id                        String   @id @default(uuid())
   category_id               Int
   subcategory_name          String
   subcategory_banner        String
@@ -81,7 +81,7 @@ model Subcategories {
 }
 
 model Posts {
-  posts_id        String   @id @default(uuid())
+  id              String   @id @default(uuid())
   product_id      Int
   user_id         Int
   seller_id       Int
