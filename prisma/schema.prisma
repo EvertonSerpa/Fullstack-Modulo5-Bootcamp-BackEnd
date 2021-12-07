@@ -64,3 +64,18 @@ model Products {
   updateAt              DateTime @updatedAt
   createAt              DateTime @default(now())
 }
+
+model Subcategories {
+  Subcategories_id          String   @id @default(uuid())
+  category_id               Int
+  subcategory_name          String
+  subcategory_banner        String
+  subcategory_image         String
+  subcategory_icon          String
+  subcategory_route         String
+  subcategory_status        String
+  counter_views_subcategory Int
+  description               String
+  updateAt                  DateTime @updatedAt
+  createAt                  DateTime @default(now())
+}
