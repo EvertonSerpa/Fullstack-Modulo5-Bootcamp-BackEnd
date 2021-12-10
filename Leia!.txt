@@ -94,3 +94,17 @@ Rota Product
     "discount": 5,
     "turbo_level": 500
 }
+
+Rota Order
+
+{
+   "order_status": "Pronto",
+   "payment_method": "Calote",
+   "status": "Caloteiro"
+}
+
+{
+   "order_status": "Em processo",
+   "payment_method": "Cartão",
+   "status": "Pago"
+}

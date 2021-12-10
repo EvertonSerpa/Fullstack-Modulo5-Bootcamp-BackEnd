@@ -4,9 +4,11 @@ import { PrismaService } from './prisma/prisma.service';
 import { TelephoneModule } from './telephone/telephone.module';
 import { SubcategorieModule } from './subcategorie/subcategorie.module';
 import { ProductModule } from './product/product.module';
+import { OrderModule } from './order/order.module';
+
 
 @Module({
-  imports: [UserModule, TelephoneModule, SubcategorieModule, ProductModule],
+  imports: [UserModule, TelephoneModule, SubcategorieModule, ProductModule, OrderModule,],
   controllers: [],
   providers: [PrismaService],
 })
