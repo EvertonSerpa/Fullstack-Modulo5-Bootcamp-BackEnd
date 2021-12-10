@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String   @id @default(uuid())
+  name              String
+  surname           String
+  image             String?
+  nike_name         String   @unique
+  password          String
+  wishlist_products String?
+  wishlist_stores   String?
+  email             String   @unique
+  status            String
+  qualification     String?
+  date_updated      DateTime @updatedAt
+  date_created      DateTime @default(now())
+}
+
+model Telephone {
+  id           String   @id @default(uuid())
+  number       Int
+  dd_code      Int
+  date_updated DateTime @updatedAt
+  date_created DateTime @default(now())
+}
+
+model subcategories {
+  id                        String   @id @default(uuid())
+  subcategory_name          String
+  subcategory_banner        String
+  subcategory_image         String
+  subcategory_icon          String
+  subcategory_route         String
+  subcategory_status        String
+  subcategory_counter_views Int
+  description               String?
+  date_updated              DateTime @updatedAt
+  date_created              DateTime @default(now())
+}
+
+model Product {
+  id                   String   @id @default(uuid())
+  product_name         String?
+  price                Int?
+  description          String?
+  specifications       String?
+  details              String?
+  product_route        String?
+  product_tags         String?
+  video                String?
+  main_image           String?
+  gallery              String?
+  image_3d             String?
+  status               String?
+  qualification        String?
+  counter_view_product Int
+  platform             String?
+  collection           String?
+  the_mount            Int?
+  discount             Int?
+  turbo_level          Int
+  date_updated         DateTime @updatedAt
+  date_created         DateTime @default(now())
+}
+
+model Order {
+  id             String   @id @default(uuid())
+  order_status   String?
+  payment_method String
+  status         String
+  date_updated   DateTime @updatedAt
+  date_created   DateTime @default(now())
+}
+
+model Categories {
+  id                     String   @id @default(uuid())
+  name_category          String
+  banner_category        String
+  picture_category       String
+  icon_category          String?
+  status_category        Boolean  @default(true)
+  counter_views_category Int      @default(0)
+  description            String?
+  date_updated           DateTime @updatedAt
+  date_created           DateTime @default(now())
+}
