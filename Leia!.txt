@@ -40,3 +40,22 @@ Rota User
     "status": "Finalizado",
     "qualification": "1 estrelas"
 }
+
+Rota Telephone
+
+{
+  "number": 891078406,   
+  "dd_code": 55    
+}
+
+{
+  "number": 986461287,   
+  "dd_code": 77    
+}
+
+{
+  "number": 981749654,   
+  "dd_code": 555   
+}
+
+localhost:3000/telephone
