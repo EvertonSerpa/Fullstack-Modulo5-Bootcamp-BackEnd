@@ -70,3 +70,27 @@ Rota Subcategorie
   "subcategory_counter_views": 10,
   "description": "É muito GRUD!!!CRUD rs"           
 }
+
+Rota Product
+
+{
+    "product_name": "Escovas de dentes",
+    "price": 10000,
+    "description": "Brilha no escuro",
+    "specifications": "Tamanho dumbo",
+    "details": "Dura 5 anos",
+    "product_route": "Grande rota",
+    "product_tags": "#escove bem",
+    "video": "Aqui vem um video",
+    "main_image": "Imagem principal",
+    "gallery": "Aqui vem as fotos",
+    "image_3d": "Aqui vem imagem 3d",
+    "status": "Feito",
+    "qualification": "5 estrelas",
+    "counter_view_product": 2,
+    "platform": "s5+",
+    "collection": "carros",
+    "the_mount": 10,
+    "discount": 5,
+    "turbo_level": 500
+}
