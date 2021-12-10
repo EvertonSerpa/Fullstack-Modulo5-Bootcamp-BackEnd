@@ -4,10 +4,10 @@ import { Prisma } from '@prisma/client';
 
 export class Telephone implements Prisma.TelephoneUncheckedCreateInput {
 
+    id?: string;
     number: number;
     dd_code: number;
     date_updated?: Date | string;
     date_created?: Date | string;
- 
 }
 

@@ -58,4 +58,15 @@ Rota Telephone
   "dd_code": 555   
 }
 
-localhost:3000/telephone
+Rota Subcategorie
+
+{
+  "subcategory_name": "Aqui vai um nome",
+  "subcategory_banner": "Aqui vai um banner",       
+  "subcategory_image": "Aqui vai uma imagem",  
+  "subcategory_icon": "Aqui vai um icone",      
+  "subcategory_route": "Aqui vai uma rota",     
+  "subcategory_status": "Aqui vai uma banana",    
+  "subcategory_counter_views": 10,
+  "description": "É muito GRUD!!!CRUD rs"           
+}
