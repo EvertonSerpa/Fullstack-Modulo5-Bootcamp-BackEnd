@@ -129,3 +129,12 @@ Rota Qualification
     "nick_name": "Perereca"
     
 }
+
+Rota de Dispute
+
+{
+  "dispute_matter": "Disputa 01",
+  "dispute_body":   "disputa 02",
+  "reply_seller":   "disputa 03",
+  "status_dispute": "disputa 04"
+}

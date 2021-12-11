@@ -135,6 +135,45 @@ CREATE TABLE "Sale_Product" (
     CONSTRAINT "Sale_Product_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Dispute" (
+    "id" TEXT NOT NULL,
+    "dispute_matter" TEXT,
+    "dispute_body" TEXT,
+    "reply_seller" TEXT,
+    "status_dispute" TEXT,
+    "date_updated" TIMESTAMP(3) NOT NULL,
+    "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Dispute_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Post" (
+    "id" TEXT NOT NULL,
+    "message_matter" TEXT,
+    "message_body" TEXT,
+    "reply_seller" TEXT,
+    "date_updated" TIMESTAMP(3) NOT NULL,
+    "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Payment_Method" (
+    "id" TEXT NOT NULL,
+    "owner_name" TEXT,
+    "account_number" TEXT,
+    "expiration_date_mm" INTEGER,
+    "expiration_date_yy" INTEGER,
+    "identification_doc" TEXT,
+    "date_updated" TIMESTAMP(3) NOT NULL,
+    "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Payment_Method_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_nike_name_key" ON "User"("nike_name");
 

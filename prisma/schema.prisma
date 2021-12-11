@@ -120,3 +120,33 @@ model Sale_Product {
   date_updated DateTime @updatedAt
   date_created DateTime @default(now())
 }
+
+model Dispute {
+  id             String   @id @default(uuid())
+  dispute_matter String?
+  dispute_body   String?
+  reply_seller   String?
+  status_dispute String?
+  date_updated   DateTime @updatedAt
+  date_created   DateTime @default(now())
+}
+
+model Post {
+  id             String   @id @default(uuid())
+  message_matter String?
+  message_body   String?
+  reply_seller   String?
+  date_updated   DateTime @updatedAt
+  date_created   DateTime @default(now())
+}
+
+model Payment_Method {
+  id                 String   @id @default(uuid())
+  owner_name         String?
+  account_number     String?
+  expiration_date_mm Int?
+  expiration_date_yy Int?
+  identification_doc String?
+  date_updated       DateTime @updatedAt
+  date_created       DateTime @default(now())
+}

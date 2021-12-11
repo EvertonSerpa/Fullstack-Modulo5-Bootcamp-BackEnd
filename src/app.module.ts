@@ -9,10 +9,13 @@ import { CategorieModule } from './categorie/categorie.module';
 import { QualificationModule } from './qualification/qualification.module';
 import { SaleModule } from './sale/sale.module';
 import { SaleproductModule } from './saleproduct/saleproduct.module';
+import { DisputeModule } from './dispute/dispute.module';
+import { PostModule } from './post/post.module';
+import { PaymentMethodModule } from './payment-method/payment-method.module';
 
 
 @Module({
-  imports: [UserModule, TelephoneModule, SubcategorieModule, ProductModule, OrderModule, CategorieModule, QualificationModule, SaleModule, SaleproductModule, SaleproductModule,],
+  imports: [UserModule, TelephoneModule, SubcategorieModule, ProductModule, OrderModule, CategorieModule, QualificationModule, SaleModule, SaleproductModule, SaleproductModule, DisputeModule, PostModule, PaymentMethodModule,],
   controllers: [],
   providers: [PrismaService],
 })
