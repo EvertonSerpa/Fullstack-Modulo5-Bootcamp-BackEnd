@@ -7,10 +7,11 @@ import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { CategorieModule } from './categorie/categorie.module';
 import { QualificationModule } from './qualification/qualification.module';
+import { SaleModule } from './sale/sale.module';
 
 
 @Module({
-  imports: [UserModule, TelephoneModule, SubcategorieModule, ProductModule, OrderModule, CategorieModule, QualificationModule,],
+  imports: [UserModule, TelephoneModule, SubcategorieModule, ProductModule, OrderModule, CategorieModule, QualificationModule, SaleModule,],
   controllers: [],
   providers: [PrismaService],
 })

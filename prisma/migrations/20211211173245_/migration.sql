@@ -113,6 +113,16 @@ CREATE TABLE "Qualification" (
     CONSTRAINT "Qualification_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "sale" (
+    "id" TEXT NOT NULL,
+    "status_sale" TEXT NOT NULL,
+    "date_updated" TIMESTAMP(3) NOT NULL,
+    "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "sale_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_nike_name_key" ON "User"("nike_name");
 

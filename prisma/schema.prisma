@@ -104,3 +104,10 @@ model Qualification {
   date_created        DateTime @default(now())
 
 }
+
+model sale {
+  id           String   @id @default(uuid())
+  status_sale  String
+  date_updated DateTime @updatedAt
+  date_created DateTime @default(now())
+}

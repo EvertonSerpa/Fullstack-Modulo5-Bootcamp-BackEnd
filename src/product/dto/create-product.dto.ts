@@ -16,4 +16,7 @@ export class CreateProductDto {
   platform?: string;
   collection?: string;
   the_mount?: number;
+  discount?: number;
+  turbo_level: number;
+
 }
