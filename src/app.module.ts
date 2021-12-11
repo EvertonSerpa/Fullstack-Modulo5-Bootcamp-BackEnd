@@ -6,10 +6,11 @@ import { SubcategorieModule } from './subcategorie/subcategorie.module';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { CategorieModule } from './categorie/categorie.module';
+import { QualificationModule } from './qualification/qualification.module';
 
 
 @Module({
-  imports: [UserModule, TelephoneModule, SubcategorieModule, ProductModule, OrderModule, CategorieModule,],
+  imports: [UserModule, TelephoneModule, SubcategorieModule, ProductModule, OrderModule, CategorieModule, QualificationModule,],
   controllers: [],
   providers: [PrismaService],
 })

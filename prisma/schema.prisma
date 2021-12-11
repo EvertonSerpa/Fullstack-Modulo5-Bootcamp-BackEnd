@@ -94,3 +94,13 @@ model Categorie {
   date_updated           DateTime @updatedAt
   date_created           DateTime @default(now())
 }
+
+model Qualification {
+  id                  String   @id @default(uuid())
+  value_qualification Int
+  comment             String?
+  nick_name           String?
+  date_updated        DateTime @updatedAt
+  date_created        DateTime @default(now())
+
+}

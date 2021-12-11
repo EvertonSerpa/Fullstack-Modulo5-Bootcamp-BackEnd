@@ -101,6 +101,18 @@ CREATE TABLE "Categorie" (
     CONSTRAINT "Categorie_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Qualification" (
+    "id" TEXT NOT NULL,
+    "value_qualification" INTEGER NOT NULL,
+    "comment" TEXT,
+    "nick_name" TEXT,
+    "date_updated" TIMESTAMP(3) NOT NULL,
+    "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Qualification_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_nike_name_key" ON "User"("nike_name");
 

@@ -120,3 +120,12 @@ Rota Category
     "counter_views_category": 10,
     "description": "Aqui vai a descrição da categoria"
 }
+
+Rota Qualification
+
+{
+    "value_qualification": 10,
+    "comment": "Aqui vai ocomentario",
+    "nick_name": "Perereca"
+    
+}
