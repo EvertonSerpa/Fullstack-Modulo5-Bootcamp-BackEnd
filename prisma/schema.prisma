@@ -34,7 +34,7 @@ model Telephone {
   date_created DateTime @default(now())
 }
 
-model subcategorie {
+model Subcategorie {
   id                        String   @id @default(uuid())
   subcategory_name          String
   subcategory_banner        String
@@ -105,9 +105,18 @@ model Qualification {
 
 }
 
-model sale {
+model Sale {
   id           String   @id @default(uuid())
   status_sale  String
+  date_updated DateTime @updatedAt
+  date_created DateTime @default(now())
+}
+
+model Sale_Product {
+  id           String   @id @default(uuid())
+  quantity     Int?
+  sale_price   Int
+  pay_rate     Int?
   date_updated DateTime @updatedAt
   date_created DateTime @default(now())
 }

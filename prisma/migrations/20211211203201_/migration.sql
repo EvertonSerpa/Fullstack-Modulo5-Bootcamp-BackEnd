@@ -29,7 +29,7 @@ CREATE TABLE "Telephone" (
 );
 
 -- CreateTable
-CREATE TABLE "subcategorie" (
+CREATE TABLE "Subcategorie" (
     "id" TEXT NOT NULL,
     "subcategory_name" TEXT NOT NULL,
     "subcategory_banner" TEXT NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE "subcategorie" (
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "subcategorie_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Subcategorie_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -114,13 +114,25 @@ CREATE TABLE "Qualification" (
 );
 
 -- CreateTable
-CREATE TABLE "sale" (
+CREATE TABLE "Sale" (
     "id" TEXT NOT NULL,
     "status_sale" TEXT NOT NULL,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "sale_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Sale_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Sale_Product" (
+    "id" TEXT NOT NULL,
+    "quantity" INTEGER,
+    "sale_price" INTEGER NOT NULL,
+    "pay_rate" INTEGER,
+    "date_updated" TIMESTAMP(3) NOT NULL,
+    "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Sale_Product_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

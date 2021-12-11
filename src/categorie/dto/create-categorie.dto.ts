@@ -1,4 +1,6 @@
-export class CreateCategorieDto {
+import { Categorie } from "../entities/categorie.entity";
+
+export class CreateCategorieDto extends Categorie{
     name_category: string;
     banner_category: string;
     picture_category: string | null
@@ -8,3 +10,7 @@ export class CreateCategorieDto {
     description: string | null;
     status: string;
 }
+
+
+
+
