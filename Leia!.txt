@@ -108,3 +108,15 @@ Rota Order
    "payment_method": "Cartão",
    "status": "Pago"
 }
+
+Rota Category
+
+{
+    "name_category": "Aqui vai o nome da categoria.",
+    "banner_category": "Aqui vai o banner da categoria",
+    "picture_category": "Aqui vai a foto da categoria",
+    "icon_category": "Aqui vai o icone da categoria",
+    "status_category": true,
+    "counter_views_category": 10,
+    "description": "Aqui vai a descrição da categoria"
+}

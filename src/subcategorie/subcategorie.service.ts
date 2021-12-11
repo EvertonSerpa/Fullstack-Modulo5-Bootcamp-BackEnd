@@ -10,7 +10,7 @@ export class SubcategorieService {
   // CADASTRAR SUBCATEGORIA
 
   async create(CreateSubcategorieDto: CreateSubcategorieDto) {
-    await this.prisma.subcategories.create({
+    await this.prisma.subcategorie.create({
       data: {
         ...CreateSubcategorieDto,
       },
@@ -24,13 +24,13 @@ export class SubcategorieService {
   // LISTA TODAS AS SUBCATEGORIAS DESSA ROTA
 
   findAll() {
-    return this.prisma.subcategories.findMany();
+    return this.prisma.subcategorie.findMany();
   }
 
-  // ENCONTRA UM TELEFONE POR ID
+  // ENCONTRA UM SUBCATEGORIA POR ID
 
   findOne(id: string) {
-    return this.prisma.subcategories.findUnique({
+    return this.prisma.subcategorie.findUnique({
       where: {
         id,
       },
@@ -40,7 +40,7 @@ export class SubcategorieService {
   // ATUALIZA UM SUBCATEGORIA PELO ID
 
   async update(id: string, data: UpdateSubcategorieDto) {
-    await this.prisma.subcategories.update({
+    await this.prisma.subcategorie.update({
       where: { id },
       data,
     });
@@ -53,7 +53,7 @@ export class SubcategorieService {
   // DELETE UMA SUBCATEGORIA PELO ID
 
   async remove(id: string) {
-    await this.prisma.subcategories.delete({
+    await this.prisma.subcategorie.delete({
       where: { id },
     });
 

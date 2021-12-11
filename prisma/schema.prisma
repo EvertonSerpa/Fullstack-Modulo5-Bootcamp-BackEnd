@@ -34,7 +34,7 @@ model Telephone {
   date_created DateTime @default(now())
 }
 
-model subcategories {
+model subcategorie {
   id                        String   @id @default(uuid())
   subcategory_name          String
   subcategory_banner        String
@@ -82,7 +82,7 @@ model Order {
   date_created   DateTime @default(now())
 }
 
-model Categories {
+model Categorie {
   id                     String   @id @default(uuid())
   name_category          String
   banner_category        String

@@ -2,7 +2,7 @@ import { Prisma } from '@prisma/client';
 
 // O Unchecked vai ter a informação do id, que para a entidade isso vai ser necessario.
 
-export class Subcategorie implements Prisma.subcategoriesUncheckedCreateInput {
+export class Subcategorie implements Prisma.subcategorieUncheckedCreateInput {
 
     id: string;
     subcategory_name: string;
