@@ -3,7 +3,6 @@ import { User } from "../entities/user.entity";
 // Quando extends a propriedade User posso vazer com que ela tenha qualquer variavel que eu queira.
 
 export class CreateUserDto extends User {
-
     name: string;
     surname: string;
     image: string | null

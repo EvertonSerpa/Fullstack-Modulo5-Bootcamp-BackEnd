@@ -3,7 +3,6 @@ import { Subcategorie } from "../entities/subcategorie.entity";
 // Quando extends a propriedade Subcategoria posso vazer com que ela tenha qualquer variavel que eu queira.
 
 export class CreateSubcategorieDto extends Subcategorie {
-
     subcategory_name: string;
     subcategory_banner: string;
     subcategory_image: string;

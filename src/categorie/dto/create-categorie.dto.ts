@@ -1,5 +1,4 @@
 export class CreateCategorieDto {
-    id: string;
     name_category: string;
     banner_category: string;
     picture_category: string | null

@@ -1,7 +1,6 @@
 import { Prisma } from '@prisma/client';
 
 export class Categorie implements Prisma.CategorieUncheckedCreateInput {
-    id: string;
     name_category: string
     banner_category: string
     picture_category: string
@@ -10,6 +9,4 @@ export class Categorie implements Prisma.CategorieUncheckedCreateInput {
     counter_views_category: number
     description?: string
     status: string;
-    date_updated: Date | string;
-    date_created: Date | string; 
 }
