@@ -1,4 +1,4 @@
-Para brincar nas rotas!!! Boa diversão =p 
+Para brincar nas  na construção das tabelas..!!! Boa diversão =p 
 
 Rota User
 
@@ -137,4 +137,11 @@ Rota de Dispute
   "dispute_body":   "disputa 02",
   "reply_seller":   "disputa 03",
   "status_dispute": "disputa 04"
+}
+
+Rota de Post
+{
+    "message_matter": "Aqui vai uma msn",
+    "message_body": "Aqui vai uma mss de corpo",
+    "reply_seller": "Aqui vai outra msn"
 }
