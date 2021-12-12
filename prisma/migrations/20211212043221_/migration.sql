@@ -174,6 +174,55 @@ CREATE TABLE "Payment_Method" (
     CONSTRAINT "Payment_Method_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Transaction" (
+    "id" TEXT NOT NULL,
+    "transaction" TEXT,
+    "value" INTEGER NOT NULL,
+    "date_updated" TIMESTAMP(3) NOT NULL,
+    "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Transaction_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Deposit_Money" (
+    "id" TEXT NOT NULL,
+    "value" INTEGER NOT NULL,
+    "date_updated" TIMESTAMP(3) NOT NULL,
+    "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Deposit_Money_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Wallet" (
+    "id" TEXT NOT NULL,
+    "balance" INTEGER NOT NULL,
+    "date_updated" TIMESTAMP(3) NOT NULL,
+    "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Wallet_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "World" (
+    "id" TEXT NOT NULL,
+    "name_world" TEXT,
+    "description" TEXT,
+    "founding_company" TEXT,
+    "picture_world" TEXT,
+    "icon_world" TEXT,
+    "banner_world" TEXT,
+    "video_world" TEXT,
+    "status_category" TEXT NOT NULL,
+    "counter_views_world" INTEGER NOT NULL DEFAULT 0,
+    "date_updated" TIMESTAMP(3) NOT NULL,
+    "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "World_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_nike_name_key" ON "User"("nike_name");
 

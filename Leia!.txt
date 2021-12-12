@@ -145,3 +145,23 @@ Rota de Post
     "message_body": "Aqui vai uma mss de corpo",
     "reply_seller": "Aqui vai outra msn"
 }
+
+Rota Word
+
+{
+  "name_world":        "Mario",
+  "description":         "Mariando com Mario",
+  "founding_company":    "T+++++++",
+  "picture_world":      "Mario",
+  "icon_world":         "Martelo de thor",
+  "banner_world":      "Não tem",
+  "video_world":        "Não tem",
+  "status_category":   "Mario e Maria",
+  "counter_views_world": 0
+}
+
+Rota Wallet
+
+{
+    "balance": 115  
+}

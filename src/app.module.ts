@@ -12,10 +12,29 @@ import { SaleproductModule } from './saleproduct/saleproduct.module';
 import { DisputeModule } from './dispute/dispute.module';
 import { PostModule } from './post/post.module';
 import { PaymentMethodModule } from './payment-method/payment-method.module';
-
+import { TransactionModule } from './transaction/transaction.module';
+import { WalletModule } from './wallet/wallet.module';
+import { WorldsModule } from './world/world.module';
 
 @Module({
-  imports: [UserModule, TelephoneModule, SubcategorieModule, ProductModule, OrderModule, CategorieModule, QualificationModule, SaleModule, SaleproductModule, SaleproductModule, DisputeModule, PostModule, PaymentMethodModule,],
+  imports: [
+    UserModule,
+    TelephoneModule,
+    SubcategorieModule,
+    ProductModule,
+    OrderModule,
+    CategorieModule,
+    QualificationModule,
+    SaleModule,
+    SaleproductModule,
+    SaleproductModule,
+    DisputeModule,
+    PostModule,
+    PaymentMethodModule,
+    TransactionModule,
+    WalletModule,
+    WorldsModule,
+  ],
   controllers: [],
   providers: [PrismaService],
 })

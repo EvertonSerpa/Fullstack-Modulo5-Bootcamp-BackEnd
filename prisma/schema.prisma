@@ -150,3 +150,40 @@ model Payment_Method {
   date_updated       DateTime @updatedAt
   date_created       DateTime @default(now())
 }
+
+model Transaction {
+  id               String   @id @default(uuid())
+  transaction String?
+  value            Int
+  date_updated     DateTime @updatedAt
+  date_created     DateTime @default(now())
+}
+
+model Deposit_Money {
+  id           String   @id @default(uuid())
+  value        Int
+  date_updated DateTime @updatedAt
+  date_created DateTime @default(now())
+}
+
+model Wallet {
+  id           String   @id @default(uuid())
+  balance      Int
+  date_updated DateTime @updatedAt
+  date_created DateTime @default(now())
+}
+
+model World {
+  id                  String   @id @default(uuid())
+  name_world          String?
+  description         String?
+  founding_company    String?
+  picture_world       String?
+  icon_world          String?
+  banner_world        String?
+  video_world         String?
+  status_category     String
+  counter_views_world Int      @default(0)
+  date_updated        DateTime @updatedAt
+  date_created        DateTime @default(now())
+}
