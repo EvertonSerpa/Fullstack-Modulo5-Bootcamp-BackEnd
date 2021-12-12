@@ -165,3 +165,9 @@ Rota Wallet
 {
     "balance": 115  
 }
+
+Rota Deposit-Money
+
+{
+    "value": 1789
+}
