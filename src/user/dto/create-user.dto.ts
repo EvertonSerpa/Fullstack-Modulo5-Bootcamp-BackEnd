@@ -5,12 +5,14 @@ import { User } from "../entities/user.entity";
 export class CreateUserDto extends User {
     name: string;
     surname: string;
-    image: string | null
+    profile_picture: string
     nike_name: string;
     password: string;
-    wishlist_products: string | null;
-    wishlist_stores: string | null;
     email: string;
     status: string;
-    qualification: string | null;
+    seller: boolean;
+    description: string;
+    banner: string;
+    average_qualification: number | null;
+    conter_views_store: number;
 }

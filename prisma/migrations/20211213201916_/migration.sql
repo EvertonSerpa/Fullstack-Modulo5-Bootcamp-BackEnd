@@ -1,16 +1,18 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "surname" TEXT NOT NULL,
-    "image" TEXT,
-    "nike_name" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
-    "wishlist_products" TEXT,
-    "wishlist_stores" TEXT,
+    "name" VARCHAR(70) NOT NULL,
+    "surname" VARCHAR(70) NOT NULL,
+    "profile_picture" TEXT NOT NULL,
+    "nike_name" VARCHAR(50) NOT NULL,
+    "password" VARCHAR(60) NOT NULL,
     "email" TEXT NOT NULL,
     "status" TEXT NOT NULL,
-    "qualification" TEXT,
+    "seller" BOOLEAN NOT NULL DEFAULT false,
+    "description" VARCHAR(1000),
+    "banner" TEXT NOT NULL,
+    "average_qualification" INTEGER,
+    "conter_views_store" INTEGER NOT NULL,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -20,10 +22,12 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Telephone" (
     "id" TEXT NOT NULL,
-    "number" INTEGER NOT NULL,
-    "dd_code" INTEGER NOT NULL,
+    "number_telephone" INTEGER NOT NULL,
+    "region_code" INTEGER NOT NULL,
+    "country_code" INTEGER NOT NULL,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "userId" TEXT,
 
     CONSTRAINT "Telephone_pkey" PRIMARY KEY ("id")
 );
@@ -31,16 +35,17 @@ CREATE TABLE "Telephone" (
 -- CreateTable
 CREATE TABLE "Subcategorie" (
     "id" TEXT NOT NULL,
-    "subcategory_name" TEXT NOT NULL,
+    "subcategory_name" VARCHAR(100) NOT NULL,
     "subcategory_banner" TEXT NOT NULL,
     "subcategory_image" TEXT NOT NULL,
     "subcategory_icon" TEXT NOT NULL,
     "subcategory_route" TEXT NOT NULL,
-    "subcategory_status" TEXT NOT NULL,
+    "subcategory_status" VARCHAR(30) NOT NULL,
     "subcategory_counter_views" INTEGER NOT NULL,
-    "description" TEXT,
+    "description" VARCHAR(1000),
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "productId" TEXT NOT NULL,
 
     CONSTRAINT "Subcategorie_pkey" PRIMARY KEY ("id")
 );
@@ -48,19 +53,19 @@ CREATE TABLE "Subcategorie" (
 -- CreateTable
 CREATE TABLE "Product" (
     "id" TEXT NOT NULL,
-    "product_name" TEXT,
-    "price" INTEGER,
-    "description" TEXT,
-    "specifications" TEXT,
-    "details" TEXT,
-    "product_route" TEXT,
-    "product_tags" TEXT,
+    "product_name" VARCHAR(100) NOT NULL,
+    "price" INTEGER NOT NULL,
+    "description" VARCHAR(1000) NOT NULL,
+    "specifications" VARCHAR(1000),
+    "details" VARCHAR(1000),
+    "color" VARCHAR(50),
+    "product_tags" VARCHAR(100),
     "video" TEXT,
-    "main_image" TEXT,
+    "main_image" TEXT NOT NULL,
     "gallery" TEXT,
     "image_3d" TEXT,
-    "status" TEXT,
-    "qualification" TEXT,
+    "status" TEXT NOT NULL,
+    "average_qualification" INTEGER,
     "counter_view_product" INTEGER NOT NULL,
     "platform" TEXT,
     "collection" TEXT,
@@ -88,15 +93,17 @@ CREATE TABLE "Order" (
 -- CreateTable
 CREATE TABLE "Categorie" (
     "id" TEXT NOT NULL,
-    "name_category" TEXT NOT NULL,
+    "name_category" VARCHAR(100) NOT NULL,
     "banner_category" TEXT NOT NULL,
     "picture_category" TEXT NOT NULL,
     "icon_category" TEXT,
     "status_category" BOOLEAN NOT NULL DEFAULT true,
     "counter_views_category" INTEGER NOT NULL DEFAULT 0,
-    "description" TEXT,
+    "description" VARCHAR(1000),
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "subcategorieId" TEXT NOT NULL,
+    "productId" TEXT NOT NULL,
 
     CONSTRAINT "Categorie_pkey" PRIMARY KEY ("id")
 );
@@ -105,10 +112,13 @@ CREATE TABLE "Categorie" (
 CREATE TABLE "Qualification" (
     "id" TEXT NOT NULL,
     "value_qualification" INTEGER NOT NULL,
-    "comment" TEXT,
-    "nick_name" TEXT,
+    "comment" VARCHAR(1000),
+    "nick_name" VARCHAR(50),
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "userId" TEXT,
+    "productId" TEXT,
+    "telephoneId" TEXT,
 
     CONSTRAINT "Qualification_pkey" PRIMARY KEY ("id")
 );
@@ -119,6 +129,7 @@ CREATE TABLE "Sale" (
     "status_sale" TEXT NOT NULL,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "productId" TEXT NOT NULL,
 
     CONSTRAINT "Sale_pkey" PRIMARY KEY ("id")
 );
@@ -208,17 +219,18 @@ CREATE TABLE "Wallet" (
 -- CreateTable
 CREATE TABLE "World" (
     "id" TEXT NOT NULL,
-    "name_world" TEXT,
-    "description" TEXT,
+    "name_world" VARCHAR(100) NOT NULL,
+    "description" VARCHAR(1000),
     "founding_company" TEXT,
-    "picture_world" TEXT,
+    "picture_world" TEXT NOT NULL,
     "icon_world" TEXT,
-    "banner_world" TEXT,
+    "banner_world" TEXT NOT NULL,
     "video_world" TEXT,
-    "status_category" TEXT NOT NULL,
+    "status_world" VARCHAR(30) NOT NULL,
     "counter_views_world" INTEGER NOT NULL DEFAULT 0,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "productId" TEXT NOT NULL,
 
     CONSTRAINT "World_pkey" PRIMARY KEY ("id")
 );
@@ -228,3 +240,30 @@ CREATE UNIQUE INDEX "User_nike_name_key" ON "User"("nike_name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- AddForeignKey
+ALTER TABLE "Telephone" ADD CONSTRAINT "Telephone_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Subcategorie" ADD CONSTRAINT "Subcategorie_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Categorie" ADD CONSTRAINT "Categorie_subcategorieId_fkey" FOREIGN KEY ("subcategorieId") REFERENCES "Subcategorie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Categorie" ADD CONSTRAINT "Categorie_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Qualification" ADD CONSTRAINT "Qualification_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Qualification" ADD CONSTRAINT "Qualification_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Qualification" ADD CONSTRAINT "Qualification_telephoneId_fkey" FOREIGN KEY ("telephoneId") REFERENCES "Telephone"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Sale" ADD CONSTRAINT "Sale_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "World" ADD CONSTRAINT "World_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

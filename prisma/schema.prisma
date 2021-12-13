@@ -11,66 +11,86 @@ datasource db {
 }
 
 model User {
-  id                String   @id @default(uuid())
-  name              String
-  surname           String
-  image             String?
-  nike_name         String   @unique
-  password          String
-  wishlist_products String?
-  wishlist_stores   String?
-  email             String   @unique
-  status            String
-  qualification     String?
-  date_updated      DateTime @updatedAt
-  date_created      DateTime @default(now())
+  id                    String   @id @default(uuid())
+  name                  String   @db.VarChar(70)
+  surname               String   @db.VarChar(70)
+  profile_picture       String
+  nike_name             String   @unique @db.VarChar(50)
+  password              String   @db.VarChar(60)
+  email                 String   @unique
+  status                String
+  seller                Boolean  @default(false)
+  description           String?  @db.VarChar(1000)
+  banner                String
+  average_qualification Int?
+  conter_views_store    Int
+  date_updated          DateTime @updatedAt
+  date_created          DateTime @default(now())
+
+  Telephone     Telephone[]
+  Qualification Qualification[]
 }
 
 model Telephone {
-  id           String   @id @default(uuid())
-  number       Int
-  dd_code      Int
-  date_updated DateTime @updatedAt
-  date_created DateTime @default(now())
+  id               String   @id @default(uuid())
+  number_telephone Int
+  region_code      Int
+  country_code     Int
+  date_updated     DateTime @updatedAt
+  date_created     DateTime @default(now())
+
+  User          User?           @relation(fields: [userId], references: [id])
+  userId        String?
+  Qualification Qualification[]
 }
 
 model Subcategorie {
   id                        String   @id @default(uuid())
-  subcategory_name          String
+  subcategory_name          String   @db.VarChar(100)
   subcategory_banner        String
   subcategory_image         String
   subcategory_icon          String
   subcategory_route         String
-  subcategory_status        String
+  subcategory_status        String   @db.VarChar(30)
   subcategory_counter_views Int
-  description               String?
+  description               String?  @db.VarChar(1000)
   date_updated              DateTime @updatedAt
   date_created              DateTime @default(now())
+
+  Categorie Categorie[]
+  Product   Product     @relation(fields: [productId], references: [id])
+  productId String
 }
 
 model Product {
-  id                   String   @id @default(uuid())
-  product_name         String?
-  price                Int?
-  description          String?
-  specifications       String?
-  details              String?
-  product_route        String?
-  product_tags         String?
-  video                String?
-  main_image           String?
-  gallery              String?
-  image_3d             String?
-  status               String?
-  qualification        String?
-  counter_view_product Int
-  platform             String?
-  collection           String?
-  the_mount            Int?
-  discount             Int?
-  turbo_level          Int
-  date_updated         DateTime @updatedAt
-  date_created         DateTime @default(now())
+  id                    String   @id @default(uuid())
+  product_name          String   @db.VarChar(100)
+  price                 Int
+  description           String   @db.VarChar(1000)
+  specifications        String?  @db.VarChar(1000)
+  details               String?  @db.VarChar(1000)
+  color                 String?  @db.VarChar(50)
+  product_tags          String?  @db.VarChar(100)
+  video                 String?
+  main_image            String
+  gallery               String?
+  image_3d              String?
+  status                String
+  average_qualification Int?
+  counter_view_product  Int
+  platform              String?
+  collection            String?
+  the_mount             Int?
+  discount              Int?
+  turbo_level           Int
+  date_updated          DateTime @updatedAt
+  date_created          DateTime @default(now())
+
+  Qualification Qualification[]
+  Categorie     Categorie[]
+  Subcategorie  Subcategorie[]
+  Sale          Sale[]
+  World         World[]
 }
 
 model Order {
@@ -84,25 +104,36 @@ model Order {
 
 model Categorie {
   id                     String   @id @default(uuid())
-  name_category          String
+  name_category          String   @db.VarChar(100)
   banner_category        String
   picture_category       String
   icon_category          String?
   status_category        Boolean  @default(true)
   counter_views_category Int      @default(0)
-  description            String?
+  description            String?  @db.VarChar(1000)
   date_updated           DateTime @updatedAt
   date_created           DateTime @default(now())
+
+  Subcategorie   Subcategorie @relation(fields: [subcategorieId], references: [id])
+  subcategorieId String
+  Product        Product      @relation(fields: [productId], references: [id])
+  productId      String
 }
 
 model Qualification {
   id                  String   @id @default(uuid())
   value_qualification Int
-  comment             String?
-  nick_name           String?
+  comment             String?  @db.VarChar(1000)
+  nick_name           String?  @db.VarChar(50)
   date_updated        DateTime @updatedAt
   date_created        DateTime @default(now())
 
+  User        User?      @relation(fields: [userId], references: [id])
+  userId      String?
+  Product     Product?   @relation(fields: [productId], references: [id])
+  productId   String?
+  Telephone   Telephone? @relation(fields: [telephoneId], references: [id])
+  telephoneId String?
 }
 
 model Sale {
@@ -110,6 +141,9 @@ model Sale {
   status_sale  String
   date_updated DateTime @updatedAt
   date_created DateTime @default(now())
+
+  Product   Product @relation(fields: [productId], references: [id])
+  productId String
 }
 
 model Sale_Product {
@@ -152,11 +186,11 @@ model Payment_Method {
 }
 
 model Transaction {
-  id               String   @id @default(uuid())
-  transaction String?
-  value            Int
-  date_updated     DateTime @updatedAt
-  date_created     DateTime @default(now())
+  id           String   @id @default(uuid())
+  transaction  String?
+  value        Int
+  date_updated DateTime @updatedAt
+  date_created DateTime @default(now())
 }
 
 model Deposit_Money {
@@ -175,15 +209,18 @@ model Wallet {
 
 model World {
   id                  String   @id @default(uuid())
-  name_world          String?
-  description         String?
+  name_world          String   @db.VarChar(100)
+  description         String?  @db.VarChar(1000)
   founding_company    String?
-  picture_world       String?
+  picture_world       String
   icon_world          String?
-  banner_world        String?
+  banner_world        String
   video_world         String?
-  status_category     String
+  status_world        String   @db.VarChar(30)
   counter_views_world Int      @default(0)
   date_updated        DateTime @updatedAt
   date_created        DateTime @default(now())
+
+  Product   Product @relation(fields: [productId], references: [id])
+  productId String
 }

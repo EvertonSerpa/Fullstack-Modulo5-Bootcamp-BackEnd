@@ -5,12 +5,14 @@ import { Prisma } from '@prisma/client';
 export class User implements Prisma.UserUncheckedCreateInput {
   name: string;
   surname: string;
-  image?: string;
+  profile_picture: string;
   nike_name: string;
   password: string;
-  wishlist_products?: string;
-  wishlist_stores?: string;
   email: string;
   status: string;
-  qualification?: string;
+  seller: boolean;
+  description?: string;
+  banner: string;
+  average_qualification?: number;
+  conter_views_store: number;
 }
