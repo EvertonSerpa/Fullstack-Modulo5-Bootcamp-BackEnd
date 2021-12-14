@@ -1,5 +1,6 @@
 import { Prisma } from "@prisma/client";
 
+
 export class Sale implements Prisma.SaleUncheckedCreateInput {
     id?: string;
     status_sale: string;

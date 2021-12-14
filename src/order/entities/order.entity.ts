@@ -1,7 +1,14 @@
 import { Prisma } from '@prisma/client';
 
 export class Order implements Prisma.OrderUncheckedCreateInput {
-    order_status: string;
+    id?: string;
+    order_status?: string;
     payment_method: string;
-    status: string;
+    annotation: string;
+    discount_ticket: number;
+    date_updated?: string | Date;
+    date_created?: string | Date;
+    saleId: string;
+    disputeId: string;
+    User?: Prisma.UserUncheckedCreateNestedManyWithoutOrderInput;
 }

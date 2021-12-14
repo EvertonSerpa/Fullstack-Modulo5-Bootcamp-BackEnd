@@ -20,15 +20,16 @@ export class Product implements Prisma.ProductUncheckedCreateInput {
     counter_view_product: number;
     platform?: string;
     collection?: string;
-    the_mount?: number;
+    stock?: number;
     discount?: number;
-    turbo_level: number;
+    highlight_level: number;
     date_updated?: string | Date;
     date_created?: string | Date;
+    sale_ProductId: string;
+    postId: string;
     Qualification?: Prisma.QualificationUncheckedCreateNestedManyWithoutProductInput;
     Categorie?: Prisma.CategorieUncheckedCreateNestedManyWithoutProductInput;
     Subcategorie?: Prisma.SubcategorieUncheckedCreateNestedManyWithoutProductInput;
     Sale?: Prisma.SaleUncheckedCreateNestedManyWithoutProductInput;
     World?: Prisma.WorldUncheckedCreateNestedManyWithoutProductInput;
-    
 }

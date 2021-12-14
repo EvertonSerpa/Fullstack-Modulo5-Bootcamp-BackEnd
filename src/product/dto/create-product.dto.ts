@@ -6,7 +6,7 @@ export class CreateProductDto extends Product {
   description: string;
   specifications?: string;
   details?: string;
-  product_route?: string;
+  color?: string;
   product_tags?: string;
   video?: string;
   main_image: string;
@@ -17,8 +17,7 @@ export class CreateProductDto extends Product {
   counter_view_product: number;
   platform?: string;
   collection?: string;
-  the_mount?: number;
+  stock?: number;
   discount?: number;
-  turbo_level: number;
-
+  highlight_level: number;
 }

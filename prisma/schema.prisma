@@ -29,6 +29,21 @@ model User {
 
   Telephone     Telephone[]
   Qualification Qualification[]
+
+  Order            Order          @relation(fields: [orderId], references: [id])
+  orderId          String
+  Sale             Sale           @relation(fields: [saleId], references: [id])
+  saleId           String
+  Payment_Method   Payment_Method @relation(fields: [payment_MethodId], references: [id])
+  payment_MethodId String
+  Wallet           Wallet         @relation(fields: [walletId], references: [id])
+  walletId         String
+  Deposit_Money    Deposit_Money  @relation(fields: [deposit_MoneyId], references: [id])
+  deposit_MoneyId  String
+  Dispute          Dispute        @relation(fields: [disputeId], references: [id])
+  disputeId        String
+  Post             Post           @relation(fields: [postId], references: [id])
+  postId           String
 }
 
 model Telephone {
@@ -39,8 +54,9 @@ model Telephone {
   date_updated     DateTime @updatedAt
   date_created     DateTime @default(now())
 
-  User          User?           @relation(fields: [userId], references: [id])
-  userId        String?
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
   Qualification Qualification[]
 }
 
@@ -58,7 +74,8 @@ model Subcategorie {
   date_created              DateTime @default(now())
 
   Categorie Categorie[]
-  Product   Product     @relation(fields: [productId], references: [id])
+
+  Product   Product @relation(fields: [productId], references: [id])
   productId String
 }
 
@@ -80,9 +97,9 @@ model Product {
   counter_view_product  Int
   platform              String?
   collection            String?
-  the_mount             Int?
+  stock                 Int?
   discount              Int?
-  turbo_level           Int
+  highlight_level       Int
   date_updated          DateTime @updatedAt
   date_created          DateTime @default(now())
 
@@ -91,15 +108,28 @@ model Product {
   Subcategorie  Subcategorie[]
   Sale          Sale[]
   World         World[]
+
+  Sale_Product   Sale_Product @relation(fields: [sale_ProductId], references: [id])
+  sale_ProductId String
+  Post           Post         @relation(fields: [postId], references: [id])
+  postId         String
 }
 
 model Order {
-  id             String   @id @default(uuid())
-  order_status   String?
-  payment_method String
-  status         String
-  date_updated   DateTime @updatedAt
-  date_created   DateTime @default(now())
+  id              String   @id @default(uuid())
+  order_status    String?  @db.VarChar(50)
+  payment_method  String   @db.VarChar(50)
+  annotation      String   @db.VarChar(150)
+  discount_ticket Int
+  date_updated    DateTime @updatedAt
+  date_created    DateTime @default(now())
+
+  User User[]
+
+  Sale      Sale    @relation(fields: [saleId], references: [id])
+  saleId    String
+  Dispute   Dispute @relation(fields: [disputeId], references: [id])
+  disputeId String
 }
 
 model Categorie {
@@ -138,59 +168,92 @@ model Qualification {
 
 model Sale {
   id           String   @id @default(uuid())
-  status_sale  String
+  status_sale  String   @db.VarChar(30)
   date_updated DateTime @updatedAt
   date_created DateTime @default(now())
 
-  Product   Product @relation(fields: [productId], references: [id])
-  productId String
+  User           User[]
+  Order          Order[]
+  Payment_Method Payment_Method[]
+
+
+  Product        Product      @relation(fields: [productId], references: [id])
+  productId      String
+  Sale_Product   Sale_Product @relation(fields: [sale_ProductId], references: [id])
+  sale_ProductId String
+  Transaction    Transaction  @relation(fields: [transactionId], references: [id])
+  transactionId  String
+  Dispute        Dispute      @relation(fields: [disputeId], references: [id])
+  disputeId      String
+  Post           Post         @relation(fields: [postId], references: [id])
+  postId         String
 }
 
 model Sale_Product {
   id           String   @id @default(uuid())
-  quantity     Int?
+  quantity     Int
   sale_price   Int
   pay_rate     Int?
   date_updated DateTime @updatedAt
   date_created DateTime @default(now())
+
+  Product Product[]
+  Sale    Sale[]
 }
 
 model Dispute {
   id             String   @id @default(uuid())
-  dispute_matter String?
-  dispute_body   String?
-  reply_seller   String?
-  status_dispute String?
+  dispute_matter String?  @db.VarChar(500)
+  dispute_body   String   @db.VarChar(1500)
+  reply_seller   String?  @db.VarChar(1500)
+  status_dispute String?  @db.VarChar(30)
   date_updated   DateTime @updatedAt
   date_created   DateTime @default(now())
+
+  User  User[]
+  Order Order[]
+  Sale  Sale[]
 }
 
 model Post {
   id             String   @id @default(uuid())
-  message_matter String?
-  message_body   String?
-  reply_seller   String?
+  message_matter String?  @db.VarChar(1500)
+  message_body   String   @db.VarChar(1500)
+  reply_seller   String?  @db.VarChar(1500)
   date_updated   DateTime @updatedAt
   date_created   DateTime @default(now())
+
+  User    User[]
+  Product Product[]
+  Sale    Sale[]
 }
 
 model Payment_Method {
   id                 String   @id @default(uuid())
+  payment_type       String   @db.VarChar(50)
+  card_number        Int?
   owner_name         String?
-  account_number     String?
+  account_number     Int?
   expiration_date_mm Int?
   expiration_date_yy Int?
   identification_doc String?
   date_updated       DateTime @updatedAt
   date_created       DateTime @default(now())
+
+  User User[]
+
+  Sale   Sale   @relation(fields: [saleId], references: [id])
+  saleId String
 }
 
 model Transaction {
-  id           String   @id @default(uuid())
-  transaction  String?
-  value        Int
-  date_updated DateTime @updatedAt
-  date_created DateTime @default(now())
+  id                String   @id @default(uuid())
+  ttype_transaction String?
+  value             Int
+  date_updated      DateTime @updatedAt
+  date_created      DateTime @default(now())
+
+  Sale Sale[]
 }
 
 model Deposit_Money {
@@ -198,6 +261,8 @@ model Deposit_Money {
   value        Int
   date_updated DateTime @updatedAt
   date_created DateTime @default(now())
+
+  User User[]
 }
 
 model Wallet {
@@ -205,6 +270,8 @@ model Wallet {
   balance      Int
   date_updated DateTime @updatedAt
   date_created DateTime @default(now())
+
+  User User[]
 }
 
 model World {
