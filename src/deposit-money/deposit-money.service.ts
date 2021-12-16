@@ -29,19 +29,19 @@ export class DepositMoneyService {
 
   // ENCONTRO UM DEPOSITO POR ID
 
-  findOne(id: string) {
+  findOne(id_deposit_money: string) {
     return this.prisma.deposit_Money.findUnique({
       where: {
-        id,
+        id_deposit_money,
       },
     });
   }
 
   // ATUALIZA UM DEPOSITO PELO ID
 
-  async update(id: string, data: UpdateDepositMoneyDto) {
+  async update(id_deposit_money: string, data: UpdateDepositMoneyDto) {
     await this.prisma.deposit_Money.update({
-      where: { id },
+      where: { id_deposit_money },
       data,
     });
 
@@ -52,9 +52,9 @@ export class DepositMoneyService {
 
   // DELETE UM DEPOSITO PELO ID
 
-  async remove(id: string) {
+  async remove(id_deposit_money: string) {
     await this.prisma.deposit_Money.delete({
-      where: { id },
+      where: { id_deposit_money },
     });
 
     return {

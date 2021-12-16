@@ -1,6 +1,6 @@
-import { Post } from "../entities/post.entity";
+import { Posts } from "../entities/post.entity";
 
-export class CreatePostDto extends Post {
+export class CreatePostsDto extends Posts {
     message_matter: string | null;
     message_body: string;
     reply_seller: string | null;

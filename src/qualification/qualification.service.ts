@@ -29,19 +29,19 @@ export class QualificationService {
 
   // ENCONTRA UMA QUALIFICACÃO PEPLO ID
 
-  findOne(id: string) {
+  findOne(id_qualification: string) {
     return this.prisma.qualification.findUnique({
       where: {
-        id,
+        id_qualification,
       },
     });
   }
 
   // ATUALIZA UMA QAULIFICAÇÃO PELO ID
 
-  async update(id: string, data: UpdateQualificationDto) {
+  async update(id_qualification: string, data: UpdateQualificationDto) {
     await this.prisma.qualification.update({
-      where: { id },
+      where: { id_qualification },
       data,
     });
 
@@ -52,9 +52,9 @@ export class QualificationService {
 
   // DELETE UMA QUALIFICAÇÃO PELO ID
 
-  async remove(id: string) {
+  async remove(id_qualification : string) {
     await this.prisma.qualification.delete({
-      where: { id },
+      where: { id_qualification },
     });
 
     return {

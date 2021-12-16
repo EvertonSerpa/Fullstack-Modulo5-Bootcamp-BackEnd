@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
+import { CreatePostsDto } from './dto/create-post.dto';
+import { UpdatePostsDto } from './dto/update-post.dto';
 
 @Injectable()
-export class PostService {
+export class PostsService {
   constructor(private readonly prisma: PrismaService) {}
   
   // CRIA UMA POSTAGEM
 
-  async create(CreatePostDto: CreatePostDto) {
-    await this.prisma.post.create({
+  async create(CreatePostsDto: CreatePostsDto) {
+    await this.prisma.posts.create({
       data: {
-        ...CreatePostDto,
+        ...CreatePostsDto,
       },
     });
 
@@ -24,24 +24,24 @@ export class PostService {
   // LISTO TODOS AS TABELAS DE POSTAGEM DESSA ROTA
 
   findAll() {
-    return this.prisma.post.findMany();
+    return this.prisma.posts.findMany();
   }
 
   // ENCONTRO UMA TABELA PELO SEU ID
 
-  findOne(id: string) {
-    return this.prisma.post.findUnique({
+  findOne(id_posts: string) {
+    return this.prisma.posts.findUnique({
       where: {
-        id,
+        id_posts,
       },
     });
   }
 
-  // ATUALIZA UMA POSTAGEM PELO ID
+  // ATUALIZA UMA POSTAGEM PELO id_posts 
 
-  async update(id: string, data: UpdatePostDto) {
-    await this.prisma.post.update({
-      where: { id },
+  async update(id_posts: string, data: UpdatePostsDto) {
+    await this.prisma.posts.update({
+      where: { id_posts },
       data,
     });
 
@@ -50,11 +50,11 @@ export class PostService {
     };
   }
 
-  // DELETE UMA POSTAGEM PELO ID
+  // DELETE UMA POSTAGEM PELO id_posts 
 
-  async remove(id: string) {
-    await this.prisma.post.delete({
-      where: { id },
+  async remove(id_posts: string) {
+    await this.prisma.posts.delete({
+      where: { id_posts },
     });
 
     return {

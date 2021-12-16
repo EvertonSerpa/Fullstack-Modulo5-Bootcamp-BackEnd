@@ -1,39 +1,38 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
+import { UsersModule } from './users/users.module';
 import { PrismaService } from './prisma/prisma.service';
-import { TelephoneModule } from './telephone/telephone.module';
-import { SubcategorieModule } from './subcategorie/subcategorie.module';
-import { ProductModule } from './product/product.module';
-import { OrderModule } from './order/order.module';
-import { CategorieModule } from './categorie/categorie.module';
+import { TelephonesModule } from './telephones/telephones.module';
+import { SubcategoriesModule } from './subcategories/subcategories.module';
+import { ProductsModule } from './product/product.module';
+import { OrdersModule } from './order/orders.module';
+import { CategoriesModule } from './categories/categories.module';
 import { QualificationModule } from './qualification/qualification.module';
-import { SaleModule } from './sale/sale.module';
-import { SaleproductModule } from './saleproduct/saleproduct.module';
-import { DisputeModule } from './dispute/dispute.module';
-import { PostModule } from './post/post.module';
+import { SalesModule } from './sales/sales.module';
+import { SalesProductsModule } from './sales-products/sales-products.module';
+import { DisputesModule } from './disputes/disputes.module';
+import { PostsModule } from './post/post.module';
 import { PaymentMethodModule } from './payment-method/payment-method.module';
-import { TransactionModule } from './transaction/transaction.module';
-import { WalletModule } from './wallet/wallet.module';
-import { WorldsModule } from './world/world.module';
+import { TransactionsModule } from './transactions/transactions.module';
+import { WalletsModule } from './wallets/wallets.module';
+import { WorldsModule } from './worlds/worlds.module';
 import { DepositMoneyModule } from './deposit-money/deposit-money.module';
 
 @Module({
   imports: [
-    UserModule,
-    TelephoneModule,
-    SubcategorieModule,
-    ProductModule,
-    OrderModule,
-    CategorieModule,
+    UsersModule,
+    TelephonesModule,
+    SubcategoriesModule,
+    ProductsModule,
+    OrdersModule,
+    CategoriesModule,
     QualificationModule,
-    SaleModule,
-    SaleproductModule,
-    SaleproductModule,
-    DisputeModule,
-    PostModule,
+    SalesModule,
+    SalesProductsModule,
+    DisputesModule,
+    PostsModule,
     PaymentMethodModule,
-    TransactionModule,
-    WalletModule,
+    TransactionsModule,
+    WalletsModule,
     WorldsModule,
     DepositMoneyModule,
   ],

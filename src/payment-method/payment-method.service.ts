@@ -29,19 +29,19 @@ export class PaymentMethodService {
 
   // ENCONTRA UM METODO DE PAGAMENTO POR ID
 
-  findOne(id: string) {
+  findOne(id_payment_method : string) {
     return this.prisma.payment_Method.findUnique({
       where: {
-        id,
+        id_payment_method ,
       },
     });
   }
 
   // ATUALIZA UM METODO DE PAGAMENTO PELO ID
 
-  async update(id: string, data: UpdatePaymentMethodDto) {
+  async update(id_payment_method : string, data: UpdatePaymentMethodDto) {
     await this.prisma.payment_Method.update({
-      where: { id },
+      where: { id_payment_method  },
       data,
     });
 
@@ -52,9 +52,9 @@ export class PaymentMethodService {
 
   // DELETE UM METODO DE PAGAMENTO PELO ID
 
-  async remove(id: string) {
+  async remove(id_payment_method : string) {
     await this.prisma.payment_Method.delete({
-      where: { id },
+      where: { id_payment_method  },
     });
 
     return {
