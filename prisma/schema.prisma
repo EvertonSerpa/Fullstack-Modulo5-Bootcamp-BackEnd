@@ -32,8 +32,11 @@ model Users {
   writtenWishlists Wishlists[] @relation("WrittenWishlists")
   sellerWishlists  Wishlists?  @relation("seller")
 
-  writtenQualified Qualification?  @relation("WrittenQualified")
-  qualifier        Qualification[] @relation("qualifier")
+  writtenQualified Qualification?   @relation("WrittenQualified")
+  qualifier        Qualification[]  @relation("qualifier")
+  Orders           Orders[]
+  Payment_Method   Payment_Method[]
+  Deposit_Money    Deposit_Money[]
 }
 
 model Telephones {
@@ -80,16 +83,17 @@ model Qualification {
 }
 
 model Categories {
-  id_categories          String   @id @default(uuid())
-  name_category          String   @db.VarChar(100)
+  id_categories          String          @id @default(uuid())
+  name_category          String          @db.VarChar(100)
   banner_category        String
   picture_category       String
   icon_category          String?
-  status_category        Boolean  @default(true)
-  counter_views_category Int      @default(0)
-  description            String?  @db.VarChar(1000)
-  date_updated           DateTime @updatedAt
-  date_created           DateTime @default(now())
+  status_category        Boolean         @default(true)
+  counter_views_category Int             @default(0)
+  description            String?         @db.VarChar(1000)
+  date_updated           DateTime        @updatedAt
+  date_created           DateTime        @default(now())
+  Subcategories          Subcategories[]
 }
 
 model Subcategories {
@@ -103,6 +107,9 @@ model Subcategories {
   description               String?  @db.VarChar(1000)
   date_updated              DateTime @updatedAt
   date_created              DateTime @default(now())
+
+  Categories              Categories @relation(fields: [categoriesId_categories], references: [id_categories])
+  categoriesId_categories String
 }
 
 model Worlds {
@@ -145,6 +152,7 @@ model Products {
 
   Wishlists     Wishlists?
   Qualification Qualification[]
+
 }
 
 model Orders {
@@ -155,13 +163,17 @@ model Orders {
   discount_ticket Int
   date_updated    DateTime @updatedAt
   date_created    DateTime @default(now())
+
+  Users         Users  @relation(fields: [usersId_users], references: [id_users])
+  usersId_users String
 }
 
 model Sales {
-  id_sales     String   @id @default(uuid())
-  status_sale  String   @db.VarChar(30)
-  date_updated DateTime @updatedAt
-  date_created DateTime @default(now())
+  id_sales     String    @id @default(uuid())
+  status_sale  String    @db.VarChar(30)
+  date_updated DateTime  @updatedAt
+  date_created DateTime  @default(now())
+  Wallets      Wallets[]
 }
 
 model Sales_Products {
@@ -184,6 +196,9 @@ model Payment_Method {
   identification_doc String?
   date_updated       DateTime @updatedAt
   date_created       DateTime @default(now())
+
+  Users         Users  @relation(fields: [usersId_users], references: [id_users])
+  usersId_users String
 }
 
 model Transactions {
@@ -199,6 +214,9 @@ model Wallets {
   balance      Int
   date_updated DateTime @updatedAt
   date_created DateTime @default(now())
+
+  Sales         Sales  @relation(fields: [salesId_sales], references: [id_sales])
+  salesId_sales String
 }
 
 model Deposit_Money {
@@ -206,6 +224,9 @@ model Deposit_Money {
   value            Int
   date_updated     DateTime @updatedAt
   date_created     DateTime @default(now())
+
+  Users         Users  @relation(fields: [usersId_users], references: [id_users])
+  usersId_users String
 }
 
 model Disputes {
