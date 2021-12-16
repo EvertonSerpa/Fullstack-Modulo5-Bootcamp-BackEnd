@@ -11,30 +11,36 @@ datasource db {
 }
 
 model Users {
-  id_users              String       @id @default(uuid())
-  name                  String       @db.VarChar(70)
-  surname               String       @db.VarChar(70)
+  id_users              String   @id @default(uuid())
+  name                  String   @db.VarChar(70)
+  surname               String   @db.VarChar(70)
   profile_picture       String
-  nike_name             String       @unique @db.VarChar(50)
-  password              String       @db.VarChar(60)
-  email                 String       @unique
+  nike_name             String   @unique @db.VarChar(50)
+  password              String   @db.VarChar(60)
+  email                 String   @unique
   status                String
-  seller                Boolean      @default(false)
-  description           String?      @db.VarChar(1000)
+  seller                Boolean  @default(false)
+  description           String?  @db.VarChar(1000)
   banner                String
   average_qualification Int?
   conter_views_store    Int
-  date_updated          DateTime     @updatedAt
-  date_created          DateTime     @default(now())
-  
-  Telephones            Telephones[]
+  date_updated          DateTime @updatedAt
+  date_created          DateTime @default(now())
+
+  Telephones Telephones[]
+
+  writtenWishlists Wishlists[] @relation("WrittenWishlists")
+  sellerWishlists  Wishlists?  @relation("seller")
+
+  writtenQualified Qualification?  @relation("WrittenQualified")
+  qualifier        Qualification[] @relation("qualifier")
 }
 
 model Telephones {
   id_telephones    String   @id @default(uuid())
-  number_telephone Int
-  region_code      Int
-  country_code     Int
+  number_telephone String
+  region_code      String
+  country_code     String
   date_updated     DateTime @updatedAt
   date_created     DateTime @default(now())
 
@@ -44,6 +50,15 @@ model Telephones {
 
 model Wishlists {
   id_wishlist String @id @default(uuid())
+
+  Users         Users  @relation("WrittenWishlists", fields: [usersId_users], references: [id_users])
+  usersId_users String
+
+  seller         Users?  @relation(name: "seller", fields: [sellerId_users], references: [id_users])
+  sellerId_users String? @unique
+
+  Products            Products? @relation(fields: [productsId_products], references: [id_products])
+  productsId_products String?   @unique
 }
 
 model Qualification {
@@ -53,6 +68,15 @@ model Qualification {
   nick_name           String?  @db.VarChar(50)
   date_updated        DateTime @updatedAt
   date_created        DateTime @default(now())
+
+  Products            Products @relation(fields: [productsId_products], references: [id_products])
+  productsId_products String
+
+  qualified         Users?  @relation("WrittenQualified", fields: [qualifiedId_users], references: [id_users])
+  qualifiedId_users String? @unique
+
+  qualifier         Users  @relation(name: "qualifier", fields: [qualifierId_users], references: [id_users])
+  qualifierId_users String @unique
 }
 
 model Categories {
@@ -118,6 +142,9 @@ model Products {
   highlight_level       Int
   date_updated          DateTime @updatedAt
   date_created          DateTime @default(now())
+
+  Wishlists     Wishlists?
+  Qualification Qualification[]
 }
 
 model Orders {
