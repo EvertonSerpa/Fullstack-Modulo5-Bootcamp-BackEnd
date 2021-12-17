@@ -13,4 +13,5 @@ export class Subcategories implements Prisma.SubcategoriesUncheckedCreateInput {
     description?: string;
     date_updated?: string | Date;
     date_created?: string | Date;
+    categoriesId_categories: string;
 }

@@ -8,4 +8,5 @@ export class Orders implements Prisma.OrdersUncheckedCreateInput {
     discount_ticket: number;
     date_updated?: string | Date;
     date_created?: string | Date;
+    usersId_users: string;
 }

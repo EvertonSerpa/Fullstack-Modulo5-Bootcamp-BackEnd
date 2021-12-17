@@ -11,5 +11,6 @@ export class PaymentMethod implements Prisma.Payment_MethodUncheckedCreateInput{
     identification_doc?: string;
     date_updated?: string | Date;
     date_created?: string | Date;
+    usersId_users: string; 
 }
 

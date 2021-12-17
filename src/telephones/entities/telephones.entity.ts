@@ -4,10 +4,11 @@ import { Prisma } from '@prisma/client';
 
 export class Telephones implements Prisma.TelephonesUncheckedCreateInput {
     id_telephones?: string;
-    number_telephone: number;
-    region_code: number;
-    country_code: number;
+    number_telephone: string;
+    region_code: string;
+    country_code: string;
     date_updated?: string | Date;
     date_created?: string | Date;
+    usersId_users: string;
 }
 

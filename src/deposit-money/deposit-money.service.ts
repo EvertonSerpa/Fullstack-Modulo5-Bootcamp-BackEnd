@@ -7,7 +7,7 @@ import { UpdateDepositMoneyDto } from './dto/update-deposit-money.dto';
 export class DepositMoneyService {
   constructor(private readonly prisma: PrismaService) {}
   
-  // CRIA UM DEPOSITO
+  // CRIA UMA TABELA DE DEPOSITO DE DINHEIRO
 
   async create(CreateDepositMoneyDto: CreateDepositMoneyDto) {
     await this.prisma.deposit_Money.create({
@@ -21,13 +21,13 @@ export class DepositMoneyService {
     };
   }
 
-  // LISTO TODOS OS DEPOSITOS DESSA ROTA
+  // LISTA TODAS AS TABELAS DE DEPOSITOS DESSA ROTA
 
   findAll() {
     return this.prisma.deposit_Money.findMany();
   }
 
-  // ENCONTRO UM DEPOSITO POR ID
+  // ENCONTRA UMA TABELA DE DEPOSITO PELO ID
 
   findOne(id_deposit_money: string) {
     return this.prisma.deposit_Money.findUnique({
@@ -37,7 +37,7 @@ export class DepositMoneyService {
     });
   }
 
-  // ATUALIZA UM DEPOSITO PELO ID
+  // ATUALIZA UMA TABELA DE DEPOSITO PELO ID
 
   async update(id_deposit_money: string, data: UpdateDepositMoneyDto) {
     await this.prisma.deposit_Money.update({
@@ -50,7 +50,7 @@ export class DepositMoneyService {
     };
   }
 
-  // DELETE UM DEPOSITO PELO ID
+  // DELETE UMA TAELA DE DISPUTA PELO ID
 
   async remove(id_deposit_money: string) {
     await this.prisma.deposit_Money.delete({
@@ -62,4 +62,3 @@ export class DepositMoneyService {
     };
   }
 }
-

@@ -152,7 +152,6 @@ model Products {
 
   Wishlists     Wishlists?
   Qualification Qualification[]
-
 }
 
 model Orders {
@@ -225,8 +224,8 @@ model Deposit_Money {
   date_updated     DateTime @updatedAt
   date_created     DateTime @default(now())
 
-  Users         Users  @relation(fields: [usersId_users], references: [id_users])
-  usersId_users String
+  Users         Users  @relation(fields: [usersid_users], references: [id_users])
+  usersid_users String
 }
 
 model Disputes {

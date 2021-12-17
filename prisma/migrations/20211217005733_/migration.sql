@@ -22,11 +22,12 @@ CREATE TABLE "Users" (
 -- CreateTable
 CREATE TABLE "Telephones" (
     "id_telephones" TEXT NOT NULL,
-    "number_telephone" INTEGER NOT NULL,
-    "region_code" INTEGER NOT NULL,
-    "country_code" INTEGER NOT NULL,
+    "number_telephone" TEXT NOT NULL,
+    "region_code" TEXT NOT NULL,
+    "country_code" TEXT NOT NULL,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "usersId_users" TEXT NOT NULL,
 
     CONSTRAINT "Telephones_pkey" PRIMARY KEY ("id_telephones")
 );
@@ -34,6 +35,9 @@ CREATE TABLE "Telephones" (
 -- CreateTable
 CREATE TABLE "Wishlists" (
     "id_wishlist" TEXT NOT NULL,
+    "usersId_users" TEXT NOT NULL,
+    "sellerId_users" TEXT,
+    "productsId_products" TEXT,
 
     CONSTRAINT "Wishlists_pkey" PRIMARY KEY ("id_wishlist")
 );
@@ -46,6 +50,9 @@ CREATE TABLE "Qualification" (
     "nick_name" VARCHAR(50),
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "productsId_products" TEXT NOT NULL,
+    "qualifiedId_users" TEXT,
+    "qualifierId_users" TEXT NOT NULL,
 
     CONSTRAINT "Qualification_pkey" PRIMARY KEY ("id_qualification")
 );
@@ -78,6 +85,7 @@ CREATE TABLE "Subcategories" (
     "description" VARCHAR(1000),
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "categoriesId_categories" TEXT NOT NULL,
 
     CONSTRAINT "Subcategories_pkey" PRIMARY KEY ("id_subcategories")
 );
@@ -136,6 +144,7 @@ CREATE TABLE "Orders" (
     "discount_ticket" INTEGER NOT NULL,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "usersId_users" TEXT NOT NULL,
 
     CONSTRAINT "Orders_pkey" PRIMARY KEY ("id_orders")
 );
@@ -174,6 +183,7 @@ CREATE TABLE "Payment_Method" (
     "identification_doc" TEXT,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "usersId_users" TEXT NOT NULL,
 
     CONSTRAINT "Payment_Method_pkey" PRIMARY KEY ("id_payment_method")
 );
@@ -195,6 +205,7 @@ CREATE TABLE "Wallets" (
     "balance" INTEGER NOT NULL,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "salesId_sales" TEXT NOT NULL,
 
     CONSTRAINT "Wallets_pkey" PRIMARY KEY ("id_wallets")
 );
@@ -205,6 +216,7 @@ CREATE TABLE "Deposit_Money" (
     "value" INTEGER NOT NULL,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "usersid_users" TEXT NOT NULL,
 
     CONSTRAINT "Deposit_Money_pkey" PRIMARY KEY ("id_deposit_money")
 );
@@ -239,3 +251,51 @@ CREATE UNIQUE INDEX "Users_nike_name_key" ON "Users"("nike_name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Users_email_key" ON "Users"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Wishlists_sellerId_users_key" ON "Wishlists"("sellerId_users");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Wishlists_productsId_products_key" ON "Wishlists"("productsId_products");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Qualification_qualifiedId_users_key" ON "Qualification"("qualifiedId_users");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Qualification_qualifierId_users_key" ON "Qualification"("qualifierId_users");
+
+-- AddForeignKey
+ALTER TABLE "Telephones" ADD CONSTRAINT "Telephones_usersId_users_fkey" FOREIGN KEY ("usersId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Wishlists" ADD CONSTRAINT "Wishlists_usersId_users_fkey" FOREIGN KEY ("usersId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Wishlists" ADD CONSTRAINT "Wishlists_sellerId_users_fkey" FOREIGN KEY ("sellerId_users") REFERENCES "Users"("id_users") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Wishlists" ADD CONSTRAINT "Wishlists_productsId_products_fkey" FOREIGN KEY ("productsId_products") REFERENCES "Products"("id_products") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Qualification" ADD CONSTRAINT "Qualification_productsId_products_fkey" FOREIGN KEY ("productsId_products") REFERENCES "Products"("id_products") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Qualification" ADD CONSTRAINT "Qualification_qualifiedId_users_fkey" FOREIGN KEY ("qualifiedId_users") REFERENCES "Users"("id_users") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Qualification" ADD CONSTRAINT "Qualification_qualifierId_users_fkey" FOREIGN KEY ("qualifierId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Subcategories" ADD CONSTRAINT "Subcategories_categoriesId_categories_fkey" FOREIGN KEY ("categoriesId_categories") REFERENCES "Categories"("id_categories") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Orders" ADD CONSTRAINT "Orders_usersId_users_fkey" FOREIGN KEY ("usersId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Payment_Method" ADD CONSTRAINT "Payment_Method_usersId_users_fkey" FOREIGN KEY ("usersId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Wallets" ADD CONSTRAINT "Wallets_salesId_sales_fkey" FOREIGN KEY ("salesId_sales") REFERENCES "Sales"("id_sales") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Deposit_Money" ADD CONSTRAINT "Deposit_Money_usersid_users_fkey" FOREIGN KEY ("usersid_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;

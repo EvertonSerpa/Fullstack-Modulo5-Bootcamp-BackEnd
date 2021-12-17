@@ -5,6 +5,7 @@ export class Wallets implements Prisma.WalletsUncheckedCreateInput {
     balance: number;
     date_updated?: string | Date;
     date_created?: string | Date;
+    salesId_sales: string;
 }
 
 
