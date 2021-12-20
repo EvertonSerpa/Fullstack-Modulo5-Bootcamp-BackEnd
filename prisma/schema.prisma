@@ -1,0 +1,309 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id_users              String   @id @default(uuid())
+  name                  String   @db.VarChar(70)
+  surname               String   @db.VarChar(70)
+  profile_picture       String
+  nike_name             String   @unique @db.VarChar(50)
+  password              String   @db.VarChar(60)
+  email                 String   @unique
+  status                String
+  seller                Boolean  @default(false)
+  description           String?  @db.VarChar(1000)
+  banner                String
+  average_qualification Int?
+  conter_views_store    Int
+  date_updated          DateTime @updatedAt
+  date_created          DateTime @default(now())
+
+  Telephones Telephones[]
+
+  writtenWishlists Wishlists[] @relation("WrittenWishlists")
+  sellerWishlists  Wishlists?  @relation("seller")
+
+  writtenQualified Qualification?  @relation("WrittenQualified")
+  qualifier        Qualification[] @relation("qualifier")
+
+  UserSales Sales[] @relation("UserSales")
+  Seller    Sales[] @relation("Seller")
+
+  UserDisputes   Disputes[] @relation("UserDisputes")
+  DisputesSeller Disputes[] @relation("DisputesSeller")
+
+  UserPosts   Posts[] @relation("UserPosts")
+  PostsSeller Posts[] @relation("PostsSeller")
+
+  Orders         Orders[]
+  Payment_Method Payment_Method[]
+  Deposit_Money  Deposit_Money[]
+  Products       Products[]
+}
+
+model Telephones {
+  id_telephones    String   @id @default(uuid())
+  number_telephone String
+  region_code      String
+  country_code     String
+  date_updated     DateTime @updatedAt
+  date_created     DateTime @default(now())
+
+  Users         Users  @relation(fields: [usersId_users], references: [id_users])
+  usersId_users String
+}
+
+model Wishlists {
+  id_wishlist String @id @default(uuid())
+
+  Users         Users  @relation("WrittenWishlists", fields: [usersId_users], references: [id_users])
+  usersId_users String
+
+  seller         Users?  @relation(name: "seller", fields: [sellerId_users], references: [id_users])
+  sellerId_users String? @unique
+
+  Products            Products? @relation(fields: [productsId_products], references: [id_products])
+  productsId_products String?   @unique
+}
+
+model Qualification {
+  id_qualification    String   @id @default(uuid())
+  value_qualification Int
+  comment             String?  @db.VarChar(1000)
+  nick_name           String?  @db.VarChar(50)
+  date_updated        DateTime @updatedAt
+  date_created        DateTime @default(now())
+
+  Products            Products @relation(fields: [productsId_products], references: [id_products])
+  productsId_products String
+
+  qualified         Users?  @relation("WrittenQualified", fields: [qualifiedId_users], references: [id_users])
+  qualifiedId_users String? @unique
+
+  qualifier         Users  @relation(name: "qualifier", fields: [qualifierId_users], references: [id_users])
+  qualifierId_users String @unique
+}
+
+model Categories {
+  id_categories          String          @id @default(uuid())
+  name_category          String          @db.VarChar(100)
+  banner_category        String
+  picture_category       String
+  icon_category          String?
+  status_category        Boolean         @default(true)
+  counter_views_category Int             @default(0)
+  description            String?         @db.VarChar(1000)
+  date_updated           DateTime        @updatedAt
+  date_created           DateTime        @default(now())
+  
+  Subcategories          Subcategories[]
+  Products               Products[]
+}
+
+model Subcategories {
+  id_subcategories          String   @id @default(uuid())
+  name_subcategory          String   @db.VarChar(100)
+  banner_subcategory        String
+  picture_subcategory       String
+  icon_subcategory          String
+  status_subcategory        String   @db.VarChar(30)
+  counter_views_subcategory Int
+  description               String?  @db.VarChar(1000)
+  date_updated              DateTime @updatedAt
+  date_created              DateTime @default(now())
+
+  Categories              Categories @relation(fields: [categoriesId_categories], references: [id_categories])
+  categoriesId_categories String
+
+  Products                Products[]
+}
+
+model Worlds {
+  id_worlds           String     @id @default(uuid())
+  name_world          String     @db.VarChar(100)
+  description         String?    @db.VarChar(1000)
+  founding_company    String?
+  banner_world        String
+  picture_world       String
+  icon_world          String?
+  video_world         String?
+  status_world        String     @db.VarChar(30)
+  counter_views_world Int        @default(0)
+  date_updated        DateTime   @updatedAt
+  date_created        DateTime   @default(now())
+
+  Products            Products[]
+}
+
+model Products {
+  id_products           String   @id @default(uuid())
+  average_qualification Int?
+  name_product          String   @db.VarChar(100)
+  price                 Int
+  description           String   @db.VarChar(1000)
+  specifications        String?  @db.VarChar(1000)
+  details               String?  @db.VarChar(1000)
+  color                 String?  @db.VarChar(50)
+  tags_product          String?  @db.VarChar(100)
+  video                 String?
+  main_image            String
+  gallery               String?
+  image_3d              String?
+  status                String
+  counter_view_product  Int
+  collection            String?
+  stock                 Int?
+  offer                 Int?
+  highlight_level       Int
+  date_updated          DateTime @updatedAt
+  date_created          DateTime @default(now())
+
+  Categories    Categories    @relation(fields: [categoriesId_categories], references: [id_categories])
+  Subcategories Subcategories @relation(fields: [subcategoriesId_subcategories], references: [id_subcategories])
+  Seller        Users         @relation(fields: [usersId_users], references: [id_users])
+  Worlds        Worlds        @relation(fields: [worldsId_worlds], references: [id_worlds])
+
+  Wishlists     Wishlists?
+  Qualification Qualification[]
+
+
+  categoriesId_categories       String
+  subcategoriesId_subcategories String
+  usersId_users                 String
+  worldsId_worlds               String
+
+  Posts                         Posts[]
+}
+
+model Orders {
+  id_orders       String   @id @default(uuid())
+  status_order    String?  @db.VarChar(50)
+  payment_method  String   @db.VarChar(50)
+  annotation      String   @db.VarChar(150)
+  discount_ticket Int
+  date_updated    DateTime @updatedAt
+  date_created    DateTime @default(now())
+
+  Users         Users  @relation(fields: [usersId_users], references: [id_users])
+  usersId_users String
+
+  Sales    Sales[]
+  Disputes Disputes[]
+}
+
+model Sales {
+  id_sales     String   @id @default(uuid())
+  status_sale  String   @db.VarChar(30)
+  date_updated DateTime @updatedAt
+  date_created DateTime @default(now())
+
+  Orders Orders @relation(fields: [ordersId_orders], references: [id_orders])
+
+  UserSales     Users?  @relation("UserSales", fields: [salesId_users], references: [id_users])
+  salesId_users String? @unique
+
+  seller         Users  @relation(name: "Seller", fields: [sellerId_users], references: [id_users])
+  sellerId_users String @unique
+
+  Wallets         Wallets[]
+  ordersId_orders String
+}
+
+model Sales_Products {
+  id_sales_procucts String   @id @default(uuid())
+  quantity          Int
+  sale_price        Int
+  pay_rate          Int?
+  date_updated      DateTime @updatedAt
+  date_created      DateTime @default(now())
+}
+
+model Payment_Method {
+  id_payment_method  String   @id @default(uuid())
+  payment_type       String   @db.VarChar(50)
+  card_number        Int?
+  owner_name         String?
+  account_number     Int?
+  expiration_date_mm Int?
+  expiration_date_aa Int?
+  identification_doc String?
+  date_updated       DateTime @updatedAt
+  date_created       DateTime @default(now())
+
+  Users         Users  @relation(fields: [usersId_users], references: [id_users])
+  usersId_users String
+}
+
+model Transactions {
+  id_transactions  String   @id @default(uuid())
+  type_transaction String?
+  value            Int
+  date_updated     DateTime @updatedAt
+  date_created     DateTime @default(now())
+}
+
+model Wallets {
+  id_wallets   String   @id @default(uuid())
+  balance      Int
+  date_updated DateTime @updatedAt
+  date_created DateTime @default(now())
+
+  Sales         Sales  @relation(fields: [salesId_sales], references: [id_sales])
+  salesId_sales String
+}
+
+model Deposit_Money {
+  id_deposit_money String   @id @default(uuid())
+  value            Int
+  date_updated     DateTime @updatedAt
+  date_created     DateTime @default(now())
+
+  Users         Users  @relation(fields: [usersid_users], references: [id_users])
+  usersid_users String
+}
+
+model Disputes {
+  id_disputes    String   @id @default(uuid())
+  dispute_matter String?  @db.VarChar(500)
+  dispute_body   String   @db.VarChar(1500)
+  reply_seller   String?  @db.VarChar(1500)
+  status_dispute String?  @db.VarChar(30)
+  date_updated   DateTime @updatedAt
+  date_created   DateTime @default(now())
+
+  Orders          Orders @relation(fields: [ordersId_orders], references: [id_orders])
+  ordersId_orders String
+
+  UserDisputes     Users  @relation("UserDisputes", fields: [disputesId_users], references: [id_users])
+  disputesId_users String @unique
+
+  DisputesSeller Users  @relation(name: "DisputesSeller", fields: [sellerId_users], references: [id_users])
+  sellerId_users String @unique
+}
+
+model Posts {
+  id_posts       String   @id @default(uuid())
+  message_matter String?  @db.VarChar(1500)
+  message_body   String   @db.VarChar(1500)
+  reply_seller   String?  @db.VarChar(1500)
+  date_updated   DateTime @updatedAt
+  date_created   DateTime @default(now())
+
+  Products            Products @relation(fields: [productsId_products], references: [id_products])
+  productsId_products String
+
+  UserPosts     Users  @relation("UserPosts", fields: [postsId_users], references: [id_users])
+  postsId_users String @unique
+
+  PostsSeller    Users  @relation(name: "PostsSeller", fields: [sellerId_users], references: [id_users])
+  sellerId_users String @unique
+}
