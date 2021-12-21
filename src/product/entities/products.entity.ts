@@ -24,4 +24,11 @@ export class Products implements Prisma.ProductsUncheckedCreateInput {
     highlight_level: number;
     date_updated?: string | Date;
     date_created?: string | Date;
+    categoriesId_categories: string;
+    subcategoriesId_subcategories: string;
+    usersId_users: string;
+    worldsId_worlds: string;
+    Wishlists?: Prisma.WishlistsUncheckedCreateNestedOneWithoutProductsInput;
+    Qualification?: Prisma.QualificationUncheckedCreateNestedManyWithoutProductsInput;
+    Posts?: Prisma.PostsUncheckedCreateNestedManyWithoutProductsInput;
 }

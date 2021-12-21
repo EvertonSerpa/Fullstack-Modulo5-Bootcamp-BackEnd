@@ -8,4 +8,7 @@ export class Disputes implements Prisma.DisputesUncheckedCreateInput {
     status_dispute?: string;
     date_updated?: string | Date;
     date_created?: string | Date;
+    ordersId_orders: string;
+    disputesId_users: string;
+    sellerId_users: string;
 }

@@ -5,4 +5,8 @@ export class Sales implements Prisma.SalesUncheckedCreateInput {
     status_sale: string;
     date_updated?: string | Date;
     date_created?: string | Date;
+    salesId_users?: string;
+    sellerId_users: string;
+    ordersId_orders: string;
+    Wallets?: Prisma.WalletsUncheckedCreateNestedManyWithoutSalesInput;
 }

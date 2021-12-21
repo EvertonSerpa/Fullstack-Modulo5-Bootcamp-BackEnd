@@ -131,6 +131,10 @@ CREATE TABLE "Products" (
     "highlight_level" INTEGER NOT NULL,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "categoriesId_categories" TEXT NOT NULL,
+    "subcategoriesId_subcategories" TEXT NOT NULL,
+    "usersId_users" TEXT NOT NULL,
+    "worldsId_worlds" TEXT NOT NULL,
 
     CONSTRAINT "Products_pkey" PRIMARY KEY ("id_products")
 );
@@ -155,6 +159,9 @@ CREATE TABLE "Sales" (
     "status_sale" VARCHAR(30) NOT NULL,
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "salesId_users" TEXT,
+    "sellerId_users" TEXT NOT NULL,
+    "ordersId_orders" TEXT NOT NULL,
 
     CONSTRAINT "Sales_pkey" PRIMARY KEY ("id_sales")
 );
@@ -230,6 +237,9 @@ CREATE TABLE "Disputes" (
     "status_dispute" VARCHAR(30),
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "ordersId_orders" TEXT NOT NULL,
+    "disputesId_users" TEXT NOT NULL,
+    "sellerId_users" TEXT NOT NULL,
 
     CONSTRAINT "Disputes_pkey" PRIMARY KEY ("id_disputes")
 );
@@ -242,6 +252,9 @@ CREATE TABLE "Posts" (
     "reply_seller" VARCHAR(1500),
     "date_updated" TIMESTAMP(3) NOT NULL,
     "date_created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "productsId_products" TEXT NOT NULL,
+    "postsId_users" TEXT NOT NULL,
+    "sellerId_users" TEXT NOT NULL,
 
     CONSTRAINT "Posts_pkey" PRIMARY KEY ("id_posts")
 );
@@ -263,6 +276,24 @@ CREATE UNIQUE INDEX "Qualification_qualifiedId_users_key" ON "Qualification"("qu
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Qualification_qualifierId_users_key" ON "Qualification"("qualifierId_users");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Sales_salesId_users_key" ON "Sales"("salesId_users");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Sales_sellerId_users_key" ON "Sales"("sellerId_users");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Disputes_disputesId_users_key" ON "Disputes"("disputesId_users");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Disputes_sellerId_users_key" ON "Disputes"("sellerId_users");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Posts_postsId_users_key" ON "Posts"("postsId_users");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Posts_sellerId_users_key" ON "Posts"("sellerId_users");
 
 -- AddForeignKey
 ALTER TABLE "Telephones" ADD CONSTRAINT "Telephones_usersId_users_fkey" FOREIGN KEY ("usersId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -289,7 +320,28 @@ ALTER TABLE "Qualification" ADD CONSTRAINT "Qualification_qualifierId_users_fkey
 ALTER TABLE "Subcategories" ADD CONSTRAINT "Subcategories_categoriesId_categories_fkey" FOREIGN KEY ("categoriesId_categories") REFERENCES "Categories"("id_categories") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Products" ADD CONSTRAINT "Products_categoriesId_categories_fkey" FOREIGN KEY ("categoriesId_categories") REFERENCES "Categories"("id_categories") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Products" ADD CONSTRAINT "Products_subcategoriesId_subcategories_fkey" FOREIGN KEY ("subcategoriesId_subcategories") REFERENCES "Subcategories"("id_subcategories") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Products" ADD CONSTRAINT "Products_usersId_users_fkey" FOREIGN KEY ("usersId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Products" ADD CONSTRAINT "Products_worldsId_worlds_fkey" FOREIGN KEY ("worldsId_worlds") REFERENCES "Worlds"("id_worlds") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Orders" ADD CONSTRAINT "Orders_usersId_users_fkey" FOREIGN KEY ("usersId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Sales" ADD CONSTRAINT "Sales_ordersId_orders_fkey" FOREIGN KEY ("ordersId_orders") REFERENCES "Orders"("id_orders") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Sales" ADD CONSTRAINT "Sales_salesId_users_fkey" FOREIGN KEY ("salesId_users") REFERENCES "Users"("id_users") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Sales" ADD CONSTRAINT "Sales_sellerId_users_fkey" FOREIGN KEY ("sellerId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Payment_Method" ADD CONSTRAINT "Payment_Method_usersId_users_fkey" FOREIGN KEY ("usersId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -299,3 +351,21 @@ ALTER TABLE "Wallets" ADD CONSTRAINT "Wallets_salesId_sales_fkey" FOREIGN KEY ("
 
 -- AddForeignKey
 ALTER TABLE "Deposit_Money" ADD CONSTRAINT "Deposit_Money_usersid_users_fkey" FOREIGN KEY ("usersid_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Disputes" ADD CONSTRAINT "Disputes_ordersId_orders_fkey" FOREIGN KEY ("ordersId_orders") REFERENCES "Orders"("id_orders") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Disputes" ADD CONSTRAINT "Disputes_disputesId_users_fkey" FOREIGN KEY ("disputesId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Disputes" ADD CONSTRAINT "Disputes_sellerId_users_fkey" FOREIGN KEY ("sellerId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Posts" ADD CONSTRAINT "Posts_productsId_products_fkey" FOREIGN KEY ("productsId_products") REFERENCES "Products"("id_products") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Posts" ADD CONSTRAINT "Posts_postsId_users_fkey" FOREIGN KEY ("postsId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Posts" ADD CONSTRAINT "Posts_sellerId_users_fkey" FOREIGN KEY ("sellerId_users") REFERENCES "Users"("id_users") ON DELETE RESTRICT ON UPDATE CASCADE;

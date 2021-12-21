@@ -7,4 +7,7 @@ export class Posts implements Prisma.PostsUncheckedCreateInput {
     reply_seller?: string;
     date_updated?: string | Date;
     date_created?: string | Date;
+    productsId_products: string;
+    postsId_users: string;
+    sellerId_users: string;
 }
