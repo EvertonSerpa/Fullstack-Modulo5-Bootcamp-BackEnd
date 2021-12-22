@@ -12,18 +12,19 @@ datasource db {
 
 model Users {
   id_users              String   @id @default(uuid())
-  name                  String   @db.VarChar(70)
-  surname               String   @db.VarChar(70)
+  name                  String   
+  surname               String   
   profile_picture       String
-  nike_name             String   @unique @db.VarChar(50)
-  password              String   @db.VarChar(60)
+  nike_name             String   @unique
+  password              String   
   email                 String   @unique
   status                String
-  seller                Boolean  @default(false)
-  description           String?  @db.VarChar(1000)
+  seller                Boolean? @default(false)
+  description           String?  
   banner                String
   average_qualification Int?
   conter_views_store    Int
+  role                  String   @default("USER")
   date_updated          DateTime @updatedAt
   date_created          DateTime @default(now())
 
@@ -94,19 +95,19 @@ model Qualification {
 }
 
 model Categories {
-  id_categories          String          @id @default(uuid())
-  name_category          String          @db.VarChar(100)
+  id_categories          String   @id @default(uuid())
+  name_category          String   @db.VarChar(100)
   banner_category        String
   picture_category       String
   icon_category          String?
-  status_category        Boolean         @default(true)
-  counter_views_category Int             @default(0)
-  description            String?         @db.VarChar(1000)
-  date_updated           DateTime        @updatedAt
-  date_created           DateTime        @default(now())
-  
-  Subcategories          Subcategories[]
-  Products               Products[]
+  status_category        Boolean  @default(true)
+  counter_views_category Int      @default(0)
+  description            String?  @db.VarChar(1000)
+  date_updated           DateTime @updatedAt
+  date_created           DateTime @default(now())
+
+  Subcategories Subcategories[]
+  Products      Products[]
 }
 
 model Subcategories {
@@ -124,24 +125,24 @@ model Subcategories {
   Categories              Categories @relation(fields: [categoriesId_categories], references: [id_categories])
   categoriesId_categories String
 
-  Products                Products[]
+  Products Products[]
 }
 
 model Worlds {
-  id_worlds           String     @id @default(uuid())
-  name_world          String     @db.VarChar(100)
-  description         String?    @db.VarChar(1000)
+  id_worlds           String   @id @default(uuid())
+  name_world          String   @db.VarChar(100)
+  description         String?  @db.VarChar(1000)
   founding_company    String?
   banner_world        String
   picture_world       String
   icon_world          String?
   video_world         String?
-  status_world        String     @db.VarChar(30)
-  counter_views_world Int        @default(0)
-  date_updated        DateTime   @updatedAt
-  date_created        DateTime   @default(now())
+  status_world        String   @db.VarChar(30)
+  counter_views_world Int      @default(0)
+  date_updated        DateTime @updatedAt
+  date_created        DateTime @default(now())
 
-  Products            Products[]
+  Products Products[]
 }
 
 model Products {
@@ -181,7 +182,7 @@ model Products {
   usersId_users                 String
   worldsId_worlds               String
 
-  Posts                         Posts[]
+  Posts Posts[]
 }
 
 model Orders {

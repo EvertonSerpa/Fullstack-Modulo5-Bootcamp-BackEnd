@@ -1,0 +1,5 @@
+beautifulsoup4==4.10.0
+bs4==0.0.1
+phonenumbers==8.12.31
+pygame==2.0.2
+soupsieve==2.2.1
