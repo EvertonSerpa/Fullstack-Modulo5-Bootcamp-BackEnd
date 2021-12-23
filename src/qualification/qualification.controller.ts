@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { QualificationService } from './qualification.service';
 import { CreateQualificationDto } from './dto/create-qualification.dto';
 import { UpdateQualificationDto } from './dto/update-qualification.dto';
@@ -23,7 +31,10 @@ export class QualificationController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateQualificationDto: UpdateQualificationDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateQualificationDto: UpdateQualificationDto,
+  ) {
     return this.qualificationService.update(id, updateQualificationDto);
   }
 

@@ -16,6 +16,7 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { WalletsModule } from './wallets/wallets.module';
 import { WorldsModule } from './worlds/worlds.module';
 import { DepositMoneyModule } from './deposit-money/deposit-money.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { DepositMoneyModule } from './deposit-money/deposit-money.module';
     WalletsModule,
     WorldsModule,
     DepositMoneyModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [PrismaService],

@@ -1,9 +1,13 @@
-import { Sales } from "../entities/sales.entity";
+import { Sales } from '../entities/sales.entity';
+import { IsString } from 'class-validator';
 
 export class CreateSalesDto extends Sales {
-    id?: string;
-    status_sale: string;
-    date_updated?: string | Date;
-    date_created?: string | Date;
-    productId: string;
+  @IsString()
+  id?: string;
+
+  @IsString()
+  status_sale: string;
+
+  @IsString()
+  productId: string;
 }

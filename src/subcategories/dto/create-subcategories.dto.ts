@@ -1,14 +1,30 @@
-import { Subcategories } from "../entities/subcategories.entity";
+import { Subcategories } from '../entities/subcategories.entity';
+import { IsString, IsNumber } from 'class-validator';
 
 // Quando extends a propriedade Subcategoria posso vazer com que ela tenha qualquer variavel que eu queira.
 
 export class CreateSubcategoriesDto extends Subcategories {
-    subcategory_name: string;
-    subcategory_banner: string;
-    subcategory_image: string;
-    subcategory_icon: string;
-    subcategory_route: string;
-    subcategory_status: string;
-    subcategory_counter_views: number;
-    description?: string;
+  @IsString()
+  subcategory_name: string;
+
+  @IsString()
+  subcategory_banner: string;
+
+  @IsString()
+  subcategory_image: string;
+
+  @IsString()
+  subcategory_icon: string;
+
+  @IsString()
+  subcategory_route: string;
+
+  @IsString()
+  subcategory_status: string;
+
+  @IsNumber()
+  subcategory_counter_views: number;
+
+  @IsString()
+  description?: string;
 }

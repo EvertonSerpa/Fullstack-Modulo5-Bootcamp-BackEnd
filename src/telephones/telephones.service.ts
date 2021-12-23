@@ -6,7 +6,7 @@ import { UpdateTelephonesDto } from './dto/update-telephones.dto';
 @Injectable()
 export class TelephonesService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CADASTRAR TELEFONE
 
   async create(CreateTelephonesDto: CreateTelephonesDto) {
@@ -62,4 +62,3 @@ export class TelephonesService {
     };
   }
 }
-

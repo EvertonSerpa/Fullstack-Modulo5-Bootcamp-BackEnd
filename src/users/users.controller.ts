@@ -1,15 +1,24 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUsersDto } from './dto/create-users.dto';
 import { UpdateUsersDto } from './dto/update-users.dto';
+import { UserRole } from './enum/role.enum';
 
 @Controller('user')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUsersDto) {
-    return this.usersService.create(createUserDto);
+  createUser(@Body() createUserDto: CreateUsersDto) {
+    return this.usersService.create(createUserDto, UserRole.USER);
   }
 
   @Get()
@@ -30,5 +39,10 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
+  }
+
+  @Post('create-admin')
+  createAdmin(@Body() createUserDto: CreateUsersDto) {
+    return this.usersService.create(createUserDto, UserRole.ADMIN);
   }
 }

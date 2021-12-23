@@ -6,7 +6,7 @@ import { UpdateQualificationDto } from './dto/update-qualification.dto';
 @Injectable()
 export class QualificationService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CADASTRAR QUALIFICAÇÃO
 
   async create(CreateQualificationDto: CreateQualificationDto) {
@@ -52,7 +52,7 @@ export class QualificationService {
 
   // DELETE UMA QUALIFICAÇÃO PELO ID
 
-  async remove(id_qualification : string) {
+  async remove(id_qualification: string) {
     await this.prisma.qualification.delete({
       where: { id_qualification },
     });
@@ -62,4 +62,3 @@ export class QualificationService {
     };
   }
 }
-

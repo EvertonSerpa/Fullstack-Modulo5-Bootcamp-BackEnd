@@ -6,7 +6,7 @@ import { UpdateWorldsDto } from './dto/update-worlds.dto';
 @Injectable()
 export class WorldsService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CRIA UM MUNDO
 
   async create(CreateWorldsDto: CreateWorldsDto) {

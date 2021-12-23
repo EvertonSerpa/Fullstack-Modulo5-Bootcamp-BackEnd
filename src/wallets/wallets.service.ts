@@ -6,7 +6,7 @@ import { UpdateWalletsDto } from './dto/update-wallets.dto';
 @Injectable()
 export class WalletsService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CRIA UMA CARTEIRA
 
   async create(CreateWalletDto: CreateWalletsDto) {

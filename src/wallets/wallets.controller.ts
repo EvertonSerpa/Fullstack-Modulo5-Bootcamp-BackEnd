@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { WalletsService } from './wallets.service';
 import { CreateWalletsDto } from './dto/create-wallets.dto';
 import { UpdateWalletsDto } from './dto/update-wallets.dto';

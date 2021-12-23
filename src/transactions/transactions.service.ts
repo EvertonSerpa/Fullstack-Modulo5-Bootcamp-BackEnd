@@ -29,7 +29,7 @@ export class TransactionsService {
 
   // ENCONTRO UMA TRANSAÇÃO POR ID
 
-  findOne( id_transactions: string) {
+  findOne(id_transactions: string) {
     return this.prisma.transactions.findUnique({
       where: {
         id_transactions,

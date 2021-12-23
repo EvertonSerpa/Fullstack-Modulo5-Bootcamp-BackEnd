@@ -11,4 +11,6 @@ export class Categories implements Prisma.CategoriesUncheckedCreateInput {
   description?: string;
   date_updated?: string | Date;
   date_created?: string | Date;
+  Subcategories?: Prisma.SubcategoriesUncheckedCreateNestedManyWithoutCategoriesInput;
+  Products?: Prisma.ProductsUncheckedCreateNestedManyWithoutCategoriesInput;
 }

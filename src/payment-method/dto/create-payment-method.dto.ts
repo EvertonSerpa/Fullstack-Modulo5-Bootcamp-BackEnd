@@ -1,14 +1,28 @@
-import { PaymentMethod } from "../entities/payment-method.entity";
+import { PaymentMethod } from '../entities/payment-method.entity';
+import { IsString, IsNumber } from 'class-validator';
 
 export class CreatePaymentMethodDto extends PaymentMethod {
-    payment_type: string;
-    card_number?: number;
-    owner_name?: string;
-    account_number?: number;
-    expiration_date_mm?: number;
-    expiration_date_yy?: number;
-    identification_doc?: string;
-    date_updated?: string | Date;
-    date_created?: string | Date;
-    saleId: string;
+  @IsString()
+  payment_type: string;
+
+  @IsNumber()
+  card_number?: number;
+
+  @IsString()
+  owner_name?: string;
+
+  @IsNumber()
+  account_number?: number;
+
+  @IsNumber()
+  expiration_date_mm?: number;
+
+  @IsNumber()
+  expiration_date_yy?: number;
+
+  @IsString()
+  identification_doc?: string;
+
+  @IsString()
+  saleId: string;
 }
