@@ -6,7 +6,7 @@ import { UpdateDisputesDto } from './dto/update-disputes.dto';
 @Injectable()
 export class DisputesService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CRIA UMA TABELA DE DISPUTA
 
   async create(CreateDisputesDto: CreateDisputesDto) {

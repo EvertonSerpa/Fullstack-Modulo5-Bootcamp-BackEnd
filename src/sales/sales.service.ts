@@ -6,7 +6,7 @@ import { UpdateSalesDto } from './dto/update-sales.dto';
 @Injectable()
 export class SalesService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CADASTRAR TABELA DE VENDA
 
   async create(CreateSalesDto: CreateSalesDto) {

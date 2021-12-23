@@ -1,11 +1,19 @@
 import { Orders } from '../entities/orders.entity';
+import { IsString, IsNumber } from 'class-validator';
 
 export class CreateOrdersDto extends Orders {
-  id?: string;
+  @IsString()
   order_status?: string;
+
+  @IsString()
   payment_method: string;
+
+  @IsString()
   annotation: string;
+
+  @IsNumber()
   discount_ticket: number;
-  date_updated?: string | Date;
-  date_created?: string | Date;
+
+  @IsString()
+  usersId_users: string;
 }

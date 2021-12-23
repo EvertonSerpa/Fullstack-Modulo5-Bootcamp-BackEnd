@@ -6,7 +6,7 @@ import { UpdateDepositMoneyDto } from './dto/update-deposit-money.dto';
 @Injectable()
 export class DepositMoneyService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CRIA UMA TABELA DE DEPOSITO DE DINHEIRO
 
   async create(CreateDepositMoneyDto: CreateDepositMoneyDto) {

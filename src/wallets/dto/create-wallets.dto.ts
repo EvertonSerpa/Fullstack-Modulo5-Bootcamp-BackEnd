@@ -1,5 +1,7 @@
-import { Wallets } from "../entities/wallets.entity";
+import { Wallets } from '../entities/wallets.entity';
+import { IsNumber } from 'class-validator';
 
 export class CreateWalletsDto extends Wallets {
-    balance: number;
+  @IsNumber({}, { message: 'Infome um número' })
+  balance: number;
 }

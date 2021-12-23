@@ -6,7 +6,7 @@ import { UpdateCategoriesDto } from './dto/update-categories.dto';
 @Injectable()
 export class CategoriesService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CADASTRAR CATEGORIA
 
   async create(CreateCategoriesDto: CreateCategoriesDto) {
@@ -32,16 +32,16 @@ export class CategoriesService {
   findOne(id_categories: string) {
     return this.prisma.categories.findUnique({
       where: {
-        id_categories ,
+        id_categories,
       },
     });
   }
 
   // ATUALIZA UMA CATEGORA PELO ID
 
-  async update(id_categories : string, data: UpdateCategoriesDto) {
+  async update(id_categories: string, data: UpdateCategoriesDto) {
     await this.prisma.categories.update({
-      where: { id_categories  },
+      where: { id_categories },
       data,
     });
 
@@ -52,9 +52,9 @@ export class CategoriesService {
 
   // DELETE UMA CATEGORIA PELO ID
 
-  async remove(id_categories : string) {
+  async remove(id_categories: string) {
     await this.prisma.categories.delete({
-      where: { id_categories  },
+      where: { id_categories },
     });
 
     return {
@@ -62,4 +62,3 @@ export class CategoriesService {
     };
   }
 }
-

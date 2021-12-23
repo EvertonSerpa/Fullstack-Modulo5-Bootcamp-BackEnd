@@ -21,11 +21,6 @@ export class UsersController {
     return this.usersService.create(createUserDto, UserRole.USER);
   }
 
-  @Post('create-admin')
-  createAdmin(@Body() createUserDto: CreateUsersDto) {
-    return this.usersService.create(createUserDto, UserRole.ADMIN);
-  }
-
   @Get()
   findAll() {
     return this.usersService.findAll();
@@ -44,5 +39,10 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
+  }
+
+  @Post('create-admin')
+  createAdmin(@Body() createUserDto: CreateUsersDto) {
+    return this.usersService.create(createUserDto, UserRole.ADMIN);
   }
 }

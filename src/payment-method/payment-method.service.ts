@@ -6,7 +6,7 @@ import { UpdatePaymentMethodDto } from './dto/update-payment-method.dto';
 @Injectable()
 export class PaymentMethodService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CRIA UM METODO DE PAGAMENTO
 
   async create(CreatePaymentMethodDto: CreatePaymentMethodDto) {
@@ -29,19 +29,19 @@ export class PaymentMethodService {
 
   // ENCONTRA UM METODO DE PAGAMENTO POR ID
 
-  findOne(id_payment_method : string) {
+  findOne(id_payment_method: string) {
     return this.prisma.payment_Method.findUnique({
       where: {
-        id_payment_method ,
+        id_payment_method,
       },
     });
   }
 
   // ATUALIZA UM METODO DE PAGAMENTO PELO ID
 
-  async update(id_payment_method : string, data: UpdatePaymentMethodDto) {
+  async update(id_payment_method: string, data: UpdatePaymentMethodDto) {
     await this.prisma.payment_Method.update({
-      where: { id_payment_method  },
+      where: { id_payment_method },
       data,
     });
 
@@ -52,9 +52,9 @@ export class PaymentMethodService {
 
   // DELETE UM METODO DE PAGAMENTO PELO ID
 
-  async remove(id_payment_method : string) {
+  async remove(id_payment_method: string) {
     await this.prisma.payment_Method.delete({
-      where: { id_payment_method  },
+      where: { id_payment_method },
     });
 
     return {

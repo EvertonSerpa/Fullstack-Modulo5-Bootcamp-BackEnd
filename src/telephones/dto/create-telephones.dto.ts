@@ -1,9 +1,15 @@
-import { Telephones } from "../entities/telephones.entity";
+import { Telephones } from '../entities/telephones.entity';
+import { IsString, IsNotEmpty } from 'class-validator';
 
 // Quando extends a propriedade Telephone posso vazer com que ela tenha qualquer variavel que eu queira.
 
 export class CreateTelephonesDto extends Telephones {
-    number_telephone: string;
-    region_code: string;
-    country_code: string;
+  @IsString()
+  number_telephone: string;
+
+  @IsString()
+  region_code: string;
+
+  @IsString()
+  country_code: string;
 }

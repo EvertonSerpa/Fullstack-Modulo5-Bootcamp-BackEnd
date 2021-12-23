@@ -5,6 +5,6 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Module({
   controllers: [DepositMoneyController],
-  providers: [DepositMoneyService, PrismaService]
+  providers: [DepositMoneyService, PrismaService],
 })
 export class DepositMoneyModule {}

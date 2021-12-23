@@ -1,5 +1,7 @@
-import { DepositMoney } from "../entities/deposit-money.entity";
+import { DepositMoney } from '../entities/deposit-money.entity';
+import { IsNumber } from 'class-validator';
 
 export class CreateDepositMoneyDto extends DepositMoney {
-    value: number;
+  @IsNumber()
+  value: number;
 }

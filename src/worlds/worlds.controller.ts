@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { WorldsService } from './worlds.service';
 import { CreateWorldsDto } from './dto/create-worlds.dto';
 import { UpdateWorldsDto } from './dto/update-worlds.dto';

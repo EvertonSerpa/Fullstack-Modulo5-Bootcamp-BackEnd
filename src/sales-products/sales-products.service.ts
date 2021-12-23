@@ -6,7 +6,7 @@ import { UpdateSalesProductsDto } from './dto/update-sales-products.dto';
 @Injectable()
 export class SalesProductsService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CRIA UM USUÁRIO
 
   async create(CreateSalesProductsDto: CreateSalesProductsDto) {
@@ -62,4 +62,3 @@ export class SalesProductsService {
     };
   }
 }
-

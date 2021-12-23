@@ -12,18 +12,18 @@ import {
 
 export class CreateUsersDto extends Users {
   @IsNotEmpty({ message: 'O campo nome não pode ser vazio' })
-  @IsString({ message: 'Informe um nome válido' })
+  @IsString()
   name: string;
 
   @IsNotEmpty({ message: 'O campo sobrenome não pode ser vazio' })
-  @IsString({ message: 'Infome um sobrenome válido' })
+  @IsString()
   surname: string;
 
   @IsString()
   profile_picture: string;
 
   @IsNotEmpty({ message: 'O campo nike name não pode ser vazio' })
-  @IsString({ message: 'Informe um nike name válido' })
+  @IsString()
   nike_name: string;
 
   @IsString()
@@ -32,13 +32,13 @@ export class CreateUsersDto extends Users {
 
   @IsNotEmpty({ message: 'O campo email não pode ser vazio' })
   @IsString()
-  @IsEmail({ message: 'Infome um endereço de email válido' })
+  @IsEmail()
   email: string;
 
   @IsString()
   status: string;
 
-  @IsBoolean({ message: 'Informe um valor boleano' })
+  @IsBoolean()
   seller: boolean;
 
   @IsString()
@@ -47,9 +47,9 @@ export class CreateUsersDto extends Users {
   @IsString()
   banner: string;
 
-  @IsNumber({}, { message: 'Informe uma nota' })
+  @IsNumber()
   average_qualification: number | null;
 
-  @IsNumber({}, { message: 'Informe o contador de views' })
+  @IsNumber()
   conter_views_store: number;
 }

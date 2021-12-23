@@ -6,7 +6,7 @@ import { UpdateOrdersDto } from './dto/update-orders.dto';
 @Injectable()
 export class OrdersService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CADASTRAR ORDEM
 
   async create(CreateOrderDto: CreateOrdersDto) {
@@ -29,19 +29,19 @@ export class OrdersService {
 
   // ENCONTRA UMA ORDEM PEPLO ID
 
-  findOne( id_orders : string) {
+  findOne(id_orders: string) {
     return this.prisma.orders.findUnique({
       where: {
-         id_orders ,
+        id_orders,
       },
     });
   }
 
   // ATUALIZA UMA ORDEM PELO ID
 
-  async update( id_orders : string, data: UpdateOrdersDto) {
+  async update(id_orders: string, data: UpdateOrdersDto) {
     await this.prisma.orders.update({
-      where: {  id_orders  },
+      where: { id_orders },
       data,
     });
 
@@ -52,9 +52,9 @@ export class OrdersService {
 
   // DELETE UMA ORDEM PELO ID
 
-  async remove( id_orders : string) {
+  async remove(id_orders: string) {
     await this.prisma.orders.delete({
-      where: {  id_orders  },
+      where: { id_orders },
     });
 
     return {
@@ -62,4 +62,3 @@ export class OrdersService {
     };
   }
 }
-

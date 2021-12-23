@@ -6,7 +6,7 @@ import { UpdatePostsDto } from './dto/update-post.dto';
 @Injectable()
 export class PostsService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CRIA UMA POSTAGEM
 
   async create(CreatePostsDto: CreatePostsDto) {
@@ -37,7 +37,7 @@ export class PostsService {
     });
   }
 
-  // ATUALIZA UMA POSTAGEM PELO id_posts 
+  // ATUALIZA UMA POSTAGEM PELO id_posts
 
   async update(id_posts: string, data: UpdatePostsDto) {
     await this.prisma.posts.update({
@@ -50,7 +50,7 @@ export class PostsService {
     };
   }
 
-  // DELETE UMA POSTAGEM PELO id_posts 
+  // DELETE UMA POSTAGEM PELO id_posts
 
   async remove(id_posts: string) {
     await this.prisma.posts.delete({
