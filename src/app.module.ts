@@ -17,6 +17,7 @@ import { WalletsModule } from './wallets/wallets.module';
 import { WorldsModule } from './worlds/worlds.module';
 import { DepositMoneyModule } from './deposit-money/deposit-money.module';
 import { AuthModule } from './auth/auth.module';
+import { WishlistsModule } from './wishlists/wishlists.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { AuthModule } from './auth/auth.module';
     WorldsModule,
     DepositMoneyModule,
     AuthModule,
+    WishlistsModule,
   ],
   controllers: [],
   providers: [PrismaService],
