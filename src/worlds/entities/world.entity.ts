@@ -1,4 +1,5 @@
 import { Prisma } from '@prisma/client';
+//import { prisma } from '../../config/db';
 
 export class Worlds implements Prisma.WorldsUncheckedCreateInput {
   name_world: string;

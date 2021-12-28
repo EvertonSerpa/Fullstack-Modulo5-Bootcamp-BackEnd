@@ -23,6 +23,7 @@ export class CreateUsersDto extends Users {
   surname: string;
 
   @IsString()
+  @ApiProperty()
   profile_picture: string;
 
   @IsNotEmpty({ message: 'O campo nike name não pode ser vazio' })
@@ -32,9 +33,11 @@ export class CreateUsersDto extends Users {
 
   @IsString()
   @Length(6, 50, { message: 'Informe uma senha entre 6 e 50 caracteres' })
+  @ApiProperty()
   password: string;
 
   @IsNotEmpty({ message: 'O campo email não pode ser vazio' })
+  @ApiProperty()
   @IsString()
   @IsEmail()
   email: string;
