@@ -1,16 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+//import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateWorldsDto } from './dto/create-worlds.dto';
 import { UpdateWorldsDto } from './dto/update-worlds.dto';
+import { prisma } from '../config/db';
 
 @Injectable()
 export class WorldsService {
-  constructor(private readonly prisma: PrismaService) {}
+  //  constructor(private readonly prisma: prisma) {}
 
   // CRIA UM MUNDO
 
   async create(CreateWorldsDto: CreateWorldsDto) {
-    await this.prisma.worlds.create({
+    await prisma.worlds.create({
       data: {
         ...CreateWorldsDto,
       },
@@ -24,13 +25,13 @@ export class WorldsService {
   // LISTO TODOS OS MUNDOS DESSA ROTA
 
   findAll() {
-    return this.prisma.worlds.findMany();
+    return prisma.worlds.findMany();
   }
 
   // ENCONTRO UM MUNDO POR ID
 
   findOne(id_worlds: string) {
-    return this.prisma.worlds.findUnique({
+    return prisma.worlds.findUnique({
       where: {
         id_worlds,
       },
@@ -40,7 +41,7 @@ export class WorldsService {
   // ATUALIZA UM MUNDO PELO ID
 
   async update(id_worlds: string, data: UpdateWorldsDto) {
-    await this.prisma.worlds.update({
+    await prisma.worlds.update({
       where: { id_worlds },
       data,
     });
@@ -53,7 +54,7 @@ export class WorldsService {
   // DELETE UM MUNDO PELO ID
 
   async remove(id_worlds: string) {
-    await this.prisma.worlds.delete({
+    await prisma.worlds.delete({
       where: { id_worlds },
     });
 
