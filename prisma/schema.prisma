@@ -208,9 +208,15 @@ model users {
   name                                            String           @db.VarChar
   surname                                         String?          @db.VarChar
   profile_picture                                 String?          @db.VarChar
+<<<<<<< HEAD
   nick_name                                       String           @unique @db.VarChar
   password                                        String           @db.VarChar
   email                                           String           @unique(map: "users_un") @db.VarChar
+=======
+  nick_name                                       String?          @unique @db.VarChar
+  password                                        String           @db.VarChar
+  email                                           String           @db.VarChar
+>>>>>>> 0cf607df3674b9d8dc5a3dd0e9ef186a2cbeeefb
   status                                          String           @db.VarChar
   seller                                          Boolean          @default(false)
   description                                     String?
