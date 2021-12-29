@@ -10,10 +10,10 @@ export class WorldsService {
 
   // CRIA UM MUNDO
 
-  async create(CreateWorldsDto: CreateWorldsDto) {
+  async create(createWorldsDto: CreateWorldsDto) {
     await prisma.worlds.create({
       data: {
-        ...CreateWorldsDto,
+        ...createWorldsDto,
       },
     });
 
@@ -30,11 +30,7 @@ export class WorldsService {
 
   // ENCONTRO UM MUNDO POR ID
 
-<<<<<<< HEAD
   findOne(id_world: string) {
-=======
-  findOne(id_worlds: string) {
->>>>>>> 0cf607df3674b9d8dc5a3dd0e9ef186a2cbeeefb
     return prisma.worlds.findUnique({
       where: {
         id_world,
@@ -44,15 +40,9 @@ export class WorldsService {
 
   // ATUALIZA UM MUNDO PELO ID
 
-<<<<<<< HEAD
   async update(id_world: string, data: UpdateWorldsDto) {
     await prisma.worlds.update({
       where: { id_world },
-=======
-  async update(id_worlds: string, data: UpdateWorldsDto) {
-    await prisma.worlds.update({
-      where: { id_worlds },
->>>>>>> 0cf607df3674b9d8dc5a3dd0e9ef186a2cbeeefb
       data,
     });
 
@@ -63,15 +53,9 @@ export class WorldsService {
 
   // DELETE UM MUNDO PELO ID
 
-<<<<<<< HEAD
   async remove(id_world: string) {
     await prisma.worlds.delete({
       where: { id_world },
-=======
-  async remove(id_worlds: string) {
-    await prisma.worlds.delete({
-      where: { id_worlds },
->>>>>>> 0cf607df3674b9d8dc5a3dd0e9ef186a2cbeeefb
     });
 
     return {
