@@ -7,7 +7,7 @@ export class Users implements Prisma.usersUncheckedCreateInput {
   name: string;
   surname?: string;
   profile_picture?: string;
-  nick_name?: string;
+  nick_name: string;
   password: string;
   email: string;
   status: string;

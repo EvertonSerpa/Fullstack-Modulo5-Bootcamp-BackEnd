@@ -9,7 +9,7 @@ export class AuthService {
   async login(login: LoginDto) {
     const { email, password } = login;
 
-    const users = await this.db.users.findFirst({
+    const users = await this.db.users.findUnique({
       where: { email },
     });
 

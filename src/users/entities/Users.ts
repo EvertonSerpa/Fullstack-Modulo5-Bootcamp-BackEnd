@@ -4,8 +4,21 @@ import { Prisma } from '@prisma/client';
 
 export class Users implements Prisma.usersUncheckedCreateInput {
   id_user: string;
+  name: string;
+  surname?: string;
+  profile_picture?: string;
+  nick_name: string;
+  password: string;
+  email: string;
+  status: string;
+  seller?: boolean;
+  description?: string;
+  banner?: string;
+  average_qualification?: number;
   counter_views_store?: number;
   role?: string;
+  date_created?: string | Date;
+  date_updated?: string | Date;
   deposit_money?: Prisma.deposit_moneyUncheckedCreateNestedManyWithoutUsersInput;
   disputes_disputes_id_sellerTousers?: Prisma.disputesUncheckedCreateNestedManyWithoutUsers_disputes_id_sellerTousersInput;
   disputes_disputes_id_userTousers?: Prisma.disputesUncheckedCreateNestedManyWithoutUsers_disputes_id_userTousersInput;
@@ -22,19 +35,4 @@ export class Users implements Prisma.usersUncheckedCreateInput {
   wallets?: Prisma.walletsUncheckedCreateNestedManyWithoutUsersInput;
   wishlists_usersTowishlists_id_seller?: Prisma.wishlistsUncheckedCreateNestedManyWithoutUsers_usersTowishlists_id_sellerInput;
   wishlists_usersTowishlists_id_user?: Prisma.wishlistsUncheckedCreateNestedManyWithoutUsers_usersTowishlists_id_userInput;
-  id_users?: string;
-  name: string;
-  surname: string;
-  profile_picture: string;
-  nick_name: string;
-  password: string;
-  email: string;
-  status: string;
-  seller?: boolean;
-  description?: string;
-  banner: string;
-  average_qualification?: number;
-  conter_views_store: number;
-  date_updated?: string | Date;
-  date_created?: string | Date;
 }
