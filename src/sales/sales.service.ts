@@ -9,10 +9,10 @@ export class SalesService {
 
   // CADASTRAR TABELA DE VENDA
 
-  async create(CreateSalesDto: CreateSalesDto) {
+  async create(createSalesDto: CreateSalesDto) {
     await this.prisma.sales.create({
       data: {
-        ...CreateSalesDto,
+        ...createSalesDto,
       },
     });
 
@@ -29,19 +29,19 @@ export class SalesService {
 
   // ENCONTRA UMA TABELA DE VENDA PELO ID
 
-  findOne(id_sales: string) {
+  findOne(id_sale: string) {
     return this.prisma.sales.findUnique({
       where: {
-        id_sales,
+        id_sale,
       },
     });
   }
 
   // ATUALIZA UMA TABELA DE VENDA PELO ID
 
-  async update(id_sales: string, data: UpdateSalesDto) {
+  async update(id_sale: string, data: UpdateSalesDto) {
     await this.prisma.sales.update({
-      where: { id_sales },
+      where: { id_sale },
       data,
     });
 
@@ -52,9 +52,9 @@ export class SalesService {
 
   // DELETE UMA TABELA DE VENDA PELO ID
 
-  async remove(id_sales: string) {
+  async remove(id_sale: string) {
     await this.prisma.sales.delete({
-      where: { id_sales },
+      where: { id_sale },
     });
 
     return {

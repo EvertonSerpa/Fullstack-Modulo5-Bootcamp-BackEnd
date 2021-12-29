@@ -29,19 +29,19 @@ export class PostsService {
 
   // ENCONTRO UMA TABELA PELO SEU ID
 
-  findOne(id_posts: string) {
+  findOne(id_message: string) {
     return this.prisma.posts.findUnique({
       where: {
-        id_posts,
+        id_message,
       },
     });
   }
 
   // ATUALIZA UMA POSTAGEM PELO id_posts
 
-  async update(id_posts: string, data: UpdatePostsDto) {
+  async update(id_message: string, data: UpdatePostsDto) {
     await this.prisma.posts.update({
-      where: { id_posts },
+      where: { id_message },
       data,
     });
 
@@ -52,9 +52,9 @@ export class PostsService {
 
   // DELETE UMA POSTAGEM PELO id_posts
 
-  async remove(id_posts: string) {
+  async remove(id_message: string) {
     await this.prisma.posts.delete({
-      where: { id_posts },
+      where: { id_message },
     });
 
     return {

@@ -9,13 +9,12 @@ export class AuthService {
   async login(login: LoginDto) {
     const { email, password } = login;
 
-    const users = await this.db.users.findUnique({
+    const users = await this.db.users.findFirst({
       where: { email },
     });
 
     if (!users) {
       throw new NotFoundException('Usúario não existe');
     }
-    
   }
 }

@@ -12,7 +12,7 @@ export class CreatePaymentMethodDto extends PaymentMethod {
   owner_name?: string;
 
   @IsNumber()
-  account_number?: number;
+  account_number?: string;
 
   @IsNumber()
   expiration_date_mm?: number;

@@ -9,10 +9,10 @@ export class OrdersService {
 
   // CADASTRAR ORDEM
 
-  async create(CreateOrderDto: CreateOrdersDto) {
+  async create(createOrderDto: CreateOrdersDto) {
     await this.prisma.orders.create({
       data: {
-        ...CreateOrderDto,
+        ...createOrderDto,
       },
     });
 
@@ -29,19 +29,19 @@ export class OrdersService {
 
   // ENCONTRA UMA ORDEM PEPLO ID
 
-  findOne(id_orders: string) {
+  findOne(id_order: string) {
     return this.prisma.orders.findUnique({
       where: {
-        id_orders,
+        id_order,
       },
     });
   }
 
   // ATUALIZA UMA ORDEM PELO ID
 
-  async update(id_orders: string, data: UpdateOrdersDto) {
+  async update(id_order: string, data: UpdateOrdersDto) {
     await this.prisma.orders.update({
-      where: { id_orders },
+      where: { id_order },
       data,
     });
 
@@ -52,9 +52,9 @@ export class OrdersService {
 
   // DELETE UMA ORDEM PELO ID
 
-  async remove(id_orders: string) {
+  async remove(id_order: string) {
     await this.prisma.orders.delete({
-      where: { id_orders },
+      where: { id_order },
     });
 
     return {

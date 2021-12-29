@@ -9,10 +9,10 @@ export class TelephonesService {
 
   // CADASTRAR TELEFONE
 
-  async create(CreateTelephonesDto: CreateTelephonesDto) {
+  async create(createTelephoneDto: CreateTelephonesDto) {
     await this.prisma.telephones.create({
       data: {
-        ...CreateTelephonesDto,
+        ...createTelephoneDto,
       },
     });
 
@@ -29,19 +29,19 @@ export class TelephonesService {
 
   // ENCONTRA UM TELEFONE POR ID
 
-  findOne(id_telephones: string) {
+  findOne(id_telephone: string) {
     return this.prisma.telephones.findUnique({
       where: {
-        id_telephones,
+        id_telephone,
       },
     });
   }
 
   // ATUALIZA UM TELEFONE PELO ID
 
-  async update(id_telephones: string, data: UpdateTelephonesDto) {
+  async update(id_telephone: string, data: UpdateTelephonesDto) {
     await this.prisma.telephones.update({
-      where: { id_telephones },
+      where: { id_telephone },
       data,
     });
 
@@ -52,9 +52,9 @@ export class TelephonesService {
 
   // DELETE UM TELEFONE PELO ID
 
-  async remove(id_telephones: string) {
+  async remove(id_telephone: string) {
     await this.prisma.telephones.delete({
-      where: { id_telephones },
+      where: { id_telephone },
     });
 
     return {

@@ -9,10 +9,10 @@ export class PaymentMethodService {
 
   // CRIA UM METODO DE PAGAMENTO
 
-  async create(CreatePaymentMethodDto: CreatePaymentMethodDto) {
-    await this.prisma.payment_Method.create({
+  async create(createPaymentMethodDto: CreatePaymentMethodDto) {
+    await this.prisma.payment_method.create({
       data: {
-        ...CreatePaymentMethodDto,
+        ...createPaymentMethodDto,
       },
     });
 
@@ -24,24 +24,24 @@ export class PaymentMethodService {
   // LISTA TODOS AS TABELAS DE METODO DE PAGAMENTO DESSA ROTA
 
   findAll() {
-    return this.prisma.payment_Method.findMany();
+    return this.prisma.payment_method.findMany();
   }
 
   // ENCONTRA UM METODO DE PAGAMENTO POR ID
 
-  findOne(id_payment_method: string) {
-    return this.prisma.payment_Method.findUnique({
+  findOne(id_method: string) {
+    return this.prisma.payment_method.findUnique({
       where: {
-        id_payment_method,
+        id_method,
       },
     });
   }
 
   // ATUALIZA UM METODO DE PAGAMENTO PELO ID
 
-  async update(id_payment_method: string, data: UpdatePaymentMethodDto) {
-    await this.prisma.payment_Method.update({
-      where: { id_payment_method },
+  async update(id_method: string, data: UpdatePaymentMethodDto) {
+    await this.prisma.payment_method.update({
+      where: { id_method },
       data,
     });
 
@@ -52,9 +52,9 @@ export class PaymentMethodService {
 
   // DELETE UM METODO DE PAGAMENTO PELO ID
 
-  async remove(id_payment_method: string) {
-    await this.prisma.payment_Method.delete({
-      where: { id_payment_method },
+  async remove(id_method: string) {
+    await this.prisma.payment_method.delete({
+      where: { id_method },
     });
 
     return {

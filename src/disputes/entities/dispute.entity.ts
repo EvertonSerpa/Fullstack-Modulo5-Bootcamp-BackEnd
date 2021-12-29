@@ -1,14 +1,14 @@
 import { Prisma } from '@prisma/client';
 
-export class Disputes implements Prisma.DisputesUncheckedCreateInput {
-  id_disputes?: string;
-  dispute_matter?: string;
+export class Disputes implements Prisma.disputesUncheckedCreateInput {
+  id_dispute: string;
+  id_order: string;
+  id_user: string;
+  id_seller: string;
+  dispute_matter: string;
   dispute_body: string;
   reply_seller?: string;
   status_dispute?: string;
-  date_updated?: string | Date;
   date_created?: string | Date;
-  ordersId_orders: string;
-  disputesId_users: string;
-  sellerId_users: string;
+  date_updated?: string | Date;
 }

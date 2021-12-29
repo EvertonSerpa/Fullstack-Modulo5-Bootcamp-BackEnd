@@ -10,7 +10,7 @@ export class WishlistsService {
   async create(createWishlistDto: CreateWishlistDto) {
     await this.prisma.wishlists.create({
       data: {
-        ...(CreateWishlistDto as unknown as Prisma.WishlistsUncheckedCreateInput),
+        ...(createWishlistDto as unknown as Prisma.wishlistsUncheckedCreateInput),
       },
     });
 
