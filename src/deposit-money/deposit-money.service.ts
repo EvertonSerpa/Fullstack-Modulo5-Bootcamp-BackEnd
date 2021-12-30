@@ -9,10 +9,10 @@ export class DepositMoneyService {
 
   // CRIA UMA TABELA DE DEPOSITO DE DINHEIRO
 
-  async create(CreateDepositMoneyDto: CreateDepositMoneyDto) {
-    await this.prisma.deposit_Money.create({
+  async create(createDepositMoneyDto: CreateDepositMoneyDto) {
+    await this.prisma.deposit_money.create({
       data: {
-        ...CreateDepositMoneyDto,
+        ...createDepositMoneyDto,
       },
     });
 
@@ -24,24 +24,24 @@ export class DepositMoneyService {
   // LISTA TODAS AS TABELAS DE DEPOSITOS DESSA ROTA
 
   findAll() {
-    return this.prisma.deposit_Money.findMany();
+    return this.prisma.deposit_money.findMany();
   }
 
   // ENCONTRA UMA TABELA DE DEPOSITO PELO ID
 
-  findOne(id_deposit_money: string) {
-    return this.prisma.deposit_Money.findUnique({
+  findOne(id_deposit: string) {
+    return this.prisma.deposit_money.findUnique({
       where: {
-        id_deposit_money,
+        id_deposit,
       },
     });
   }
 
   // ATUALIZA UMA TABELA DE DEPOSITO PELO ID
 
-  async update(id_deposit_money: string, data: UpdateDepositMoneyDto) {
-    await this.prisma.deposit_Money.update({
-      where: { id_deposit_money },
+  async update(id_deposit: string, data: UpdateDepositMoneyDto) {
+    await this.prisma.deposit_money.update({
+      where: { id_deposit },
       data,
     });
 
@@ -52,9 +52,9 @@ export class DepositMoneyService {
 
   // DELETE UMA TAELA DE DISPUTA PELO ID
 
-  async remove(id_deposit_money: string) {
-    await this.prisma.deposit_Money.delete({
-      where: { id_deposit_money },
+  async remove(id_deposit: string) {
+    await this.prisma.deposit_money.delete({
+      where: { id_deposit },
     });
 
     return {

@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateTransactionsDto } from './dto/create-transactions.dto';
 import { UpdateTransactionsDto } from './dto/update-transactions.dto';
@@ -9,10 +10,10 @@ export class TransactionsService {
 
   // CRIA UMA TRANSAÇÃO
 
-  async create(CreateTransactionsDto: CreateTransactionsDto) {
+  async create(createTransactionsDto: CreateTransactionsDto) {
     await this.prisma.transactions.create({
       data: {
-        ...CreateTransactionsDto,
+        ...(createTransactionsDto as unknown as Prisma.transactionsUncheckedCreateInput),
       },
     });
 
@@ -29,19 +30,19 @@ export class TransactionsService {
 
   // ENCONTRO UMA TRANSAÇÃO POR ID
 
-  findOne(id_transactions: string) {
+  findOne(id_transaction: string) {
     return this.prisma.transactions.findUnique({
       where: {
-        id_transactions,
+        id_transaction,
       },
     });
   }
 
   // ATUALIZA UMA TRANSAÇÃO PELO ID
 
-  async update(id_transactions: string, data: UpdateTransactionsDto) {
+  async update(id_transaction: string, data: UpdateTransactionsDto) {
     await this.prisma.transactions.update({
-      where: { id_transactions },
+      where: { id_transaction },
       data,
     });
 
@@ -52,9 +53,9 @@ export class TransactionsService {
 
   // DELETA UMA TRANSAÇÃO PELO ID
 
-  async remove(id_transactions: string) {
+  async remove(id_transaction: string) {
     await this.prisma.transactions.delete({
-      where: { id_transactions },
+      where: { id_transaction },
     });
 
     return {

@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateQualificationDto } from './dto/create-qualification.dto';
 import { UpdateQualificationDto } from './dto/update-qualification.dto';
@@ -9,10 +10,10 @@ export class QualificationService {
 
   // CADASTRAR QUALIFICAÇÃO
 
-  async create(CreateQualificationDto: CreateQualificationDto) {
+  async create(createQualificationDto: CreateQualificationDto) {
     await this.prisma.qualification.create({
       data: {
-        ...CreateQualificationDto,
+        ...(createQualificationDto as unknown as Prisma.qualificationUncheckedCreateInput),
       },
     });
 

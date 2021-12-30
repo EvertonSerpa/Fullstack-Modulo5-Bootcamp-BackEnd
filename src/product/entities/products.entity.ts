@@ -2,7 +2,20 @@ import { Prisma } from '@prisma/client';
 
 // O Unchecked vai ter a informação do id, que para a entidade isso vai ser necessario.
 
-export class Products implements Prisma.ProductsUncheckedCreateInput {
+export class Products implements Prisma.productsUncheckedCreateInput {
+  id_product: string;
+  id_category: string;
+  id_subcategory: string;
+  id_seller: string;
+  id_world: string;
+  specs?: string;
+  main_picture: string;
+  counter_views_product?: number;
+  featured?: boolean;
+  posts?: Prisma.postsUncheckedCreateNestedManyWithoutProductsInput;
+  qualification?: Prisma.qualificationUncheckedCreateNestedManyWithoutProductsInput;
+  sales_products?: Prisma.sales_productsUncheckedCreateNestedManyWithoutProductsInput;
+  wishlists?: Prisma.wishlistsUncheckedCreateNestedManyWithoutProductsInput;
   id_products?: string;
   average_qualification?: number;
   name_product: string;
@@ -28,7 +41,4 @@ export class Products implements Prisma.ProductsUncheckedCreateInput {
   subcategoriesId_subcategories: string;
   usersId_users: string;
   worldsId_worlds: string;
-  Wishlists?: Prisma.WishlistsUncheckedCreateNestedOneWithoutProductsInput;
-  Qualification?: Prisma.QualificationUncheckedCreateNestedManyWithoutProductsInput;
-  Posts?: Prisma.PostsUncheckedCreateNestedManyWithoutProductsInput;
 }

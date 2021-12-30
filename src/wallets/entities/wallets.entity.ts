@@ -1,9 +1,9 @@
 import { Prisma } from '@prisma/client';
 
-export class Wallets implements Prisma.WalletsUncheckedCreateInput {
-  id_wallets?: string;
-  balance: number;
-  date_updated?: string | Date;
+export class Wallets implements Prisma.walletsUncheckedCreateInput {
+  id_wallet: string;
+  id_user: string;
+  balance: string;
   date_created?: string | Date;
-  salesId_sales: string;
+  date_updated?: string | Date;
 }

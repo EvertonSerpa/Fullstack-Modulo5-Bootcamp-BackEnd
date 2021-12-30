@@ -9,10 +9,10 @@ export class ProductsService {
 
   // CADASTRAR PRODUTO
 
-  async create(CreateProductsDto: CreateProductsDto) {
+  async create(createProductsDto: CreateProductsDto) {
     await this.prisma.products.create({
       data: {
-        ...CreateProductsDto,
+        ...createProductsDto,
       },
     });
 
@@ -29,19 +29,19 @@ export class ProductsService {
 
   // ENCONTRA UM PRODUTO PEPLO ID
 
-  findOne(id_products: string) {
+  findOne(id_product: string) {
     return this.prisma.products.findUnique({
       where: {
-        id_products,
+        id_product,
       },
     });
   }
 
   // ATUALIZA UM PRODUTO PELO ID
 
-  async update(id_products: string, data: UpdateProductsDto) {
+  async update(id_product: string, data: UpdateProductsDto) {
     await this.prisma.products.update({
-      where: { id_products },
+      where: { id_product },
       data,
     });
 
@@ -52,9 +52,9 @@ export class ProductsService {
 
   // DELETE UMA PRODUTO PELO ID
 
-  async remove(id_products: string) {
+  async remove(id_product: string) {
     await this.prisma.products.delete({
-      where: { id_products },
+      where: { id_product },
     });
 
     return {

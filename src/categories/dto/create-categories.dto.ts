@@ -15,7 +15,7 @@ export class CreateCategoriesDto extends Categories {
   icon_category: string | null;
 
   @IsBoolean()
-  status_category: boolean;
+  status_category: string;
 
   @IsNumber()
   counter_views_category: number;

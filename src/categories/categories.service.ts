@@ -9,10 +9,10 @@ export class CategoriesService {
 
   // CADASTRAR CATEGORIA
 
-  async create(CreateCategoriesDto: CreateCategoriesDto) {
+  async create(createCategoriesDto: CreateCategoriesDto) {
     await this.prisma.categories.create({
       data: {
-        ...CreateCategoriesDto,
+        ...createCategoriesDto,
       },
     });
 
@@ -29,19 +29,19 @@ export class CategoriesService {
 
   // ENCONTRA UMA CATEGORIA PEPLO ID
 
-  findOne(id_categories: string) {
+  findOne(id_category: string) {
     return this.prisma.categories.findUnique({
       where: {
-        id_categories,
+        id_category,
       },
     });
   }
 
   // ATUALIZA UMA CATEGORA PELO ID
 
-  async update(id_categories: string, data: UpdateCategoriesDto) {
+  async update(id_category: string, data: UpdateCategoriesDto) {
     await this.prisma.categories.update({
-      where: { id_categories },
+      where: { id_category },
       data,
     });
 
@@ -52,9 +52,9 @@ export class CategoriesService {
 
   // DELETE UMA CATEGORIA PELO ID
 
-  async remove(id_categories: string) {
+  async remove(id_category: string) {
     await this.prisma.categories.delete({
-      where: { id_categories },
+      where: { id_category },
     });
 
     return {

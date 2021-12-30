@@ -9,10 +9,10 @@ export class DisputesService {
 
   // CRIA UMA TABELA DE DISPUTA
 
-  async create(CreateDisputesDto: CreateDisputesDto) {
+  async create(createDisputesDto: CreateDisputesDto) {
     await this.prisma.disputes.create({
       data: {
-        ...CreateDisputesDto,
+        ...createDisputesDto,
       },
     });
 
@@ -29,19 +29,19 @@ export class DisputesService {
 
   // ENCONTRA UMA TABELA DE DISPUTA PELO ID
 
-  findOne(id_disputes: string) {
+  findOne(id_dispute: string) {
     return this.prisma.disputes.findUnique({
       where: {
-        id_disputes,
+        id_dispute,
       },
     });
   }
 
   // ATUALIZA UMA TABELA DE DISPUTA PELO ID
 
-  async update(id_disputes: string, data: UpdateDisputesDto) {
+  async update(id_dispute: string, data: UpdateDisputesDto) {
     await this.prisma.disputes.update({
-      where: { id_disputes },
+      where: { id_dispute },
       data,
     });
 
@@ -52,9 +52,9 @@ export class DisputesService {
 
   // DELETE UMA TAELA DE DISPUTA PELO ID
 
-  async remove(id_disputes: string) {
+  async remove(id_dispute: string) {
     await this.prisma.disputes.delete({
-      where: { id_disputes },
+      where: { id_dispute },
     });
 
     return {

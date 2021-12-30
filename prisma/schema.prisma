@@ -1,0 +1,274 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  id_category            String          @id @db.VarChar
+  name_category          String          @db.VarChar
+  banner_category        String          @db.VarChar
+  picture_category       String          @db.VarChar
+  icon_category          String?         @db.VarChar
+  date_created           DateTime        @default(now()) @db.Date
+  date_updated           DateTime?       @db.Date
+  status_category        String          @db.VarChar
+  counter_views_category Int             @default(0)
+  description            String?
+  products               products[]
+  subcategories          subcategories[]
+}
+
+model deposit_money {
+  id_deposit   String   @id @db.VarChar
+  id_user      String   @db.VarChar
+  value        Int
+  date_created DateTime @default(now()) @db.Date
+  users        users    @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model disputes {
+  id_dispute                      String    @id @db.VarChar
+  id_order                        String    @db.VarChar
+  id_user                         String    @db.VarChar
+  id_seller                       String    @db.VarChar
+  dispute_matter                  String    @db.VarChar
+  dispute_body                    String
+  reply_seller                    String?
+  status_dispute                  String?   @db.VarChar
+  date_created                    DateTime  @default(now()) @db.Date
+  date_updated                    DateTime? @db.Date
+  orders                          orders    @relation(fields: [id_order], references: [id_order], onDelete: NoAction, onUpdate: NoAction)
+  users_disputes_id_sellerTousers users     @relation("disputes_id_sellerTousers", fields: [id_seller], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+  users_disputes_id_userTousers   users     @relation("disputes_id_userTousers", fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model orders {
+  id_order         String     @id @db.VarChar
+  id_user          String     @db.VarChar
+  id_product_order String     @db.VarChar
+  status_order     String     @db.VarChar
+  payment_method   String     @db.VarChar
+  annotation       String?    @db.VarChar
+  discount_ticket  Int?
+  date_created     DateTime   @default(now()) @db.Date
+  date_updated     DateTime?  @db.Date
+  users            users      @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+  disputes         disputes[]
+  sales            sales[]
+}
+
+model payment_method {
+  id_method          String    @id @db.VarChar
+  id_user            String    @db.VarChar
+  payment_type       String    @db.VarChar
+  card_number        Int?
+  owner_name         String?   @db.VarChar
+  account_number     String?   @db.VarChar
+  expiration_date_mm Int?
+  expiration_date_yy Int?
+  identification_doc String?   @db.VarChar
+  date_created       DateTime  @default(now()) @db.Date
+  date_updated       DateTime? @db.Date
+  users              users     @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+  sales              sales[]
+}
+
+model posts {
+  id_message                   String    @id @db.VarChar
+  id_product                   String    @db.VarChar
+  id_user                      String    @db.VarChar
+  id_seller                    String    @db.VarChar
+  message_matter               String?   @db.VarChar
+  message_body                 String
+  date_created                 DateTime  @default(now()) @db.Date
+  date_updated                 DateTime? @db.Date
+  products                     products  @relation(fields: [id_product], references: [id_product], onDelete: NoAction, onUpdate: NoAction)
+  users_posts_id_sellerTousers users     @relation("posts_id_sellerTousers", fields: [id_seller], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+  users_posts_id_userTousers   users     @relation("posts_id_userTousers", fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model products {
+  id_product            String           @id @db.VarChar
+  id_category           String           @db.VarChar
+  id_subcategory        String           @db.VarChar
+  id_seller             String           @db.VarChar
+  id_world              String           @db.VarChar
+  average_qualification Int?
+  name_product          String           @db.VarChar
+  price                 Int
+  description           String
+  specs                 String?
+  details               String?
+  color                 String?          @db.VarChar
+  tags_product          String?          @db.VarChar
+  video                 String?          @db.VarChar
+  main_picture          String           @db.VarChar
+  gallery               String?          @db.VarChar
+  image_3d              String?          @db.VarChar
+  status                String?          @db.VarChar
+  counter_views_product Int              @default(0)
+  collection            String?          @db.VarChar
+  stock                 Int              @default(1)
+  offer                 Int              @default(0)
+  highlight_level       Int              @default(0)
+  featured              Boolean          @default(true)
+  date_created          DateTime         @default(now()) @db.Date
+  date_updated          DateTime?        @db.Date
+  categories            categories       @relation(fields: [id_category], references: [id_category], onDelete: NoAction, onUpdate: NoAction)
+  users                 users            @relation(fields: [id_seller], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+  subcategories         subcategories    @relation(fields: [id_subcategory], references: [id_subcategory], onDelete: NoAction, onUpdate: NoAction)
+  worlds                worlds           @relation(fields: [id_world], references: [id_world], onDelete: NoAction, onUpdate: NoAction)
+  posts                 posts[]
+  qualification         qualification[]
+  sales_products        sales_products[]
+  wishlists             wishlists[]
+}
+
+model qualification {
+  id_qualification                        String    @id @db.VarChar
+  id_qualified                            String?   @db.VarChar
+  id_product                              String?   @db.VarChar
+  value_qualification                     Int
+  comment                                 String?   @db.VarChar
+  id_qualifier                            String?   @db.VarChar
+  date_created                            DateTime  @default(now()) @db.Date
+  products                                products? @relation(fields: [id_product], references: [id_product], onDelete: NoAction, onUpdate: NoAction)
+  users_qualification_id_qualifiedTousers users?    @relation("qualification_id_qualifiedTousers", fields: [id_qualified], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+  users_qualification_id_qualifierTousers users?    @relation("qualification_id_qualifierTousers", fields: [id_qualifier], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model sales {
+  id_sale                      String           @id @db.VarChar
+  id_order                     String           @db.VarChar
+  id_user                      String           @db.VarChar
+  id_seller                    String           @db.VarChar
+  id_payment_method            String           @db.VarChar
+  status_sale                  String?          @db.VarChar
+  date_created                 DateTime         @default(now()) @db.Date
+  date_updated                 DateTime?        @db.Date
+  orders                       orders           @relation(fields: [id_order], references: [id_order], onDelete: NoAction, onUpdate: NoAction)
+  payment_method               payment_method   @relation(fields: [id_payment_method], references: [id_method], onDelete: NoAction, onUpdate: NoAction)
+  users_sales_id_sellerTousers users            @relation("sales_id_sellerTousers", fields: [id_seller], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+  users_sales_id_userTousers   users            @relation("sales_id_userTousers", fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+  sales_products               sales_products[]
+  transactions                 transactions[]
+}
+
+model sales_products {
+  id_itens   String    @id @db.VarChar
+  id_sales   String?   @db.VarChar
+  id_product String?   @db.VarChar
+  quantity   Int       @default(1)
+  sale_price Int
+  pay_rate   Int?
+  products   products? @relation(fields: [id_product], references: [id_product], onDelete: NoAction, onUpdate: NoAction)
+  sales      sales?    @relation(fields: [id_sales], references: [id_sale], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model subcategories {
+  id_subcategory            String      @id @db.VarChar
+  id_category               String?     @db.VarChar
+  nome_subcategory          String      @db.VarChar
+  banner_subcategory        String      @db.VarChar
+  picture_subcategory       String      @db.VarChar
+  icono_subcategory         String?     @db.VarChar
+  date_created              DateTime    @default(now()) @db.Date
+  date_updated              DateTime?   @db.Date
+  status_subcategory        String      @db.VarChar
+  counter_views_subcategory Int         @default(0)
+  description               String?
+  categories                categories? @relation(fields: [id_category], references: [id_category], onDelete: NoAction, onUpdate: NoAction)
+  products                  products[]
+}
+
+model telephones {
+  id_telephone     String  @id @db.VarChar
+  id_user          String? @db.VarChar
+  number_telephone String  @db.VarChar
+  region_code      String  @db.VarChar
+  country_code     String  @db.VarChar
+  users            users?  @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model transactions {
+  id_transaction   String   @id @db.VarChar
+  id_sale          String?  @db.VarChar
+  type_transaction String   @db.VarChar
+  value            Int
+  date_created     DateTime @default(now()) @db.Date
+  sales            sales?   @relation(fields: [id_sale], references: [id_sale], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users {
+  id_user                                         String           @id @db.VarChar
+  name                                            String           @db.VarChar
+  surname                                         String?          @db.VarChar
+  profile_picture                                 String?          @db.VarChar
+  nick_name                                       String           @unique @db.VarChar
+  password                                        String           @db.VarChar
+  email                                           String           @unique(map: "users_un") @db.VarChar
+  status                                          String           @db.VarChar
+  seller                                          Boolean          @default(false)
+  description                                     String?
+  banner                                          String?          @db.VarChar
+  average_qualification                           Int?
+  counter_views_store                             Int              @default(0)
+  role                                            String?          @db.VarChar
+  date_created                                    DateTime         @default(now()) @db.Date
+  date_updated                                    DateTime?        @db.Date
+  deposit_money                                   deposit_money[]
+  disputes_disputes_id_sellerTousers              disputes[]       @relation("disputes_id_sellerTousers")
+  disputes_disputes_id_userTousers                disputes[]       @relation("disputes_id_userTousers")
+  orders                                          orders[]
+  payment_method                                  payment_method[]
+  posts_posts_id_sellerTousers                    posts[]          @relation("posts_id_sellerTousers")
+  posts_posts_id_userTousers                      posts[]          @relation("posts_id_userTousers")
+  products                                        products[]
+  qualification_qualification_id_qualifiedTousers qualification[]  @relation("qualification_id_qualifiedTousers")
+  qualification_qualification_id_qualifierTousers qualification[]  @relation("qualification_id_qualifierTousers")
+  sales_sales_id_sellerTousers                    sales[]          @relation("sales_id_sellerTousers")
+  sales_sales_id_userTousers                      sales[]          @relation("sales_id_userTousers")
+  telephones                                      telephones[]
+  wallets                                         wallets[]
+  wishlists_usersTowishlists_id_seller            wishlists[]      @relation("usersTowishlists_id_seller")
+  wishlists_usersTowishlists_id_user              wishlists[]      @relation("usersTowishlists_id_user")
+}
+
+model wallets {
+  id_wallet    String    @id @db.VarChar
+  id_user      String    @db.VarChar
+  balance      String    @db.VarChar
+  date_created DateTime  @default(now()) @db.Date
+  date_updated DateTime? @db.Date
+  users        users     @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model wishlists {
+  id_wishlist                      String    @id @db.VarChar
+  id_user                          String    @db.VarChar
+  id_products                      String?   @db.VarChar
+  id_seller                        String?   @db.VarChar
+  products                         products? @relation(fields: [id_products], references: [id_product], onDelete: NoAction, onUpdate: NoAction)
+  users_usersTowishlists_id_seller users?    @relation("usersTowishlists_id_seller", fields: [id_seller], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+  users_usersTowishlists_id_user   users     @relation("usersTowishlists_id_user", fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model worlds {
+  id_world            String     @id @db.VarChar
+  name_world          String     @db.VarChar
+  description         String?
+  founding_company    String?    @db.VarChar
+  picture_world       String     @db.VarChar
+  icon_world          String?    @db.VarChar
+  banner_world        String     @db.VarChar
+  video_world         String?    @db.VarChar
+  status_world        String     @db.VarChar
+  counter_views_world Int        @default(0)
+  date_created        DateTime   @default(now()) @db.Date
+  date_updated        DateTime?  @db.Date
+  products            products[]
+}

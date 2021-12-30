@@ -2,7 +2,7 @@ import { Injectable, ConflictException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUsersDto } from './dto/create-users.dto';
 import { UpdateUsersDto } from './dto/update-users.dto';
-import { Prisma, Users } from '@prisma/client';
+import { Prisma, users } from '@prisma/client';
 import { UserRole } from './enum/role.enum';
 import * as bcrypt from 'bcrypt';
 
@@ -12,9 +12,9 @@ export class UsersService {
 
   // LÓGICA DA CRIAÇÃO  DO USUÁRIO
 
-  async create(CreateUsersDto: CreateUsersDto, role: UserRole): Promise<Users> {
-    const userExists = await this.db.users.findUnique({
-      where: { email: CreateUsersDto.email },
+  async create(createUsersDto: CreateUsersDto, role: UserRole): Promise<users> {
+    const userExists = await this.db.users.findFirst({
+      where: { email: createUsersDto.email },
     });
 
     // CASO O EMAIL JÁ ESTEJA CADASTRADO, EXIBIRÁ A SEGUINTE MENSAGEM
@@ -24,12 +24,12 @@ export class UsersService {
     }
 
     // CRIPTOGRAFAMOS A SENHA DO USUARIO
-    const hashedPassword = await bcrypt.hash(CreateUsersDto.password, 10);
+    const hashedPassword = await bcrypt.hash(createUsersDto.password, 10);
 
     // CASO O NIKENAME JÁ ESTEJA CADASTRADO, EXIBIRÁ A SEGUINTE MENSAGEM
 
     const nikeNemeExists = await this.db.users.findUnique({
-      where: { nike_name: CreateUsersDto.nike_name },
+      where: { nick_name: createUsersDto.nick_name },
     });
 
     if (nikeNemeExists) {
@@ -40,7 +40,7 @@ export class UsersService {
 
     const users = await this.db.users.create({
       data: {
-        ...CreateUsersDto,
+        ...(createUsersDto as unknown as Prisma.usersUncheckedCreateInput),
         role: role,
         password: hashedPassword,
       },
@@ -64,10 +64,10 @@ export class UsersService {
 
   // ENCONTRO UM USUÁRIO POR ID
 
-  async findOne(id_users: string) {
+  async findOne(id_user: string) {
     const users = await this.db.users.findUnique({
       where: {
-        id_users,
+        id_user,
       },
     });
 
@@ -77,9 +77,9 @@ export class UsersService {
 
   // ATUALIZA UM USUÁRIO PELO ID
 
-  async update(id_users: string, data: UpdateUsersDto) {
+  async update(id_user: string, data: UpdateUsersDto) {
     await this.db.users.update({
-      where: { id_users },
+      where: { id_user },
       data,
     });
 
@@ -90,9 +90,9 @@ export class UsersService {
 
   // DELETE UM USUÁRIO PELO ID
 
-  async remove(id_users: string) {
+  async remove(id_user: string) {
     await this.db.users.delete({
-      where: { id_users },
+      where: { id_user },
     });
 
     return {

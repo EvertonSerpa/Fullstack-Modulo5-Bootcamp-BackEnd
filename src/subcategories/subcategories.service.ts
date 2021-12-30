@@ -6,13 +6,13 @@ import { UpdateSubcategoriesDto } from './dto/update-subcategories.dto';
 @Injectable()
 export class SubcategoriesService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   // CADASTRAR SUBCATEGORIA
 
-  async create(CreateSubcategorieDto: CreateSubcategoriesDto) {
+  async create(createSubcategorieDto: CreateSubcategoriesDto) {
     await this.prisma.subcategories.create({
       data: {
-        ...CreateSubcategorieDto,
+        ...createSubcategorieDto,
       },
     });
 
@@ -29,19 +29,19 @@ export class SubcategoriesService {
 
   // ENCONTRA UM SUBCATEGORIA POR ID
 
-  findOne( id_subcategories: string) {
+  findOne(id_subcategory: string) {
     return this.prisma.subcategories.findUnique({
       where: {
-        id_subcategories,
+        id_subcategory,
       },
     });
   }
 
   // ATUALIZA UM SUBCATEGORIA PELO ID
 
-  async update( id_subcategories: string, data: UpdateSubcategoriesDto) {
+  async update(id_subcategory: string, data: UpdateSubcategoriesDto) {
     await this.prisma.subcategories.update({
-      where: {  id_subcategories },
+      where: { id_subcategory },
       data,
     });
 
@@ -52,9 +52,9 @@ export class SubcategoriesService {
 
   // DELETE UMA SUBCATEGORIA PELO ID
 
-  async remove( id_subcategories: string) {
+  async remove(id_subcategory: string) {
     await this.prisma.subcategories.delete({
-      where: { id_subcategories },
+      where: { id_subcategory },
     });
 
     return {

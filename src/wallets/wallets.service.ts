@@ -29,19 +29,19 @@ export class WalletsService {
 
   // ENCONTRO UMA CARTEIRA POR ID
 
-  findOne(id_wallets: string) {
+  findOne(id_wallet: string) {
     return this.prisma.wallets.findUnique({
       where: {
-        id_wallets,
+        id_wallet,
       },
     });
   }
 
   // ATUALIZA UMA CARTEIRA PELO ID
 
-  async update(id_wallets: string, data: UpdateWalletsDto) {
+  async update(id_wallet: string, data: UpdateWalletsDto) {
     await this.prisma.wallets.update({
-      where: { id_wallets },
+      where: { id_wallet },
       data,
     });
 
@@ -52,9 +52,9 @@ export class WalletsService {
 
   // DELETE UMA CARTEIRA PELO ID
 
-  async remove(id_wallets: string) {
+  async remove(id_wallet: string) {
     await this.prisma.wallets.delete({
-      where: { id_wallets },
+      where: { id_wallet },
     });
 
     return {

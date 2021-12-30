@@ -10,7 +10,7 @@ export class SalesProductsService {
   // CRIA UM USUÁRIO
 
   async create(CreateSalesProductsDto: CreateSalesProductsDto) {
-    await this.prisma.sales_Products.create({
+    await this.prisma.sales_products.create({
       data: {
         ...CreateSalesProductsDto,
       },
@@ -24,24 +24,24 @@ export class SalesProductsService {
   // LISTO TODOS OS USUÁRIOS DESSA ROTA
 
   findAll() {
-    return this.prisma.sales_Products.findMany();
+    return this.prisma.sales_products.findMany();
   }
 
   // ENCONTRO UM USUÁRIO POR ID
 
-  findOne(id_sales_procucts: string) {
-    return this.prisma.sales_Products.findUnique({
+  findOne(id_itens: string) {
+    return this.prisma.sales_products.findUnique({
       where: {
-        id_sales_procucts,
+        id_itens,
       },
     });
   }
 
   // ATUALIZA UM USUÁRIO PELO ID
 
-  async update(id_sales_procucts: string, data: UpdateSalesProductsDto) {
-    await this.prisma.sales_Products.update({
-      where: { id_sales_procucts },
+  async update(id_itens: string, data: UpdateSalesProductsDto) {
+    await this.prisma.sales_products.update({
+      where: { id_itens },
       data,
     });
 
@@ -52,9 +52,9 @@ export class SalesProductsService {
 
   // DELETE UM USUÁRIO PELO ID
 
-  async remove(id_sales_procucts: string) {
-    await this.prisma.sales_Products.delete({
-      where: { id_sales_procucts },
+  async remove(id_itens: string) {
+    await this.prisma.sales_products.delete({
+      where: { id_itens },
     });
 
     return {

@@ -1,7 +1,10 @@
 import { Prisma } from '@prisma/client';
 
-export class Posts implements Prisma.PostsUncheckedCreateInput {
-  id_posts?: string;
+export class Posts implements Prisma.postsUncheckedCreateInput {
+  id_message: string;
+  id_product: string;
+  id_user: string;
+  id_seller: string;
   message_matter?: string;
   message_body: string;
   reply_seller?: string;
