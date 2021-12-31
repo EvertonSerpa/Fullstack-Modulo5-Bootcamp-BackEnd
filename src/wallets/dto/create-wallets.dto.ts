@@ -3,5 +3,5 @@ import { IsNumber } from 'class-validator';
 
 export class CreateWalletsDto extends Wallets {
   @IsNumber({}, { message: 'Infome um número' })
-  balance: string;
+  balance: number;
 }

@@ -241,7 +241,7 @@ model users {
 model wallets {
   id_wallet    String    @id @db.VarChar
   id_user      String    @db.VarChar
-  balance      String    @db.VarChar
+  balance      Int
   date_created DateTime  @default(now()) @db.Date
   date_updated DateTime? @db.Date
   users        users     @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
