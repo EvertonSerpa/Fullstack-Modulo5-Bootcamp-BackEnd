@@ -32,7 +32,6 @@ export class Users implements Prisma.usersUncheckedCreateInput {
   sales_sales_id_sellerTousers?: Prisma.salesUncheckedCreateNestedManyWithoutUsers_sales_id_sellerTousersInput;
   sales_sales_id_userTousers?: Prisma.salesUncheckedCreateNestedManyWithoutUsers_sales_id_userTousersInput;
   telephones?: Prisma.telephonesUncheckedCreateNestedManyWithoutUsersInput;
-  wallets?: Prisma.walletsUncheckedCreateNestedManyWithoutUsersInput;
   wishlists_usersTowishlists_id_seller?: Prisma.wishlistsUncheckedCreateNestedManyWithoutUsers_usersTowishlists_id_sellerInput;
   wishlists_usersTowishlists_id_user?: Prisma.wishlistsUncheckedCreateNestedManyWithoutUsers_usersTowishlists_id_userInput;
  

@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { HttpExceptionFilter } from '@algoan/http-exception-filter';
+//import { HttpExceptionFilter } from '@algoan/http-exception-filter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 
@@ -16,7 +16,7 @@ async function bootstrap() {
     }),
   );
 
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters();
 
   app.enableCors({
     //origin: "http://localhost:4200/",

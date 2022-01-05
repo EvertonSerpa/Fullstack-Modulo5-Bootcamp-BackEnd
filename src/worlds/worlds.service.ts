@@ -8,10 +8,10 @@ export class WorldsService {
 
   // CRIA UM MUNDO
 
-  async create(createWorldsDto: CreateWorldsDto) {
+  async create(CreateWorldsDto: CreateWorldsDto) {
     await prisma.worlds.create({
       data: {
-        ...createWorldsDto,
+        ...CreateWorldsDto,
       },
     });
 
@@ -57,7 +57,7 @@ export class WorldsService {
     });
 
     return {
-      message: 'Mundo deletado com sucesso!',
+      mesage: 'Mundo deletado com sucesso!',
     };
   }
 }

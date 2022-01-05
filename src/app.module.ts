@@ -13,11 +13,11 @@ import { DisputesModule } from './disputes/disputes.module';
 import { PostsModule } from './post/post.module';
 import { PaymentMethodModule } from './payment-method/payment-method.module';
 import { TransactionsModule } from './transactions/transactions.module';
-import { WalletsModule } from './wallets/wallets.module';
 import { WorldsModule } from './worlds/worlds.module';
 import { DepositMoneyModule } from './deposit-money/deposit-money.module';
 import { AuthModule } from './auth/auth.module';
 import { WishlistsModule } from './wishlists/wishlists.module';
+import { WalletsModule } from './wallets/wallets.module';
 
 @Module({
   imports: [
