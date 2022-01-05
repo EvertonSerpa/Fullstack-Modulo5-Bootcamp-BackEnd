@@ -239,7 +239,7 @@ model users {
 }
 
 model wallets {
-  id_wallet    String    @id @db.VarChar
+  id_wallet    String    @id @default(uuid()) @db.VarChar
   id_user      String    @db.VarChar
   balance      Int
   date_created DateTime  @default(now()) @db.Date
@@ -248,7 +248,7 @@ model wallets {
 }
 
 model wishlists {
-  id_wishlist                      String    @id @db.VarChar
+  id_wishlist                      String    @id @default(uuid()) @db.VarChar
   id_user                          String    @db.VarChar
   id_products                      String?   @db.VarChar
   id_seller                        String?   @db.VarChar

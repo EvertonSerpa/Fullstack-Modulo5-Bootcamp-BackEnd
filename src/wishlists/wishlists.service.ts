@@ -1,46 +1,66 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { prisma } from '../config/db';
 import { CreateWishlistDto } from './dto/create-wishlist.dto';
 import { UpdateWishlistDto } from './dto/update-wishlist.dto';
 
 @Injectable()
 export class WishlistsService {
-  constructor(private readonly prisma: PrismaService) {}
+  
+  // CRIA UMA WISHLISTS
+
   async create(createWishlistDto: CreateWishlistDto) {
-    await this.prisma.wishlists.create({
+    await prisma.wishlists.create({
       data: {
 
-        ...(createWishlistDto as unknown as Prisma.wishlistsUncheckedCreateInput),
+        ...(createWishlistDto),
       },
     });
 
     return {
-      mensage: 'Carteira cadastrada com sucesso!',
+      mensage: 'Wishlists cadastrada com sucesso!',
     };
   }
+  
+  // LISTA TODAS AS WISHLISTS DESSA ROTA
 
   async findAll() {
-    return await this.prisma.wishlists.findMany();
+    return await prisma.wishlists.findMany();
   }
 
-  async findOne(id: string) {
-    return await this.prisma.wishlists.findUnique({
+  // ENCONTRO UMA WISHLISTS PELO ID
+
+  async findOne(id_wishlist: string) {
+    return await prisma.wishlists.findUnique({
       where: {
-        id_wishlist: id,
+        id_wishlist,
       },
     });
   }
 
-  update(id: string, updateWishlistDto: UpdateWishlistDto) {
-    return `This action updates a #${id} wishlist`;
+  // ATUALIZA UMA WISHLISTS PELO ID
+
+   async update(id_wishlist: string, data: UpdateWishlistDto) {
+    await prisma.wishlists.update({
+      where: { id_wishlist },
+      data,
+    })
+
+    return {
+      mensage: 'Wishlis atualizada com sucesso!',
+    }
   }
 
-  async remove(id: string) {
-    return await this.prisma.wishlists.delete({
+  // DELETE UMA WISHLISTS PELO ID
+
+  async remove(id_wishlist: string) {
+    await prisma.wishlists.delete({
       where: {
-        id_wishlist: id,
+        id_wishlist,
       },
     });
+
+    return {
+      message: 'Wishlis deletada com sucesso!',
+    }
   }
 }

@@ -22,14 +22,14 @@ export class WorldsService {
 
   // LISTO TODOS OS MUNDOS DESSA ROTA
 
-  findAll() {
-    return prisma.worlds.findMany();
+  async findAll() {
+    return await prisma.worlds.findMany();
   }
 
   // ENCONTRO UM MUNDO PELO ID
 
-  findOne(id_world: string) {
-    return prisma.worlds.findUnique({
+  async findOne(id_world: string) {
+    return await prisma.worlds.findUnique({
       where: {
         id_world,
       },
