@@ -1,12 +1,10 @@
 import { Injectable } from '@nestjs/common';
-//import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateWorldsDto } from './dto/create-worlds.dto';
 import { UpdateWorldsDto } from './dto/update-worlds.dto';
 import { prisma } from '../config/db';
 
 @Injectable()
 export class WorldsService {
-  //  constructor(private readonly prisma: prisma) {}
 
   // CRIA UM MUNDO
 
@@ -28,7 +26,7 @@ export class WorldsService {
     return prisma.worlds.findMany();
   }
 
-  // ENCONTRO UM MUNDO POR ID
+  // ENCONTRO UM MUNDO PELO ID
 
   findOne(id_world: string) {
     return prisma.worlds.findUnique({

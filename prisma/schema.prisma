@@ -186,7 +186,7 @@ model subcategories {
 }
 
 model telephones {
-  id_telephone     String  @id @db.VarChar
+  id_telephone     String  @id @default(uuid()) @db.VarChar
   id_user          String? @db.VarChar
   number_telephone String  @db.VarChar
   region_code      String  @db.VarChar
@@ -204,7 +204,7 @@ model transactions {
 }
 
 model users {
-  id_user                                         String           @id @db.VarChar
+  id_user                                         String           @id @default(uuid()) @db.VarChar
   name                                            String           @db.VarChar
   surname                                         String?          @db.VarChar
   profile_picture                                 String?          @db.VarChar
@@ -258,7 +258,7 @@ model wishlists {
 }
 
 model worlds {
-  id_world            String     @id @db.VarChar
+  id_world            String     @id @default(uuid()) @db.VarChar
   name_world          String     @db.VarChar
   description         String?
   founding_company    String?    @db.VarChar

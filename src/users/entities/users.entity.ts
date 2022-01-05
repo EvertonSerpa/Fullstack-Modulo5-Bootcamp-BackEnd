@@ -35,4 +35,5 @@ export class Users implements Prisma.usersUncheckedCreateInput {
   wallets?: Prisma.walletsUncheckedCreateNestedManyWithoutUsersInput;
   wishlists_usersTowishlists_id_seller?: Prisma.wishlistsUncheckedCreateNestedManyWithoutUsers_usersTowishlists_id_sellerInput;
   wishlists_usersTowishlists_id_user?: Prisma.wishlistsUncheckedCreateNestedManyWithoutUsers_usersTowishlists_id_userInput;
+ 
 }

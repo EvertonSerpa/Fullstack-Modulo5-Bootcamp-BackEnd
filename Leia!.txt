@@ -2,43 +2,63 @@ Para brincar nas  na construção das tabelas..!!! Boa diversão =p
 
 Rota User
 
+
 {
     "name": "Everton",
     "surname": "Serpa",
-    "image": "https://images.alphacoders.com/933/thumb-1920-933242.png",
-    "nike_name": "Aika Akime",
+    "profile_picture": "https://images.alphacoders.com/933/thumb-1920-933242.png",
+    "nick_name": "Aika Akime",
     "password": "123456789",
-    "wishlist_products": "Anime, Programação, RPG",
-    "wishlist_stores": "Animetec, Protec, R+",
     "email": "evertonnascimento.serpa@gmail.com",
     "status": "Concluido",
-    "qualification": "5 estrelas"
+    "seller": true,
+    "description": "Aqui vai uma dercrição",
+    "banner": "Aqui vai o o banner do usuario que se torna vendedor",
+    "average_qualification": 5,
+    "counter_views_store": 5,
+    "role": "user"
 }
 
 {
     "name": "Amanda",
-    "surname": "Batista",
-    "image": "https://images2.alphacoders.com/901/thumbbig-901312.webp",
-    "nike_name": "S@peka",
-    "password": "87596412",
-    "wishlist_products": "Estudo, Moda, Langerie",
-    "wishlist_stores": "Festa, Amor, Casamento",
-    "email": "amandabatista@gmail.com",
-    "status": "Em andamento",
-    "qualification": "3 estrelas"
+    "surname": "Serpa",
+    "profile_picture": "https://images2.alphacoders.com/901/thumbbig-901312.webp",
+    "nick_name": "AAK",
+    "password": "45789612",
+    "email": "amanda.serpa@gmail.com",
+    "status": "Concluido",
+    "seller": true,
+    "description": "Aqui vai uma dercrição",
+    "banner": "Aqui vai o o banner do usuario que se torna vendedor",
+    "average_qualification": 5,
+    "counter_views_store": 5,
+    "role": "user"
 } 
 
+Rota word
+
 {
-    "name": "Estela",
-    "surname": "Alberto",
-    "image": "https://images4.alphacoders.com/923/thumbbig-923051.webp",
-    "nike_name": "Estrela",
-    "password": "123estela",
-    "wishlist_products": "Dança, Estilo",
-    "wishlist_stores": "Carro, Balada, L+",
-    "email": "estrela@hotmail.com",
-    "status": "Finalizado",
-    "qualification": "1 estrelas"
+    "name_world": "Casas na praia",
+    "description": "Aqui vai uma descrição",
+    "founding_company": "Aqui vai o nome da empresa fundadora",
+    "picture_world": "Aqui vai uma foto do mundo",
+    "icon_world": "Aqui vai um icone do mundo",
+    "banner_world": "Aqui vai um banner do mundo",
+    "video_world": "Aqui vai um video do mundo",
+    "status_world": "Aqui vai o status do mundo",
+    "counter_views_world": 5
+}
+
+{
+    "name_world": "Apartamento",
+    "description": "Aqui vai uma descrição",
+    "founding_company": "Aqui vai o nome da empresa fundadora",
+    "picture_world": "Aqui vai uma foto do mundo",
+    "icon_world": "Aqui vai um icone do mundo",
+    "banner_world": "Aqui vai um banner do mundo",
+    "video_world": "Aqui vai um video do mundo",
+    "status_world": "Aqui vai o status do mundo",
+    "counter_views_world": 5
 }
 
 Rota Telephone
