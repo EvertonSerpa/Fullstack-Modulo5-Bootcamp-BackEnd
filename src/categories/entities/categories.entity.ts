@@ -13,4 +13,5 @@ export class Categories implements Prisma.categoriesUncheckedCreateInput {
   description?: string;
   products?: Prisma.productsUncheckedCreateNestedManyWithoutCategoriesInput;
   subcategories?: Prisma.subcategoriesUncheckedCreateNestedManyWithoutCategoriesInput;
+  
 }

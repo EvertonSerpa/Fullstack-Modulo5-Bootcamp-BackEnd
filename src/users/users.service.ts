@@ -1,19 +1,18 @@
 import { Injectable, ConflictException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUsersDto } from './dto/create-users.dto';
 import { UpdateUsersDto } from './dto/update-users.dto';
 import { Prisma, users } from '@prisma/client';
 import { UserRole } from './enum/role.enum';
 import * as bcrypt from 'bcrypt';
+import { prisma } from '../config/db';
 
 @Injectable()
 export class UsersService {
-  constructor(private db: PrismaService) {}
 
-  // LÓGICA DA CRIAÇÃO  DO USUÁRIO
+  // CRIA UM USUÁRIO
 
   async create(createUsersDto: CreateUsersDto, role: UserRole): Promise<users> {
-    const userExists = await this.db.users.findFirst({
+    const userExists = await prisma.users.findFirst({
       where: { email: createUsersDto.email },
     });
 
@@ -28,7 +27,7 @@ export class UsersService {
 
     // CASO O NIKENAME JÁ ESTEJA CADASTRADO, EXIBIRÁ A SEGUINTE MENSAGEM
 
-    const nikeNemeExists = await this.db.users.findUnique({
+    const nikeNemeExists = await prisma.users.findUnique({
       where: { nick_name: createUsersDto.nick_name },
     });
 
@@ -38,7 +37,7 @@ export class UsersService {
 
     // CRIAÇÃO DO USUARIO
 
-    const users = await this.db.users.create({
+    const users = await prisma.users.create({
       data: {
         ...(createUsersDto as unknown as Prisma.usersUncheckedCreateInput),
         role: role,
@@ -55,17 +54,17 @@ export class UsersService {
   // LISTO TODOS OS USUÁRIOS DESSA ROTA
 
   async findAll() {
-    const users = await this.db.users.findMany();
+    const users = await prisma.users.findMany();
 
     // VARRO TODO O USERS, RETIRO O PASSWORD E RETORNO O RESTO DOS DADOS A SEREM LISTADOS
     const newUsers = users.map(({ password, ...rest }) => rest);
     return newUsers;
   }
 
-  // ENCONTRO UM USUÁRIO POR ID
+  // ENCONTRA UM USUÁRIO PELO ID
 
   async findOne(id_user: string) {
-    const users = await this.db.users.findUnique({
+    const users = await prisma.users.findUnique({
       where: {
         id_user,
       },
@@ -78,7 +77,7 @@ export class UsersService {
   // ATUALIZA UM USUÁRIO PELO ID
 
   async update(id_user: string, data: UpdateUsersDto) {
-    await this.db.users.update({
+    await prisma.users.update({
       where: { id_user },
       data,
     });
@@ -91,7 +90,7 @@ export class UsersService {
   // DELETE UM USUÁRIO PELO ID
 
   async remove(id_user: string) {
-    await this.db.users.delete({
+    await prisma.users.delete({
       where: { id_user },
     });
 

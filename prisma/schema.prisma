@@ -8,8 +8,8 @@ datasource db {
 }
 
 model categories {
-  id_category            String          @id @db.VarChar
-  name_category          String          @db.VarChar
+  id_category            String          @id @default(uuid()) @db.VarChar
+  name_category          String          @unique @db.VarChar
   banner_category        String          @db.VarChar
   picture_category       String          @db.VarChar
   icon_category          String?         @db.VarChar
@@ -31,7 +31,7 @@ model deposit_money {
 }
 
 model disputes {
-  id_dispute                      String    @id @db.VarChar
+  id_dispute                      String    @id @default(uuid()) @db.VarChar
   id_order                        String    @db.VarChar
   id_user                         String    @db.VarChar
   id_seller                       String    @db.VarChar
@@ -47,7 +47,7 @@ model disputes {
 }
 
 model orders {
-  id_order         String     @id @db.VarChar
+  id_order         String     @id @default(uuid()) @db.VarChar
   id_user          String     @db.VarChar
   id_product_order String     @db.VarChar
   status_order     String     @db.VarChar
@@ -62,7 +62,7 @@ model orders {
 }
 
 model payment_method {
-  id_method          String    @id @db.VarChar
+  id_method          String    @id @default(uuid()) @db.VarChar
   id_user            String    @db.VarChar
   payment_type       String    @db.VarChar
   card_number        Int?
@@ -78,7 +78,7 @@ model payment_method {
 }
 
 model posts {
-  id_message                   String    @id @db.VarChar
+  id_message                   String    @id @default(uuid()) @db.VarChar
   id_product                   String    @db.VarChar
   id_user                      String    @db.VarChar
   id_seller                    String    @db.VarChar
@@ -92,7 +92,7 @@ model posts {
 }
 
 model products {
-  id_product            String           @id @db.VarChar
+  id_product            String           @id @default(uuid()) @db.VarChar
   id_category           String           @db.VarChar
   id_subcategory        String           @db.VarChar
   id_seller             String           @db.VarChar
@@ -129,7 +129,7 @@ model products {
 }
 
 model qualification {
-  id_qualification                        String    @id @db.VarChar
+  id_qualification                        String    @id @default(uuid()) @db.VarChar
   id_qualified                            String?   @db.VarChar
   id_product                              String?   @db.VarChar
   value_qualification                     Int
@@ -142,7 +142,7 @@ model qualification {
 }
 
 model sales {
-  id_sale                      String           @id @db.VarChar
+  id_sale                      String           @id @default(uuid()) @db.VarChar
   id_order                     String           @db.VarChar
   id_user                      String           @db.VarChar
   id_seller                    String           @db.VarChar
@@ -159,7 +159,7 @@ model sales {
 }
 
 model sales_products {
-  id_itens   String    @id @db.VarChar
+  id_itens   String    @id @default(uuid()) @db.VarChar
   id_sales   String?   @db.VarChar
   id_product String?   @db.VarChar
   quantity   Int       @default(1)
@@ -170,9 +170,9 @@ model sales_products {
 }
 
 model subcategories {
-  id_subcategory            String      @id @db.VarChar
+  id_subcategory            String      @id @default(uuid()) @db.VarChar
   id_category               String?     @db.VarChar
-  nome_subcategory          String      @db.VarChar
+  nome_subcategory          String      @unique @db.VarChar
   banner_subcategory        String      @db.VarChar
   picture_subcategory       String      @db.VarChar
   icono_subcategory         String?     @db.VarChar
@@ -186,7 +186,7 @@ model subcategories {
 }
 
 model telephones {
-  id_telephone     String  @id @db.VarChar
+  id_telephone     String  @id @default(uuid()) @db.VarChar
   id_user          String? @db.VarChar
   number_telephone String  @db.VarChar
   region_code      String  @db.VarChar
@@ -195,7 +195,7 @@ model telephones {
 }
 
 model transactions {
-  id_transaction   String   @id @db.VarChar
+  id_transaction   String   @id @default(uuid()) @db.VarChar
   id_sale          String?  @db.VarChar
   type_transaction String   @db.VarChar
   value            Int
@@ -204,7 +204,7 @@ model transactions {
 }
 
 model users {
-  id_user                                         String           @id @db.VarChar
+  id_user                                         String           @id @default(uuid()) @db.VarChar
   name                                            String           @db.VarChar
   surname                                         String?          @db.VarChar
   profile_picture                                 String?          @db.VarChar
@@ -239,16 +239,16 @@ model users {
 }
 
 model wallets {
-  id_wallet    String    @id @db.VarChar
+  id_wallet    String    @id @default(uuid()) @db.VarChar
   id_user      String    @db.VarChar
-  balance      String    @db.VarChar
+  balance      Int
   date_created DateTime  @default(now()) @db.Date
   date_updated DateTime? @db.Date
   users        users     @relation(fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model wishlists {
-  id_wishlist                      String    @id @db.VarChar
+  id_wishlist                      String    @id @default(uuid()) @db.VarChar
   id_user                          String    @db.VarChar
   id_products                      String?   @db.VarChar
   id_seller                        String?   @db.VarChar
@@ -258,7 +258,7 @@ model wishlists {
 }
 
 model worlds {
-  id_world            String     @id @db.VarChar
+  id_world            String     @id @default(uuid()) @db.VarChar
   name_world          String     @db.VarChar
   description         String?
   founding_company    String?    @db.VarChar
