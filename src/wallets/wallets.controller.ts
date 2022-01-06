@@ -1,23 +1,15 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { WalletsService } from './wallets.service';
 import { CreateWalletsDto } from './dto/create-wallets.dto';
 import { UpdateWalletsDto } from './dto/update-wallets.dto';
 
-@Controller('wallet')
+@Controller('wallets')
 export class WalletsController {
   constructor(private readonly walletsService: WalletsService) {}
 
   @Post()
-  create(@Body() createWalletDto: CreateWalletsDto) {
-    return this.walletsService.create(createWalletDto);
+  create(@Body() createWalletsDto: CreateWalletsDto) {
+    return this.walletsService.create(createWalletsDto);
   }
 
   @Get()

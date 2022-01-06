@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { HttpExceptionFilter } from '@algoan/http-exception-filter';
+//import { HttpExceptionFilter } from '@algoan/http-exception-filter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
@@ -15,7 +15,7 @@ async function bootstrap() {
     }),
   );
 
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters();
 
   app.enableCors({
     //origin: "http://localhost:4200/",
@@ -31,20 +31,20 @@ async function bootstrap() {
 
 bootstrap();
 
-// if (process.env.NODE_ENV === 'development') {
-//   (async () => {
-//     const app = await NestFactory.create(AppModule);
+if (process.env.NODE_ENV === 'development') {
+  (async () => {
+    const app = await NestFactory.create(AppModule);
 
-//     const config = new DocumentBuilder()
-//       .setTitle('Metastore API')
-//       .setDescription('Metastore API documentation')
-//       .setVersion('0.5')
-//       .addTag('Metastore')
-//       .build();
+    const config = new DocumentBuilder()
+      .setTitle('Metastore API')
+      .setDescription('Metastore API documentation')
+      .setVersion('0.5')
+      .addTag('Metastore')
+      .build();
 
-//     const document = SwaggerModule.createDocument(app, config);
-//     SwaggerModule.setup('api', app, document);
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api', app, document);
 
-//     await app.listen(3001);
-//   })();
-// }
+    await app.listen(3001);
+  })();
+}

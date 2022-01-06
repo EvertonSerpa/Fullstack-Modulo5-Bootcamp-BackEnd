@@ -1,19 +1,17 @@
 import { Injectable } from '@nestjs/common';
-//import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateWorldsDto } from './dto/create-worlds.dto';
 import { UpdateWorldsDto } from './dto/update-worlds.dto';
 import { prisma } from '../config/db';
 
 @Injectable()
 export class WorldsService {
-  //  constructor(private readonly prisma: prisma) {}
 
   // CRIA UM MUNDO
 
-  async create(createWorldsDto: CreateWorldsDto) {
+  async create(CreateWorldsDto: CreateWorldsDto) {
     await prisma.worlds.create({
       data: {
-        ...createWorldsDto,
+        ...CreateWorldsDto,
       },
     });
 
@@ -24,14 +22,14 @@ export class WorldsService {
 
   // LISTO TODOS OS MUNDOS DESSA ROTA
 
-  findAll() {
-    return prisma.worlds.findMany();
+  async findAll() {
+    return await prisma.worlds.findMany();
   }
 
-  // ENCONTRO UM MUNDO POR ID
+  // ENCONTRO UM MUNDO PELO ID
 
-  findOne(id_world: string) {
-    return prisma.worlds.findUnique({
+  async findOne(id_world: string) {
+    return await prisma.worlds.findUnique({
       where: {
         id_world,
       },
@@ -59,7 +57,7 @@ export class WorldsService {
     });
 
     return {
-      message: 'Mundo deletado com sucesso!',
+      mesage: 'Mundo deletado com sucesso!',
     };
   }
 }

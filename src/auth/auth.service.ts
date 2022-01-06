@@ -10,7 +10,7 @@ export class AuthService {
     const { email, password } = login;
 
     const users = await this.db.users.findUnique({
-      where: { email },
+      where: {  },
     });
 
     if (!users) {

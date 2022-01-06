@@ -202,7 +202,7 @@ CREATE TABLE "users" (
     "name" VARCHAR NOT NULL,
     "surname" VARCHAR,
     "profile_picture" VARCHAR,
-    "nick_name" VARCHAR,
+    "nick_name" VARCHAR NOT NULL,
     "password" VARCHAR NOT NULL,
     "email" VARCHAR NOT NULL,
     "status" VARCHAR NOT NULL,
@@ -222,7 +222,7 @@ CREATE TABLE "users" (
 CREATE TABLE "wallets" (
     "id_wallet" VARCHAR NOT NULL,
     "id_user" VARCHAR NOT NULL,
-    "balance" VARCHAR NOT NULL,
+    "balance" INTEGER NOT NULL,
     "date_created" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "date_updated" DATE,
 
@@ -258,7 +258,16 @@ CREATE TABLE "worlds" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "categories_name_category_key" ON "categories"("name_category");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "subcategories_nome_subcategory_key" ON "subcategories"("nome_subcategory");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "users_nick_name_key" ON "users"("nick_name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_un" ON "users"("email");
 
 -- AddForeignKey
 ALTER TABLE "deposit_money" ADD CONSTRAINT "deposit_money_id_user_fkey" FOREIGN KEY ("id_user") REFERENCES "users"("id_user") ON DELETE NO ACTION ON UPDATE NO ACTION;

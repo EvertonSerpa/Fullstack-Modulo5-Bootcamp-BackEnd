@@ -3,17 +3,14 @@ import { IsString, IsNumber } from 'class-validator';
 
 export class CreateOrdersDto extends Orders {
   @IsString()
-  order_status?: string;
+  status_order?: string;
 
   @IsString()
   payment_method: string;
 
   @IsString()
-  annotation: string;
-
-  @IsNumber()
-  discount_ticket: number;
+  id_users: string;
 
   @IsString()
-  usersId_users: string;
+  id_product_order: string;
 }

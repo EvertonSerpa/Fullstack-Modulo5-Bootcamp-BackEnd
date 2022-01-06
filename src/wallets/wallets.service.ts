@@ -1,64 +1,61 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateWalletsDto } from './dto/create-wallets.dto';
 import { UpdateWalletsDto } from './dto/update-wallets.dto';
+import {  prisma } from '../config/db';
 
 @Injectable()
 export class WalletsService {
-  constructor(private readonly prisma: PrismaService) {}
 
-  // CRIA UMA CARTEIRA
+   // CRIA UMA CARTEIRA
 
-  async create(CreateWalletDto: CreateWalletsDto) {
-    await this.prisma.wallets.create({
+  async create(CreateWalletsDto: CreateWalletsDto) {
+    await prisma.wallets.create({
       data: {
-        ...CreateWalletDto,
+        ...CreateWalletsDto,
       },
     });
 
     return {
-      mensage: 'Carteira cadastrada com sucesso!',
+      mensage: 'Carteira criada com sucesso!'
     };
   }
 
-  // LISTO TODOS OS CARTEIRAS DESSA ROTA
+  // LISTO TODAS AS CARTEIRAS DESSA ROTA
 
-  findAll() {
-    return this.prisma.wallets.findMany();
+  async findAll() {
+    return await prisma.wallets.findMany();
   }
 
-  // ENCONTRO UMA CARTEIRA POR ID
-
-  findOne(id_wallet: string) {
-    return this.prisma.wallets.findUnique({
+  async findOne(id_wallet: string) {
+    return await prisma.wallets.findUnique({
       where: {
         id_wallet,
       },
     });
   }
 
-  // ATUALIZA UMA CARTEIRA PELO ID
+ // ATUALIZA A CARTEIRA PELO ID
 
   async update(id_wallet: string, data: UpdateWalletsDto) {
-    await this.prisma.wallets.update({
+    await prisma.wallets.update({
       where: { id_wallet },
       data,
     });
 
     return {
       mensage: 'Carteira atualizada com sucesso!',
-    };
+    }
   }
 
   // DELETE UMA CARTEIRA PELO ID
 
   async remove(id_wallet: string) {
-    await this.prisma.wallets.delete({
-      where: { id_wallet },
+    await prisma.wallets.delete({
+      where: { id_wallet }
     });
 
     return {
-      message: 'Carteira deletada com sucesso!',
-    };
+      mesage: 'Carteira deletada com sucesso!'
+    }
   }
 }

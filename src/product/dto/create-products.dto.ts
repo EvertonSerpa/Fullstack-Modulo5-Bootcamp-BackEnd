@@ -2,60 +2,30 @@ import { Products } from '../entities/products.entity';
 import { IsString, IsNumber } from 'class-validator';
 
 export class CreateProductsDto extends Products {
-  @IsString()
-  product_name: string;
+  @IsString( { message: 'Informe o id da categoria' } )
+  id_category: string;
 
-  @IsNumber()
+  @IsString( { message: 'Informe o id da sub-categoria' } )
+  id_subcategory: string;
+
+  @IsString( { message: 'Informe o id do vendedor' } )
+  id_seller: string;
+
+  @IsString( { message: 'Informe o id da mundo' } )
+  id_world: string;
+  
+  @IsString( { message: 'Informe o id do produto' } )
+  name_product: string;
+
+  @IsNumber({}, { message: 'Informe o preço do produto' } )
   price: number;
 
-  @IsString()
+  @IsString( { message: 'Informe a descrição do produto' } )
   description: string;
 
-  @IsString()
-  specifications?: string;
+  @IsString( { message: 'Informe a imagem do produto' } )
+  main_picture: string;
 
-  @IsString()
-  details?: string;
-
-  @IsString()
-  color?: string;
-
-  @IsString()
-  product_tags?: string;
-
-  @IsString()
-  video?: string;
-
-  @IsString()
-  main_image: string;
-
-  @IsString()
-  gallery?: string;
-
-  @IsString()
-  image_3d?: string;
-
-  @IsString()
-  status: string;
-
-  @IsNumber()
-  average_qualification?: number;
-
-  @IsNumber()
-  counter_view_product: number;
-
-  @IsString()
-  platform?: string;
-
-  @IsString()
-  collection?: string;
-
-  @IsNumber()
+  @IsNumber({}, { message: 'Informe a quantidade do produto' }  )
   stock?: number;
-
-  @IsNumber()
-  discount?: number;
-
-  @IsNumber()
-  highlight_level: number;
 }

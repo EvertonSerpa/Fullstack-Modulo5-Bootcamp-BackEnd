@@ -4,27 +4,24 @@ import { IsString, IsNumber } from 'class-validator';
 // Quando extends a propriedade Subcategoria posso vazer com que ela tenha qualquer variavel que eu queira.
 
 export class CreateSubcategoriesDto extends Subcategories {
-  @IsString()
-  subcategory_name: string;
+  @IsString( {message: 'Informe o id da categoria.'} )
+  id_category: string;
 
-  @IsString()
-  subcategory_banner: string;
+  @IsString( {message: 'Informe o nome da sub-categoria.'} )
+  nome_subcategory: string;
 
-  @IsString()
-  subcategory_image: string;
+  @IsString( {message: 'Informe o banner da sub-categoria.'} )
+  banner_subcategory: string;
 
-  @IsString()
-  subcategory_icon: string;
+  @IsString( {message: 'Informe a imagem da sub-categoria.'} )
+  picture_subcategory: string;
 
-  @IsString()
-  subcategory_route: string;
+  @IsString( {message: 'Informe o status da sub-categoria.'} )
+  status_subcategory: string;
 
-  @IsString()
-  subcategory_status: string;
+  @IsNumber( {}, {message: 'Informe o contador de visualização da sub-categoria.'}  )
+  counter_views_subcategory: number;
 
-  @IsNumber()
-  subcategory_counter_views: number;
-
-  @IsString()
+  @IsString( {message: 'Informe a descrição da sub-categoria.'} )
   description?: string;
 }
