@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 //import { HttpExceptionFilter } from '@algoan/http-exception-filter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
