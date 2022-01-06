@@ -35,6 +35,19 @@ Rota User
     "role": "user"
 } 
 
+
+Rota Subcategorie
+
+{
+    "id_category": "075a21db-41c7-4d78-87c7-efebfbda61cb",
+    "nome_subcategory": "sub-categoria anime",
+    "banner_subcategory": "Aqui vai o banner da categoria",
+    "picture_subcategory": "Aqui vai o foto da categoria",
+    "status_subcategory": "Ativo",
+    "counter_views_subcategory": 10000000,
+    "description": " Aqui vai uma descrição"
+}
+
 Rota word
 
 {

@@ -172,7 +172,7 @@ model sales_products {
 model subcategories {
   id_subcategory            String      @id @default(uuid()) @db.VarChar
   id_category               String?     @db.VarChar
-  nome_subcategory          String      @db.VarChar
+  nome_subcategory          String      @unique @db.VarChar
   banner_subcategory        String      @db.VarChar
   picture_subcategory       String      @db.VarChar
   icono_subcategory         String?     @db.VarChar

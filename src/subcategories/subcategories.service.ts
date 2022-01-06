@@ -1,16 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { prisma } from '../config/db';
 import { CreateSubcategoriesDto } from './dto/create-subcategories.dto';
 import { UpdateSubcategoriesDto } from './dto/update-subcategories.dto';
 
 @Injectable()
 export class SubcategoriesService {
-  constructor(private readonly prisma: PrismaService) {}
 
   // CADASTRAR SUBCATEGORIA
 
   async create(createSubcategorieDto: CreateSubcategoriesDto) {
-    await this.prisma.subcategories.create({
+    await prisma.subcategories.create({
       data: {
         ...createSubcategorieDto,
       },
@@ -24,13 +23,13 @@ export class SubcategoriesService {
   // LISTA TODAS AS SUBCATEGORIAS DESSA ROTA
 
   findAll() {
-    return this.prisma.subcategories.findMany();
+    return prisma.subcategories.findMany();
   }
 
   // ENCONTRA UM SUBCATEGORIA POR ID
 
   findOne(id_subcategory: string) {
-    return this.prisma.subcategories.findUnique({
+    return prisma.subcategories.findUnique({
       where: {
         id_subcategory,
       },
@@ -40,7 +39,7 @@ export class SubcategoriesService {
   // ATUALIZA UM SUBCATEGORIA PELO ID
 
   async update(id_subcategory: string, data: UpdateSubcategoriesDto) {
-    await this.prisma.subcategories.update({
+    await prisma.subcategories.update({
       where: { id_subcategory },
       data,
     });
@@ -53,7 +52,7 @@ export class SubcategoriesService {
   // DELETE UMA SUBCATEGORIA PELO ID
 
   async remove(id_subcategory: string) {
-    await this.prisma.subcategories.delete({
+    await prisma.subcategories.delete({
       where: { id_subcategory },
     });
 
