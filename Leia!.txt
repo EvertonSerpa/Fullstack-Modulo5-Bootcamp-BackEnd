@@ -61,6 +61,24 @@ Rota word
     "counter_views_world": 5
 }
 
+Rota categorie
+
+{
+    "name_category": "Animes",
+    "banner_category": "Aqui vai o banner da categoria",
+    "picture_category": "Aqui vai o foto da categoria",
+    "status_category": "Ativo",
+    "counter_views_category": 10000000,
+    "description": " Aqui vai uma descrição"
+}
+
+Rota wallets
+
+{
+    "balance": 111111,
+    "id_user": "d4783324-5e07-4c21-9bc4-76914d8a398b"
+} 
+
 Rota Telephone
 
 {

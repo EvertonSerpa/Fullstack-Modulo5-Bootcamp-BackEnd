@@ -2,24 +2,21 @@ import { Categories } from '../entities/categories.entity';
 import { IsString, IsNumber, IsBoolean } from 'class-validator';
 
 export class CreateCategoriesDto extends Categories {
-  @IsString()
+  @IsString({ message: 'Informe o nome da categoria.' })
   name_category: string;
 
-  @IsString()
+  @IsString( { message: 'Informe o banner (link) da categoria.' } )
   banner_category: string;
 
-  @IsString()
+  @IsString( { message: 'Informe a foto da categoria.' } )
   picture_category: string;
 
-  @IsString()
-  icon_category: string | null;
-
-  @IsBoolean()
+  @IsString( { message: 'Informe o status da categoria.' } )
   status_category: string;
 
-  @IsNumber()
+  @IsNumber( {}, { message: 'Informe o contador de visitas.' } )
   counter_views_category: number;
 
-  @IsString()
-  description: string | null;
+  @IsString( { message: 'Informe o descrição da categoria.' } )
+  description?: string | null;
 }
