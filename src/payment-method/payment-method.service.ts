@@ -1,16 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { prisma } from '../config/db';
 import { CreatePaymentMethodDto } from './dto/create-payment-method.dto';
 import { UpdatePaymentMethodDto } from './dto/update-payment-method.dto';
 
 @Injectable()
 export class PaymentMethodService {
-  constructor(private readonly prisma: PrismaService) {}
 
   // CRIA UM METODO DE PAGAMENTO
 
   async create(createPaymentMethodDto: CreatePaymentMethodDto) {
-    await this.prisma.payment_method.create({
+    await prisma.payment_method.create({
       data: {
         ...createPaymentMethodDto,
       },
@@ -24,13 +23,13 @@ export class PaymentMethodService {
   // LISTA TODOS AS TABELAS DE METODO DE PAGAMENTO DESSA ROTA
 
   findAll() {
-    return this.prisma.payment_method.findMany();
+    return prisma.payment_method.findMany();
   }
 
   // ENCONTRA UM METODO DE PAGAMENTO POR ID
 
   findOne(id_method: string) {
-    return this.prisma.payment_method.findUnique({
+    return prisma.payment_method.findUnique({
       where: {
         id_method,
       },
@@ -40,7 +39,7 @@ export class PaymentMethodService {
   // ATUALIZA UM METODO DE PAGAMENTO PELO ID
 
   async update(id_method: string, data: UpdatePaymentMethodDto) {
-    await this.prisma.payment_method.update({
+    await prisma.payment_method.update({
       where: { id_method },
       data,
     });
@@ -53,7 +52,7 @@ export class PaymentMethodService {
   // DELETE UM METODO DE PAGAMENTO PELO ID
 
   async remove(id_method: string) {
-    await this.prisma.payment_method.delete({
+    await prisma.payment_method.delete({
       where: { id_method },
     });
 

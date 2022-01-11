@@ -258,6 +258,12 @@ CREATE TABLE "worlds" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "categories_name_category_key" ON "categories"("name_category");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "subcategories_nome_subcategory_key" ON "subcategories"("nome_subcategory");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "users_nick_name_key" ON "users"("nick_name");
 
 -- CreateIndex
