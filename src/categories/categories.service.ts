@@ -5,7 +5,6 @@ import { UpdateCategoriesDto } from './dto/update-categories.dto';
 
 @Injectable()
 export class CategoriesService {
-
   // CADASTRAR CATEGORIA
 
   async create(createCategoriesDto: CreateCategoriesDto) {

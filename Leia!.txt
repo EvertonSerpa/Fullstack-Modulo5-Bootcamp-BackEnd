@@ -1,5 +1,8 @@
 Para brincar nas  na construção das tabelas..!!! Boa diversão =p 
 
+web: npm run start:prod
+web: node index.js
+
 Rota User
 
 
