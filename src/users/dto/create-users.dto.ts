@@ -18,11 +18,6 @@ export class CreateUsersDto extends Users {
   @ApiProperty()
   name: string;
 
-  @IsNotEmpty({ message: 'O campo sobrenome não pode ser vazio' })
-  @IsString()
-  @ApiProperty()
-  surname: string | null;
-
   @IsString()
   @ApiProperty()
   profile_picture: string | null;

@@ -8,7 +8,6 @@ import { prisma } from '../config/db';
 
 @Injectable()
 export class UsersService {
-
   // CRIA UM USUÁRIO
 
   async create(createUsersDto: CreateUsersDto, role: UserRole): Promise<users> {
@@ -57,6 +56,7 @@ export class UsersService {
     const users = await prisma.users.findMany();
 
     // VARRO TODO O USERS, RETIRO O PASSWORD E RETORNO O RESTO DOS DADOS A SEREM LISTADOS
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const newUsers = users.map(({ password, ...rest }) => rest);
     return newUsers;
   }

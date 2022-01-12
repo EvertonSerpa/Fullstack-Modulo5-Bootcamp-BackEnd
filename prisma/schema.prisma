@@ -206,7 +206,6 @@ model transactions {
 model users {
   id_user                                         String           @id @default(uuid()) @db.VarChar
   name                                            String           @db.VarChar
-  surname                                         String?          @db.VarChar
   profile_picture                                 String?          @db.VarChar
   nick_name                                       String           @unique @db.VarChar
   password                                        String           @db.VarChar
