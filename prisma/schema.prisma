@@ -15,7 +15,7 @@ model categories {
   icon_category          String?         @db.VarChar
   date_created           DateTime        @default(now()) @db.Date
   date_updated           DateTime?       @db.Date
-  status_category        String          @db.VarChar
+  status_category        String          @default("ativo") @db.VarChar
   counter_views_category Int             @default(0)
   description            String?
   products               products[]
@@ -172,13 +172,13 @@ model sales_products {
 model subcategories {
   id_subcategory            String      @id @default(uuid()) @db.VarChar
   id_category               String?     @db.VarChar
-  nome_subcategory          String      @unique @db.VarChar
+  name_subcategory          String      @unique @db.VarChar
   banner_subcategory        String      @db.VarChar
   picture_subcategory       String      @db.VarChar
-  icono_subcategory         String?     @db.VarChar
+  icon_subcategory          String?     @db.VarChar
   date_created              DateTime    @default(now()) @db.Date
   date_updated              DateTime?   @db.Date
-  status_subcategory        String      @db.VarChar
+  status_subcategory        String      @default("ativo") @db.VarChar
   counter_views_subcategory Int         @default(0)
   description               String?
   categories                categories? @relation(fields: [id_category], references: [id_category], onDelete: NoAction, onUpdate: NoAction)
@@ -206,12 +206,11 @@ model transactions {
 model users {
   id_user                                         String           @id @default(uuid()) @db.VarChar
   name                                            String           @db.VarChar
-  surname                                         String?          @db.VarChar
   profile_picture                                 String?          @db.VarChar
-  nick_name                                       String           @unique @db.VarChar
+  nick_name                                       String?          @unique @db.VarChar
   password                                        String           @db.VarChar
-  email                                           String           @unique(map: "users_un") @db.VarChar
-  status                                          String           @db.VarChar
+  email                                           String           @db.VarChar
+  status                                          String           @default("ativo") @db.VarChar
   seller                                          Boolean          @default(false)
   description                                     String?
   banner                                          String?          @db.VarChar
@@ -234,7 +233,6 @@ model users {
   sales_sales_id_userTousers                      sales[]          @relation("sales_id_userTousers")
   telephones                                      telephones[]
   wallets                                         wallets[]
-  wishlists_usersTowishlists_id_seller            wishlists[]      @relation("usersTowishlists_id_seller")
   wishlists_usersTowishlists_id_user              wishlists[]      @relation("usersTowishlists_id_user")
 }
 
@@ -248,18 +246,16 @@ model wallets {
 }
 
 model wishlists {
-  id_wishlist                      String    @id @default(uuid()) @db.VarChar
-  id_user                          String    @db.VarChar
-  id_products                      String?   @db.VarChar
-  id_seller                        String?   @db.VarChar
-  products                         products? @relation(fields: [id_products], references: [id_product], onDelete: NoAction, onUpdate: NoAction)
-  users_usersTowishlists_id_seller users?    @relation("usersTowishlists_id_seller", fields: [id_seller], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
-  users_usersTowishlists_id_user   users     @relation("usersTowishlists_id_user", fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
+  id_wishlist                    String    @id @default(uuid()) @db.VarChar
+  id_user                        String    @db.VarChar
+  id_products                    String?   @db.VarChar
+  products                       products? @relation(fields: [id_products], references: [id_product], onDelete: NoAction, onUpdate: NoAction)
+  users_usersTowishlists_id_user users     @relation("usersTowishlists_id_user", fields: [id_user], references: [id_user], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model worlds {
   id_world            String     @id @default(uuid()) @db.VarChar
-  name_world          String     @db.VarChar
+  name_world          String     @unique @db.VarChar
   description         String?
   founding_company    String?    @db.VarChar
   picture_world       String     @db.VarChar

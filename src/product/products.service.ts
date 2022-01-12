@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import {  prisma } from '../config/db';
+import { prisma } from '../config/db';
 import { CreateProductsDto } from './dto/create-products.dto';
 import { UpdateProductsDto } from './dto/update-products.dto';
 
 @Injectable()
 export class ProductsService {
-
   // CADASTRAR PRODUTO
 
   async create(createProductsDto: CreateProductsDto) {
     await prisma.products.create({
       data: {
         ...createProductsDto,
+        status: 'ativo',
       },
     });
 

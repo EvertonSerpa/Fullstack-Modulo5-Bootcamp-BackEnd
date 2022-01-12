@@ -8,7 +8,6 @@ import { prisma } from '../config/db';
 
 @Injectable()
 export class UsersService {
-
   // CRIA UM USUÁRIO
 
   async create(createUsersDto: CreateUsersDto, role: UserRole): Promise<users> {
@@ -42,6 +41,7 @@ export class UsersService {
         ...(createUsersDto as unknown as Prisma.usersUncheckedCreateInput),
         role: role,
         password: hashedPassword,
+        status: 'ativo',
       },
     });
 

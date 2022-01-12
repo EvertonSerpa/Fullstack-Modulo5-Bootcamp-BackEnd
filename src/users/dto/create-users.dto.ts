@@ -7,6 +7,7 @@ import {
   IsBoolean,
   IsNumber,
   IsEmpty,
+  IsOptional,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -18,22 +19,13 @@ export class CreateUsersDto extends Users {
   @ApiProperty()
   name: string;
 
-  @IsNotEmpty({ message: 'O campo sobrenome não pode ser vazio' })
-  @IsString()
-  @ApiProperty()
-  surname: string | null;
-
-  @IsString()
-  @ApiProperty()
-  profile_picture: string | null;
-
   @IsNotEmpty({ message: 'O campo nike name não pode ser vazio' })
   @IsString()
   @ApiProperty()
   nick_name: string;
 
   @IsString()
-  @Length(6, 50, { message: 'Informe uma senha entre 6 e 50 caracteres' })
+  @Length(6, 50, { message: 'Informe uma senha entre 6 e 12 caracteres' })
   @ApiProperty()
   password: string;
 
@@ -43,24 +35,32 @@ export class CreateUsersDto extends Users {
   @IsEmail()
   email: string;
 
+  @IsOptional()
   @IsString()
-  status: string;
+  @ApiProperty()
+  profile_picture: string | null;
 
+  @IsOptional()
   @IsBoolean()
   seller: boolean | null;
 
   @IsString()
+  @IsOptional()
   description: string | null;
 
   @IsString()
+  @IsOptional()
   banner: string | null;
 
   @IsNumber()
+  @IsOptional()
   average_qualification: number | null;
 
   @IsNumber()
+  @IsOptional()
   counter_views_store: number | null;
 
   @IsString()
+  @IsOptional()
   role: string | null;
 }
