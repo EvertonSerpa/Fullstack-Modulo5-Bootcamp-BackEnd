@@ -34,7 +34,7 @@ export class CreateProductsDto extends Products {
   offer?: number;
 
   @IsOptional()
-  highlight_level?: number;
+  highlight_level: number;
 
   @IsOptional()
   featured?: boolean;
