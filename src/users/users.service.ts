@@ -42,6 +42,7 @@ export class UsersService {
         role: role,
         password: hashedPassword,
         status: 'ativo',
+        s,
       },
     });
 
