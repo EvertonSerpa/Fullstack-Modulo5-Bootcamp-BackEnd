@@ -6,10 +6,10 @@ export class Users implements Prisma.usersUncheckedCreateInput {
   id_user?: string;
   name: string;
   profile_picture?: string;
-  nick_name: string;
+  nick_name?: string;
   password: string;
   email: string;
-  status: string;
+  status?: string;
   seller?: boolean;
   description?: string;
   banner?: string;
@@ -32,6 +32,5 @@ export class Users implements Prisma.usersUncheckedCreateInput {
   sales_sales_id_userTousers?: Prisma.salesUncheckedCreateNestedManyWithoutUsers_sales_id_userTousersInput;
   telephones?: Prisma.telephonesUncheckedCreateNestedManyWithoutUsersInput;
   wallets?: Prisma.walletsUncheckedCreateNestedManyWithoutUsersInput;
-  wishlists_usersTowishlists_id_seller?: Prisma.wishlistsUncheckedCreateNestedManyWithoutUsers_usersTowishlists_id_sellerInput;
   wishlists_usersTowishlists_id_user?: Prisma.wishlistsUncheckedCreateNestedManyWithoutUsers_usersTowishlists_id_userInput;
 }
