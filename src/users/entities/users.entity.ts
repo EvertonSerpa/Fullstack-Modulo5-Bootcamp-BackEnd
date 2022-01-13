@@ -3,9 +3,8 @@ import { Prisma } from '@prisma/client';
 // O Unchecked vai ter a informação do id, que para a entidade isso vai ser necessario.
 
 export class Users implements Prisma.usersUncheckedCreateInput {
-  id_user: string;
+  id_user?: string;
   name: string;
-  surname?: string;
   profile_picture?: string;
   nick_name: string;
   password: string;
@@ -32,7 +31,7 @@ export class Users implements Prisma.usersUncheckedCreateInput {
   sales_sales_id_sellerTousers?: Prisma.salesUncheckedCreateNestedManyWithoutUsers_sales_id_sellerTousersInput;
   sales_sales_id_userTousers?: Prisma.salesUncheckedCreateNestedManyWithoutUsers_sales_id_userTousersInput;
   telephones?: Prisma.telephonesUncheckedCreateNestedManyWithoutUsersInput;
+  wallets?: Prisma.walletsUncheckedCreateNestedManyWithoutUsersInput;
   wishlists_usersTowishlists_id_seller?: Prisma.wishlistsUncheckedCreateNestedManyWithoutUsers_usersTowishlists_id_sellerInput;
   wishlists_usersTowishlists_id_user?: Prisma.wishlistsUncheckedCreateNestedManyWithoutUsers_usersTowishlists_id_userInput;
- 
 }
