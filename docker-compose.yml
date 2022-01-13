@@ -1,0 +1,14 @@
+services:
+  backendmetatorepg:
+    image: postgres:alpine
+    ports:
+      - '5432:5432'
+    container_name: 'backendmetastore'
+    restart: always
+    volumes:
+      - backendmetastorepg-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpassword
+volumes:
+  backendmetastorepg-data:

@@ -1,0 +1,224 @@
+Para brincar nas  na construção das tabelas..!!! Boa diversão =p 
+
+Rota User
+
+
+{
+    "name": "Everton",
+    "surname": "Serpa",
+    "profile_picture": "https://images.alphacoders.com/933/thumb-1920-933242.png",
+    "nick_name": "Aika Akime",
+    "password": "123456789",
+    "email": "evertonnascimento.serpa@gmail.com",
+    "status": "Concluido",
+    "seller": true,
+    "description": "Aqui vai uma dercrição",
+    "banner": "Aqui vai o o banner do usuario que se torna vendedor",
+    "average_qualification": 5,
+    "counter_views_store": 5,
+    "role": "user"
+}
+
+{
+    "name": "Amanda",
+    "surname": "Serpa",
+    "profile_picture": "https://images2.alphacoders.com/901/thumbbig-901312.webp",
+    "nick_name": "AAK",
+    "password": "45789612",
+    "email": "amanda.serpa@gmail.com",
+    "status": "Concluido",
+    "seller": true,
+    "description": "Aqui vai uma dercrição",
+    "banner": "Aqui vai o o banner do usuario que se torna vendedor",
+    "average_qualification": 5,
+    "counter_views_store": 5,
+    "role": "user"
+} 
+
+
+Rota Subcategorie
+
+{
+    "id_category": "075a21db-41c7-4d78-87c7-efebfbda61cb",
+    "nome_subcategory": "sub-categoria anime",
+    "banner_subcategory": "Aqui vai o banner da categoria",
+    "picture_subcategory": "Aqui vai o foto da categoria",
+    "status_subcategory": "Ativo",
+    "counter_views_subcategory": 10000000,
+    "description": " Aqui vai uma descrição"
+}
+
+Rota word
+
+{
+    "name_world": "Casas na praia",
+    "description": "Aqui vai uma descrição",
+    "founding_company": "Aqui vai o nome da empresa fundadora",
+    "picture_world": "Aqui vai uma foto do mundo",
+    "icon_world": "Aqui vai um icone do mundo",
+    "banner_world": "Aqui vai um banner do mundo",
+    "video_world": "Aqui vai um video do mundo",
+    "status_world": "Aqui vai o status do mundo",
+    "counter_views_world": 5
+}
+
+{
+    "name_world": "Apartamento",
+    "description": "Aqui vai uma descrição",
+    "founding_company": "Aqui vai o nome da empresa fundadora",
+    "picture_world": "Aqui vai uma foto do mundo",
+    "icon_world": "Aqui vai um icone do mundo",
+    "banner_world": "Aqui vai um banner do mundo",
+    "video_world": "Aqui vai um video do mundo",
+    "status_world": "Aqui vai o status do mundo",
+    "counter_views_world": 5
+}
+
+Rota categorie
+
+{
+    "name_category": "Animes",
+    "banner_category": "Aqui vai o banner da categoria",
+    "picture_category": "Aqui vai o foto da categoria",
+    "status_category": "Ativo",
+    "counter_views_category": 10000000,
+    "description": " Aqui vai uma descrição"
+}
+
+Rota wallets
+
+{
+    "balance": 111111,
+    "id_user": "d4783324-5e07-4c21-9bc4-76914d8a398b"
+} 
+
+Rota Telephone
+
+{
+  "number": 891078406,   
+  "dd_code": 55    
+}
+
+{
+  "number": 986461287,   
+  "dd_code": 77    
+}
+
+{
+  "number": 981749654,   
+  "dd_code": 555   
+}
+
+Rota Subcategorie
+
+{
+  "subcategory_name": "Aqui vai um nome",
+  "subcategory_banner": "Aqui vai um banner",       
+  "subcategory_image": "Aqui vai uma imagem",  
+  "subcategory_icon": "Aqui vai um icone",      
+  "subcategory_route": "Aqui vai uma rota",     
+  "subcategory_status": "Aqui vai uma banana",    
+  "subcategory_counter_views": 10,
+  "description": "É muito GRUD!!!CRUD rs"           
+}
+
+Rota Product
+
+{
+    "product_name": "Escovas de dentes",
+    "price": 10000,
+    "description": "Brilha no escuro",
+    "specifications": "Tamanho dumbo",
+    "details": "Dura 5 anos",
+    "product_route": "Grande rota",
+    "product_tags": "#escove bem",
+    "video": "Aqui vem um video",
+    "main_image": "Imagem principal",
+    "gallery": "Aqui vem as fotos",
+    "image_3d": "Aqui vem imagem 3d",
+    "status": "Feito",
+    "qualification": "5 estrelas",
+    "counter_view_product": 2,
+    "platform": "s5+",
+    "collection": "carros",
+    "the_mount": 10,
+    "discount": 5,
+    "turbo_level": 500
+}
+
+Rota Order
+
+{
+   "order_status": "Pronto",
+   "payment_method": "Calote",
+   "status": "Caloteiro"
+}
+
+{
+   "order_status": "Em processo",
+   "payment_method": "Cartão",
+   "status": "Pago"
+}
+
+Rota Category
+
+{
+    "name_category": "Aqui vai o nome da categoria.",
+    "banner_category": "Aqui vai o banner da categoria",
+    "picture_category": "Aqui vai a foto da categoria",
+    "icon_category": "Aqui vai o icone da categoria",
+    "status_category": true,
+    "counter_views_category": 10,
+    "description": "Aqui vai a descrição da categoria"
+}
+
+Rota Qualification
+
+{
+    "value_qualification": 10,
+    "comment": "Aqui vai ocomentario",
+    "nick_name": "Perereca"
+    
+}
+
+Rota de Dispute
+
+{
+  "dispute_matter": "Disputa 01",
+  "dispute_body":   "disputa 02",
+  "reply_seller":   "disputa 03",
+  "status_dispute": "disputa 04"
+}
+
+Rota de Post
+{
+    "message_matter": "Aqui vai uma msn",
+    "message_body": "Aqui vai uma mss de corpo",
+    "reply_seller": "Aqui vai outra msn"
+}
+
+Rota Word
+
+{
+  "name_world":        "Mario",
+  "description":         "Mariando com Mario",
+  "founding_company":    "T+++++++",
+  "picture_world":      "Mario",
+  "icon_world":         "Martelo de thor",
+  "banner_world":      "Não tem",
+  "video_world":        "Não tem",
+  "status_category":   "Mario e Maria",
+  "counter_views_world": 0
+}
+
+Rota Wallet
+
+{
+    "balance": 115  
+}
+
+Rota Deposit-Money
+
+{
+    "value": 1789
+}
