@@ -1,3 +1,79 @@
+<h1 align="center">
+  MetaStore
+</h1>
+
+
+<br />
+
+### Technologies and requirements
+
+- [NestJS](https://docs.nestjs.com/recipes/prisma)
+- [Prisma](https://www.prisma.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Docker](https://www.docker.com/)
+
+### Project
+
+
+This application was developed with the purpose of final project of completion of course of Full Stack Developer.
+
+It is a segmented marketplace for Metaverso.
+
+In this application, the user will be able to purchase any item he wants, in a single place.
+
+
+### The team:
+
+Marla Cabral
+Victor Luz
+Paulo Gomes
+Everton Serpa
+Leonardo Acosta
+
+
+
+### When downloading the project the step by step is.
+
+1 - npm node i | To install nodemon package if not installed it will check the json dependencies and install the necessary libraries.
+
+2 - npm i -g @nestjs/cli | Globally installs the nestjs cli
+
+
+3 - npx prisma migrate dev | To generate the migrate.
+
+4 - npm run start:dev | To run the application in developer mode.
+
+
+
+### Commands used to create Authentication / Installation.
+
+
+## PRISMA
+
+- npm i prisma --save-dev | install the prisma
+
+
+## JWT
+
+- npx nest generate guard auth/simple
+- npm i @nestjs/passport passport @nestjs/jwt passport-jwt
+- npm i @types/passport --save-dev
+
+
+## VALIDATOR
+
+- npm install class-validator --save
+- npm install class-transformer
+
+
+## CRIPTOGRAPHY
+
+- npm i bcrypt
+- npm i -D @types/bcrypt
+
+##
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
