@@ -24,10 +24,10 @@ In this application, the user will be able to purchase any item he wants, in a s
 
 ### The team:
 
-Marla Cabral
-Victor Luz
-Paulo Gomes
-Everton Serpa
+Marla Cabral,
+Victor Luz,
+Paulo Gomes,
+Everton Serpa,
 Leonardo Acosta
 
 
